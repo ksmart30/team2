@@ -5,185 +5,356 @@
 		<title>test</title>
 	</th:block>
 	<th:block layout:fragment="customBody">
-		<div class="x_content">
-                    <br>
-                    <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+		<div class="x_panel">
+              <div class="x_title">
+                <font color="black">
+                <h2>전 표 승 인 </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Settings 1</a>
+                      </li>
+                      <li><a href="#">Settings 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name / Initial</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div id="gender" class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="male" data-parsley-multiple="gender"> &nbsp; Male &nbsp;
-                            </label>
-                            <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="female" data-parsley-multiple="gender"> Female
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                        </div>
-                      </div>
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button class="btn btn-primary" type="button">Cancel</button>
-						  <button class="btn btn-primary" type="reset">Reset</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
-                        </div>
-                      </div>
+                <div class="row">
 
-                    </form>
+              <table class="table table-bordered">
+				<tr>
+					<th>
+                  <div class="col-md-12 col-sm-12 col-xs-12 form-group">          	
+                  		검색조건                
                   </div>
-		<h1>전 표 승 인</h1>
-			<table>			
-				<tr>
-					<td>
-						검색조건
-					</td>
-					<td>
-					
-					</td>
-					<td>
-					
-					</td>
-					<td>
-					
-					</td>
-					<td>
-					
-					</td>
-					<td>
-					
-					</td>
-					<td>
-					
-					</td>
-					<td>
-					
-					</td>
-				</tr>
-				
-				<tr>
-					<td>
-						회계단위
-					</td>
-					<td>
-						<select>
-							<option>ANU디자인그룹(주)</option>
-						</select>
-					</td>
-					<td>
-						전표유형
-					</td>
-					<td>
-						<select>
-							<option>일반전표</option>
-							<option>대금지불전표</option>
-							<option>결산전표</option>
-						</select>
-					</td>
-					<td>
-						전표일자
-					</td>
-					<td>
-						<input type="date">~<input type="date">
-					</td>
-					<td>
-						전표번호
-					</td>
-					<td>
-						<input type="text" size="3">~<input type="text" size="3">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						승인여부
-					</td>
-					<td>
-						<input type="radio" name="1">승인
-						<input type="radio" name="1">미승인
-					</td>
-					<td>
-						발의자
-					</td>
-					<td>
-						<input type="text" size="5">
-						<button>검색</button>
-					</td>
-					<td>
-						계정코드
-					</td>
-					<td>
-						<input type="text" size="5">
-						<input type="text" size="3">
-						<button>검색</button>
-					</td>
-					<td>
-						발의부서
-					</td>
-					<td>
-						<input type="text" size="5">~
-						<button>검색</button>
-						<input type="text" size="5">~
-						<button>검색</button>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						전표구분
-					</td>
-					<td>
-						<input type="radio" name="2">All
-						<input type="radio" name="2">현금
-						<input type="radio" name="2">대체
-					</td>
-					<td>
-					
-					</td>
-					<td>
-					
-					</td>
-					<td>
-					
-					</td>
-					<td>
-					
-					</td>
-					<td>
-					
-					</td>
-					<td>
-					
-					</td>
-				</tr>
-				
-			</table>	
+                  
+                  <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                  		 회계단위 <select>
+							 <option>ANU디자인그룹(주)</option>						
+						   </select>
+                  </div>
 
+                  <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                  		 전표유형 <select>
+								 <option>일반전표</option>
+								 <option>대금지불전표</option>
+								 <option>결산전표</option>
+						  	  </select>
+                  	  
+                  </div>
+
+                  <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                         전표일자 <input type="date"> ~ <input type="date">
+                  </div>
+                  
+                  
+
+                  <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                   	 	 전표번호 <input type="text" size="3">
+                   	 	 ~ <input type="text" size="3">        	  
+                  </div>
+
+                  <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                     	 승인여부 <input type="radio" name="1">승인
+							  <input type="radio" name="1">미승인
+                  </div>
+
+                  <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                        발 의 자 <input type="text" size="5"><button>ㅁ</button>
+                  </div>
+
+
+                  <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                    	계정코드 <input type="text" size="5"> <input type="text" size="3"><button>ㅁ</button>
+                  </div>
+
+                  <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                    	발의부서 <input type="text" size="5"><button>ㅁ</button> ~ <input type="text" size="3"><button>ㅁ</button>
+                  </div> 
+
+                  <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    	전표구분 <input type="radio" name="2">All
+							  <input type="radio" name="2">현금
+							  <input type="radio" name="2">대체
+                  </div>
+                  </th>
+                  </tr>
+                  </table>
+          		</div>                                  
+              </div>
+            </div>	
+  				<div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title"> 
+                   <button>v전체선택</button> <button>v전체취소</button><span>조회건수 0건</span>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                   
+
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th>
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                            </th>
+                            <th class="column-title">No </th>
+                            <th class="column-title">구분 </th>
+                            <th class="column-title">전표일자 </th>
+                            <th class="column-title">전표번호 </th>
+                            <th class="column-title">상태 </th>
+                            <th class="column-title">승인 </th>
+                            <th class="column-title">취소사유 </th>
+                            <th class="column-title">차변합계 </th>
+                            <th class="column-title">대변합계 </th>
+                            <th class="column-title">발의부서 </th>                       
+                            <th class="column-title no-link last"><span class="nobr">발의자</span>
+                            </th>
+                            <th class="bulk-actions" colspan="7">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr class="even pointer">
+                            <td class="a-center ">
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                            </td>
+                            <td class=" ">121000040</td>
+                            <td class=" ">May 23, 2014 11:47:56 PM </td>
+                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
+                            <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                            <td class="a-right a-right ">$7.45</td>
+                            <td class=" last"><a href="#">View</a>
+                            </td>
+                          </tr>
+                          <tr class="odd pointer">
+                            <td class="a-center ">
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                            </td>
+                            <td class=" ">121000039</td>
+                            <td class=" ">May 23, 2014 11:30:12 PM</td>
+                            <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
+                            </td>
+                            <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                            <td class="a-right a-right ">$741.20</td>
+                            <td class=" last"><a href="#">View</a>
+                            </td>
+                          </tr>
+                          <tr class="even pointer">
+                            <td class="a-center ">
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                            </td>
+                            <td class=" ">121000038</td>
+                            <td class=" ">May 24, 2014 10:55:33 PM</td>
+                            <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
+                            </td>
+                            <td class=" ">Mike Smith</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                            <td class="a-right a-right ">$432.26</td>
+                            <td class=" last"><a href="#">View</a>
+                            </td>
+                          </tr>
+                         
+                       
+
+                          <tr class="even pointer">
+                            <td class="a-center ">
+                              <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                            </td>
+                            <td class=" ">121000040</td>
+                            <td class=" ">May 27, 2014 11:47:56 PM </td>
+                            <td class=" ">121000210</td>
+                            <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td> <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                            <td class="a-right a-right ">$7.45</td>
+                            <td class=" last"><a href="#">View</a>
+                            </td>
+                          </tr>
+                          <tr class="odd pointer">
+                            <td class="" colspan="8">합계</td>
+                     
+                            <td class=" ">0</td>
+                            <td class=" ">0</td>
+                            <td class="a-right a-right "></td>
+                            <td class=" last"><a href="#"></a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+							
+						
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title"> 
+                   <font size="4">전표상세내역</font>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                   
+
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                           
+                            <th class="column-title">순번 </th>
+                            <th class="column-title">계정코드 </th>
+                            <th class="column-title">계정명칭 </th>
+                            <th class="column-title">귀속부서 </th>
+                            <th class="column-title">차변금액 </th>
+                            <th class="column-title">대변금액 </th>
+                            <th class="column-title">적요 </th>
+                            <th class="column-title">거래처 </th>
+                            <th class="column-title">프로젝트 </th>
+                            <th class="column-title">증빙 </th>
+                            <th class="column-title">공급가액 </th>                       
+                            <th class="column-title no-link last"><span class="nobr">부가세액</span>
+                            
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr class="even pointer">
+                           
+                            <td class=" ">121000040</td>
+                            <td class=" ">May 23, 2014 11:47:56 PM </td>
+                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
+                            <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                            <td class=" ">Paid</td>
+                            <td class="a-right a-right ">$7.45</td>
+                            <td class=" last"><a href="#">View</a>
+                            </td>
+                          </tr>
+                          <tr class="odd pointer">
+                            
+                            <td class=" ">121000039</td>
+                            <td class=" ">May 23, 2014 11:30:12 PM</td>
+                            <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
+                            </td>
+                            <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                            <td class=" ">Paid</td>
+                            <td class="a-right a-right ">$741.20</td>
+                            <td class=" last"><a href="#">View</a>
+                            </td>
+                          </tr>
+                          <tr class="even pointer">
+                            
+                            <td class=" ">121000038</td>
+                            <td class=" ">May 24, 2014 10:55:33 PM</td>
+                            <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
+                            </td>
+                            <td class=" ">Mike Smith</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                            <td class=" ">Paid</td>
+                            <td class="a-right a-right ">$432.26</td>
+                            <td class=" last"><a href="#">View</a>
+                            </td>
+                          </tr>                                                                        
+                          <tr class="even pointer">
+                           
+                            <td class=" ">121000040</td>
+                            <td class=" ">May 27, 2014 11:47:56 PM </td>
+                            <td class=" ">121000210</td>
+                            <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                             <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td> <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                            <td class=" ">Paid</td>
+                            <td class="a-right a-right ">$7.45</td>
+                            <td class=" last"><a href="#">View</a>
+                            </td>
+                          </tr>
+                         
+                        </tbody>
+                      </table>
+                    </div>
+							
+						
+                  </div>
+                </div>
+              </div>
+		</font>
 	</th:block>
 </html>

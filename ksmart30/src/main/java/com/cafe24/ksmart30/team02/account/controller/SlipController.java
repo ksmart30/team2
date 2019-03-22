@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SlipController {
 	//전표입력
-	@GetMapping("/account/slip/in")
+	@GetMapping("/acc/slip/in")
 	public String slipIn() {
 		return "/account/slip/slip_in";
 	}

@@ -15,4 +15,8 @@ public class MainController {
 	public String errorView() {
 		return "errorView";
 	}
+	@GetMapping("/baseinfo/slipadmit/in_form")
+	public String slipAdmitIn() {
+		return "/account/slip/admit/slipadmit_in";
+	}
 }

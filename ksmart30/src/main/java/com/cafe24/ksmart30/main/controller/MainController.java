@@ -10,13 +10,12 @@ public class MainController {
 	public String index() {
 		return "index";
 	}
-
 	@GetMapping("/errorView")
 	public String errorView() {
 		return "errorView";
 	}
 	@GetMapping("/baseinfo/slipadmit/in_form")
 	public String slipAdmitIn() {
-		return "/account/slip/admit/slipadmit_in";
+		return "/account/slipadmit/slipadmit_in";
 	}
 }

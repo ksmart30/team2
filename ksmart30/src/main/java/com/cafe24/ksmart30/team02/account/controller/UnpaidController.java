@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UnpaidController {
-	@GetMapping("/account/unpaid/in_form")
-	public String slipAdmitIn() {
+	@GetMapping("/account/unpaid_in")
+	public String unpaidIn() {
 		return "/account/unpaid/unpaid_in";
 	}
 }

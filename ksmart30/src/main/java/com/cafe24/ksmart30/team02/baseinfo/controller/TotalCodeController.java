@@ -9,8 +9,4 @@ public class TotalCodeController {
 	public String totalCode() {
 		return "baseInfo/totalcode";
 	}
-	@GetMapping("/baseinfo/bankaccount/in")
-	public String bankAccount() {
-		return "baseInfo/bankaccount";
-	}
 }

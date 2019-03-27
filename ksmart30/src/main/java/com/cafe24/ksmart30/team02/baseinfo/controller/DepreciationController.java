@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DepreciationController {
-	@GetMapping("")
+	@GetMapping("/baseinfo/depreciation/in")
 	public String depriciation() {
-		return "";
+		return "baseInfo/depreciation_in";
 	}
 }

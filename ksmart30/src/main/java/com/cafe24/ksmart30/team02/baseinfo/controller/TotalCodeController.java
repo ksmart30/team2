@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class TotalCodeController {
-	@GetMapping("/baseinfo/totalcode/in")
+	@GetMapping("/baseInfo/totalcode/in")
 	public String totalCode() {
 		return "baseInfo/totalcode";
 	}

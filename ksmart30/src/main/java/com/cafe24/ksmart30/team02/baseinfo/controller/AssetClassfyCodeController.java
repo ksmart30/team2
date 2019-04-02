@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AssetClassfyCodeController {
 	
 	//자산분류 코드
-	@GetMapping("/baseinfo/assetclassifycode/in")
+	@GetMapping("/baseInfo/assetclassifycode/in")
 	public String AssetClassfyCode() {
 		System.out.println("자산분류코드 AssetClassfyCode AssetClassfyCodeController.java");
-		return "baseinfo/assetclassfycode/assetclassfycode";
+		return "baseInfo/assetclassfycode/assetclassfycode";
 	}
 }

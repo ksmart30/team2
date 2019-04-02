@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class BusinessCardController {
 	//기업카드
-	@GetMapping("/baseinfo/businesscard/in")
+	@GetMapping("/baseInfo/businesscard/in")
 	public String businessCardController() {
 		System.out.println("기업카드 businessCardController ControlItemCodeController.java");
 		
-		return "baseinfo/businessCard/businessCard";
+		return "baseInfo/businessCard/businessCard";
 	}
 }

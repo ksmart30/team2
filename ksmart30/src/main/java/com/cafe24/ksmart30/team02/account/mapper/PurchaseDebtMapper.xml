@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.ksmart30.team02.account.mapper.PurchaseDebtMapper">
+
+<select id="purchaseDebtList" resultType="com.cafe24.ksmart30.team02.baseinfo.vo.PurchaseDebt">
+SELECT A.ACC_CD, A.REMAIN_AMT, A.SCHD_DT, A.PROG_STAT, A.PAY_DT, B.CUST_CD, B.SLIP_DATE, B.SLIP_NO, B.SLIP_SEQ, C.PJT_NM FROM T_AC1230 A LEFT JOIN T_AC1120 B 
+ON A.ACC_UNIT = B.ACC_UNIT AND A.SLIP_DATE = B.SLIP_DATE 
+AND A.SLIP_NO = B.SLIP_NO AND A.JS_CODE = B.JS_CODE AND A.SLIP_SEQ = B.SLIP_SEQ LEFT JOIN T_SM3000 C ON B.PROJ_CD = C.PJT_CD;
+</select>
+
+</mapper>

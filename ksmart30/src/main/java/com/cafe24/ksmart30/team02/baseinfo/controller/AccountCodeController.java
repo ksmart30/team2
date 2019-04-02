@@ -15,7 +15,7 @@ public class AccountCodeController {
 	@Autowired
 	AccountCodeService accountcodeservice;
 	//계정과목코드 리스트
-	@GetMapping("/baseinfo/accountcode/in")
+	@GetMapping("/baseInfo/accountcode/in")
 	public String AccountCodeInsert(Model model){
 		System.out.println("계정과목코드 리스트 AccountCodeInsert AccountCodeController.java");
 		
@@ -23,7 +23,7 @@ public class AccountCodeController {
 		model.addAttribute("list",list);
 		System.out.println(list + "list AccountCodeInsert AccountCodeController.java");
 		
-		return "/baseinfo/accountcode/accountcode_in";
+		return "/baseInfo/accountcode/accountcode_in";
 	}
 	
 }

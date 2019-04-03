@@ -8,6 +8,6 @@ import com.cafe24.ksmart30.team02.baseinfo.vo.AccountCode;
 
 @Mapper
 public interface AccountCodeMapper {
-	
+	//selectAccountCodeList추상메서드 선언
 	public List<AccountCode> selectAccountCodeList();
 }

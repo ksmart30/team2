@@ -12,7 +12,7 @@ import com.cafe24.ksmart30.team02.baseinfo.vo.AccountCode;
 public class AccountCodeService {
 	@Autowired
 	AccountCodeMapper accountcodemapper;
-	//list테스트
+	//AccountCodeMapper내 selectAccountCodeList메서드 호출, 숫자값 문자값으려 변환 후 리턴.
 	public List<AccountCode> getAccountCodeList(){
 		System.out.println("list테스트 getAccountCodeList AccountCodeService.java");
 		List<AccountCode> list = accountcodemapper.selectAccountCodeList();

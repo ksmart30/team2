@@ -15,8 +15,8 @@ public class ControlItemCodeController {
 @Autowired
 ControlItemCodeService controlItemCodeService;
 	//관리항목코드폼, ControlItemCodeService내 ControlItemCodeList메서드 호출, 리턴값 Model영역에 세팅, controlitemcode화면 출력.
-	@GetMapping("/baseinfo/controlitemcode/in")
-	public String ControlItemCode(Model model) {
+	@GetMapping("/baseInfo/controlItemView")
+	public String controlItemView(Model model) {
 		System.out.println("01 관리항목코드등록 ControlItemCode ControlItemCodeController.java");
 		List<ControlItemCode> controlItemCode = controlItemCodeService.ControlItemCodeList();
 		System.out.println("controlItemCode : " + controlItemCode);

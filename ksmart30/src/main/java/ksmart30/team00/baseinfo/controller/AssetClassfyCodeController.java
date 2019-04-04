@@ -15,8 +15,8 @@ public class AssetClassfyCodeController {
 @Autowired
 AssetClassifyCodeService assetClassifyCodeService;
 	//자산분류코드폼, ControlItemCodeList내 assetClassifyCodeList메서드 호출, 리턴값 Model영역에 세팅, assetclassfycode화면 출력
-	@GetMapping("/baseinfo/assetclassifycode/in")
-	public String AssetClassfyCode(Model model) {
+	@GetMapping("/baseInfo/assetClassifyView")
+	public String assetClassifyView(Model model) {
 		System.out.println("01 자산분류코드 AssetClassfyCode AssetClassfyCodeController.java");
 		List<AssetClassifyCode> assetClassifyCode = assetClassifyCodeService.assetClassifyCodeList();
 		System.out.println("assetClassifyCode : " + assetClassifyCode);

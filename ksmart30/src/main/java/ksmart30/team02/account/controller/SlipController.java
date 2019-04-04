@@ -16,8 +16,8 @@ public class SlipController {
 @Autowired
 SlipService slipService;
 	//전표입력폼, slip_in.html 화면 출력
-	@GetMapping("/acc/slip/in")
-	public String slipIn() {
+	@GetMapping("/acc/slipView")
+	public String slipView() {
 		System.out.println("전표입력 slipIn SlipController.java");
 		return "/account/slip/slip_in";
 	}

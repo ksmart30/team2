@@ -17,13 +17,16 @@ public class AccountCodeController {
 	@Autowired
 	AccountCodeService accountcodeservice;
 	//계정과목코드폼, AccountCodeService내 AccountCodeList메서드 호출, 리턴값 Model영역에 세팅, accountcode_in화면 출력
-	@GetMapping("/baseinfo/accountcode/in")
-	public String AccountCodeList(Model model){
-		System.out.println("계정과목코드 리스트 AccountCodeInsert AccountCodeController.java");
+	@GetMapping("/baseInfo/accountCodeView")
+	public String accountCodeView(Model model){
 		
-		List<AccountCode> list = accountcodeservice.getAccountCodeList();
-		model.addAttribute("list",list);
-		System.out.println(list + "list AccountCodeInsert AccountCodeController.java");
+		  System.out.println("계정과목코드 리스트 AccountCodeInsert AccountCodeController.java"
+		  );
+		  
+		  List<AccountCode> list = accountcodeservice.getAccountCodeList();
+		  model.addAttribute("list",list); System.out.println(list +
+		  "list AccountCodeInsert AccountCodeController.java");
+		 
 		
 		return "/baseinfo/accountcode/accountcode_in";
 	}

@@ -14,11 +14,9 @@ public class PurchaseDebtService {
 	@Autowired
 	private PurchaseDebtMapper purchaseDebtMapper;
 	
-	public List<PurchaseDebt> purchaseDebtList(){
-		List<PurchaseDebt> purchaseDebt = purchaseDebtMapper.purchaseDebtList();
+	public List<PurchaseDebt> purchaseDebtView(){
+		List<PurchaseDebt> purchaseDebt = purchaseDebtMapper.purchaseDebtView();
 		
-		return purchaseDebt;
-		
+		return purchaseDebt;	
 	}
-	
 }

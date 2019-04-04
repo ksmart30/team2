@@ -8,5 +8,5 @@ import ksmart30.team00.baseinfo.domain.PurchaseDebt;
 
 @Mapper
 public interface PurchaseDebtMapper {
-	List<PurchaseDebt> purchaseDebtList();
+	List<PurchaseDebt> purchaseDebtView();
 }

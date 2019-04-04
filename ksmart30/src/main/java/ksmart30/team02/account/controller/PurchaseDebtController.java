@@ -13,9 +13,9 @@ import ksmart30.team00.baseinfo.domain.PurchaseDebt;
 public class PurchaseDebtController {
 	@Autowired
 		private PurchaseDebtService purchaseDebtService;
-	@GetMapping("/acc/purchasedebt/in")
-	public String purchaseDebt(Model model) {
-		List<PurchaseDebt> list = purchaseDebtService.purchaseDebtList();
+	@GetMapping("/acc/purchaseDebtView")
+	public String purchaseDebtView(Model model) {
+		List<PurchaseDebt> list = purchaseDebtService.purchaseDebtView();
 		model.addAttribute("List", list);
 		System.out.println(list.toString());
 		return "account/slip/purchasedebt/purchase_debt";

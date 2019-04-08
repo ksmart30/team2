@@ -20,6 +20,6 @@ public class SlipOptionalController {
 		List<SlipOptionalDomain> list = slipOptionalService.conditionalSlipSearchView();
 		model.addAttribute("list",list);
 		System.out.println(list.toString());
-		return "account/slip/search/slipotional_search";
+		return "account/slip/search/slipoptional_search";
 	}
 }

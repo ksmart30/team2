@@ -55,33 +55,29 @@
 	
 	
 	<th:block layout:fragment="customBody">
+	<font color="black">
 		<div class="col-md-12 col-sm-6 col-xs-12" style="width:100%">
-                <div class="x_panel" style="color:black;">
-					<div class="page-title">
-						<div class="title_left">
-							<h2><b>기업카드</b></h2>
-						<h5><fontcolor="gray"><b>10.기준정보 관리&nbsp;>&nbsp;&nbsp;10.2회계관리&nbsp;>&nbsp;&nbsp;10.2.4기업카드</b></font></h5>
-						</div>
-					</div>
-					<div class="x_content" style="text-align: right">
-						<div class="btn-group" >
-							<button class="btn btn-default" type="reset">입력</button>
-							<button class="btn btn-default" type="button">수정</button>
-							<button class="btn btn-default" type="button">삭제</button>
-							<button class="btn btn-default" type="button">저장</button>
-							<button class="btn btn-default" type="button">출력</button>
-						</div>
-					</div>
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h1>기업카드 등록</h1>
+                    <button>조회</button>
+                    <button>입력</button>	
+                    <button>삭제</button> 
+                    <button>저장</button> 	
+                    <ul class="nav navbar-right panel_toolbox">
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
                     <table class="table table-bordered">
                       <thead>
                         <tr>
                           <th>
                           	◎검색조건　　
                           	⊙사원번호
-                          	<input type="text" name=""> 
-							<button>
-								<i class="fa fa-search"></i>
-							</button>
+							<input type="text" name=""> 
+							<button>ㅁ</button>
 							◎카드번호
 							<input type="text" name=""> 
                           </th>                          
@@ -90,33 +86,33 @@
                     </table>					
                   </div>
                 </div>
+              </div>
               <div class="col-md-12 col-sm-6 col-xs-12" style="width:100%">
-                <div class="x_panel" style="color:black;">
+                <div class="x_panel">
                   <div class="x_title">
-                  <div class="x_content" style="text-align: right">
-					<button class="btn" style="color:black" id="CardList">카드리스트</button>
-					</div>
                     <ul class="nav navbar-right panel_toolbox">
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content" >
+                  <div class="x_content">
 					<div style="overflow:scroll; width:100%; height:650px; padding:10px; background-color:;">
-                    <table class="table table-striped jambo_table bulk_action">
+                    <button type="button" id="CardList">카드리스트</button>
+                    <table class="table table-bordered">
                       <thead>
                         <tr>                         
-                          <th class="column-title">사원번호</th>
-                          <th class="column-title">카드번호</th>
-                          <th class="column-title">법인카드유효기간</th>
-                          <th class="column-title">은행코드</th>
-                          <th class="column-title">은행계좌번호</th> 
-                          <th class="column-title">법인카드사용유무</th>
-                          <th class="column-title">조인사원번호</th>    
-                          <th class="column-title">적요</th>    
-                          <th class="column-title">특기사항</th>    
-                          <th class="column-title">등록자</th>    
-                          <th class="column-title">등록일시</th>                        
+                          <th bgcolor=#EAEAEA>사원번호</th>
+                          <th bgcolor=#EAEAEA>카드번호</th>
+                          <th bgcolor=#EAEAEA>법인카드유효기간</th>
+                          <th bgcolor=#EAEAEA>은행코드</th>
+                          <th bgcolor=#EAEAEA>은행계좌번호</th> 
+                          <th bgcolor=#EAEAEA>법인카드사용유무</th>
+                          <th bgcolor=#EAEAEA>조인사원번호</th>    
+                          <th bgcolor=#EAEAEA>적요</th>    
+                          <th bgcolor=#EAEAEA>특기사항</th>    
+                          <th bgcolor=#EAEAEA>등록자</th>    
+                          <th bgcolor=#EAEAEA>등록일시</th>                        
                         </tr>
+                        
                       </thead>
                       <tbody id="list">
                                       
@@ -125,7 +121,8 @@
 					</div>
                   </div>
                 </div>
-              </div>                     
+              </div>
+              </font>                       
 	</th:block>
 	<th:block layout:fragment="customJquery">
 		<!-- jQuery -->

@@ -6,7 +6,76 @@
 		<th:block th:include="layout/customHead"></th:block>
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script>
-			
+			$(document).ready(()=>{
+				$('#search').click(()=>{
+					console.log('나와라요~');
+					const date = $('#date').val();
+					const date2 = $('#date2').val();
+					const slipNo = $('#slipNo').val();
+					$.ajax({
+						url : '/slipAdmitList',
+						type : 'GET',
+						data : {SLIP_DATE:date,SLIP_DATE2:date2,SLIP_NO:slipNo},
+						success : (data)=>{
+							$('#slipList').empty();
+							$(data).each((index,item)=>{
+								const index1 = index+1;
+								$('#slipList').append('<tr>');
+								$('#slipList').append('<td>'+index1+'</td>');
+								if(item.slip_CASH_GB == 1){
+									$('#slipList').append('<td>'+'현금'+'</td>');	
+								}else if(item.slip_CASH_GB == 2){
+									$('#slipList').append('<td>'+'대체'+'</td>');	
+								}
+								
+								$('#slipList').append('<td>'+item.slip_DATE+'</td>');
+								$('#slipList').append('<td>'+item.slip_NO+'</td>');
+								if(item.confirm_YN == 0){
+									$('#slipList').append('<td>'+'미승인'+'</td>');
+								}else if(item.confirm_YN == 1){
+									$('#slipList').append('<td>'+'승인'+'</td>');
+								}
+								$('#slipList').append('<td><input type="checkbox"></td>');
+								$('#slipList').append('<td>'+item.cancel_REASON+'</td>');
+								$('#slipList').append('<td>'+item.dr_AMT+'</td>');
+								$('#slipList').append('<td>'+item.cr_AMT+'</td>');
+								$('#slipList').append('<td>'+item.init_DEPT_CD+'</td>');
+								$('#slipList').append('<td>'+item.init_EMP_NO+'</td>');
+								$('#slipList').append('</tr>');
+							});
+						}
+					});
+					$.ajax({
+						url : '/slipAdmitList2',
+						type : 'GET',
+						data : {SLIP_DATE:date,SLIP_DATE2:date2,SLIP_NO:slipNo},
+						success : (data)=>{
+							$('#slipList2').empty();
+							$(data).each((index,item)=>{
+								$('#slipList2').append('<tr>');
+								$('#slipList2').append('<td>'+item.slip_SEQ+'</td>');	
+								$('#slipList2').append('<td>'+item.acc_CD+'</td>');
+								$('#slipList2').append('<td>'+item.acc_NM+'</td>');
+								$('#slipList2').append('<td>'+item.belong_DEPT_CD+'</td>');
+								if(item.drcr_GB == "D"){
+									$('#slipList2').append('<td>'+item.acc_AMT+'</td>');
+									$('#slipList2').append('<td></td>');
+								}else if(item.drcr_GB == "C"){
+									$('#slipList2').append('<td></td>');
+									$('#slipList2').append('<td>'+item.acc_AMT+'</td>');
+								}
+								$('#slipList2').append('<td>'+item.descr+'</td>');
+								$('#slipList2').append('<td>'+item.cust_CD+'</td>');
+								$('#slipList2').append('<td>'+item.proj_CD+'</td>');
+								$('#slipList2').append('<td>'+item.tax_CD+'</td>');
+								$('#slipList2').append('<td>'+item.prov_AMT+'</td>');
+								$('#slipList2').append('<td>'+item.vat_AMT+'</td>');
+								$('#slipList2').append('</tr>');
+							});
+						}
+					});
+				});
+			});
 		</script>
 	</th:block>
 	<th:block layout:fragment="customBody">
@@ -20,6 +89,7 @@
         </div>
 		<div class="x_content" style="text-align: right">
 			<div class="btn-group" >
+				<button class="btn btn-default" type="button" id="search">조회</button>
 				<button class="btn btn-default" type="reset">입력</button>
 				<button class="btn btn-default" type="button">수정</button>
 				<button class="btn btn-default" type="button">삭제</button>
@@ -31,7 +101,7 @@
         	<div class="x_title">	               	                                    	
             	<div class="x_content">
             		<div class="row">
-              			<table class="table table-bordered">
+              			<table class="table table-bordered" style="color:black;">
 							<tr>
 								<th>
 	                  				<div class="col-md-12 col-sm-12 col-xs-12 form-group">          	
@@ -52,11 +122,11 @@
 						  	  			</select>                 	  
 	                  				</div>
 		                  				<div class="col-md-4 col-sm-12 col-xs-12 form-group">
- 											전표일자 <input type="date"> ~ <input type="date">
+ 											전표일자 <input type="date" id="date"> ~ <input type="date" id="date2">
 	                  				</div>                                    
 			                  		<div class="col-md-3 col-sm-12 col-xs-12 form-group">
 			                   		 	 전표번호 
-			                   		 		<input type="text" id="test" size="3">
+			                   		 		<input type="text" size="3" id="slipNo">
 			                   	 		 	~ <input type="text" size="3">        	  
 			                 		</div>		
 			                  		<div class="col-md-3 col-sm-12 col-xs-12 form-group">
@@ -93,9 +163,9 @@
   		
   		
         	<div class="x_panel">       		
-            	<div class="col-md-12 col-sm-12 col-xs-12">
+            	<div class="col-md-12 col-sm-12 col-xs-12"style="color:black;">
             	 	<div class="x_title">
-            	 	<div class="x_content" style="text-align: left">
+            	 	<div class="x_content" style="text-align: left" >
 					<button class="btn" style="color:black">v전체선택</button>
 					<button class="btn" style="color:black">v전체취소</button>
 					<span>조회건수 0건</span>  
@@ -117,29 +187,15 @@
 		                            <th class="column-title">차변합계 </th>
 		                            <th class="column-title">대변합계 </th>
 		                            <th class="column-title">발의부서 </th>                       
-		                            <th class="column-title no-link last"><span class="nobr">발의자</span>
+		                            <th class="column-title">발의자</span>
 		                            </th>
 		                            <th class="bulk-actions" colspan="7">
 		                            	<a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
 		                            </th>
 		                        	</tr>
                     		</thead>		
-	                      	<tbody>
-	                         	<tr class="even pointer">
-		                            <td class=" ">121000040</td>
-		                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-		                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-		                            <td class=" ">John Blank L</td>
-		                            <td class=" ">Paid</td>
-		                            <td class=" ">John Blank L</td>
-		                            <td class=" ">Paid</td>
-		                            <td class=" ">John Blank L</td>
-		                            <td class=" ">Paid</td>
-		                            <td class="a-right a-right ">$7.45</td>
-		                            <td class=" last"><a href="#">View</a>
-		                            </td>
-		                       	</tr>
-		                        
+	                      	<tbody id="slipList">
+	                         	
 	                		</tbody>
                     	</table>
                 	</div>															
@@ -147,7 +203,7 @@
           	</div>
         </div>	  		
          	<div class="x_panel">
-         		<div class="col-md-12 col-sm-12 col-xs-12">
+         		<div class="col-md-12 col-sm-12 col-xs-12" style="color:black;">
            			<div class="x_title"> 
             			<font size="4">전표상세내역</font>
              		<div class="clearfix"></div>
@@ -168,32 +224,17 @@
 			                       	<th class="column-title">프로젝트 </th>
 			                       	<th class="column-title">증빙 </th>
 			                       	<th class="column-title">공급가액 </th>                       
-			                       	<th class="column-title no-link last"><span class="nobr">부가세액</span>
+			                       	<th class="column-title">부가세액</span>
 			                  	</tr>
 		                   	</thead>
-		                   	<tbody>
-		                     	<tr class="even pointer">                       
-			                       	<td class=" ">121000040</td>
-			                       	<td class=" ">May 23, 2014 11:47:56 PM </td>
-			                       	<td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-			                       	<td class=" ">John Blank L</td>
-			                       	<td class=" ">Paid</td>
-			                        	<td class=" ">John Blank L</td>
-			                       	<td class=" ">Paid</td>
-			                        	<td class=" ">John Blank L</td>
-			                       	<td class=" ">Paid</td>
-			                       	<td class=" ">Paid</td>
-			                       	<td class="a-right a-right ">$7.45</td>
-			                       	<td class=" last"><a href="#">View</a>
-			                       	</td>
-		                   		</tr>      
+		                   	<tbody id="slipList2">
+		                     	
 		                   	</tbody>
 	                 	</table>
           			</div>							
       			</div>
   			</div>
 		</div>
-	</font>
 	</th:block>
 	<th:block layout:fragment="customJquery">
 		<th:block th:include="layout/customJquery"></th:block>

@@ -65,11 +65,24 @@
 							let tr = '';
 							let checkloop = 0;
 							$(selected).each((index,item)=>{
+								
 								checkloop++;
 								tr += '<tr>';
 								tr += '<td></td>';
-								tr += '<td><input type="text" name="ACNT_NO' + checkloop + '" value="' + item.acnt_NO + '"></td>';
-								tr += '<td><input type="text" name="ACNT_KIND' + checkloop + '" value="'+ item.acnt_KIND + '"></td>';
+								tr += '<td><input type="text" name="ACNT_NO' + checkloop + '" value="' + item.acnt_NO + '"></td>';								
+								if(item.acnt_KIND == 01){
+									tr += '<td><input type="text" name="ACNT_KIND' + checkloop + '" value="'+ '보통예금' + '"></td>';
+								}else if(item.acnt_KIND == 02){
+									tr += '<td><input type="text" name="ACNT_KIND' + checkloop + '" value="'+ '정기예금' + '"></td>';
+								}else if(item.acnt_KIND == 03){
+									tr += '<td><input type="text" name="ACNT_KIND' + checkloop + '" value="'+ '기업자유예금' + '"></td>';
+								}else if(item.acnt_KIND == 04){
+									tr += '<td><input type="text" name="ACNT_KIND' + checkloop + '" value="'+ '신탁예금' + '"></td>';
+								}else if(item.acnt_KIND == 05){
+									tr += '<td><input type="text" name="ACNT_KIND' + checkloop + '" value="'+ '정기적금' + '"></td>';
+								}else if(item.acnt_KIND == 06){
+									tr += '<td><input type="text" name="ACNT_KIND' + checkloop + '" value="'+ '대출' + '"></td>';
+								}
 								tr += '<td><input type="text" name="ACNT_OWNER' + checkloop + '" value="' + item.acnt_OWNER + '"></td>';
 								tr += '<td><input type="text" name="ACNT_NM' + checkloop + '" value="' + item.acnt_NM + '"></td>';
 								tr += '<td><input type="text" name="ABLE_YN' + checkloop + '" value="' + item.able_YN + '"></td>';
@@ -79,7 +92,6 @@
 								tr += '<td><input type="text" name="REM' + checkloop + '" value="' + item.rem + '"></td>';	
 								tr += '</tr>';
 							});
-							
 							/* if(checkloop <= 15){
 								for(let i = checkloop; i<1; i++){
 									tr += '<tr>';
@@ -97,7 +109,6 @@
 								}
 							} */
 							$('#list2').append(tr);
-							
 						});
 				$('#test1').val(treeNode.name);
 				return (treeNode.click != false);
@@ -134,6 +145,11 @@
 		            	$.fn.zTree.init($("#treeDemo"), setting, treelist);
 		            }
 		        });
+			
+			  $('#account').click(()=> {
+			    $('#tableaccount > tbody:first').append('<tr><td></td><td><input type="text"></td><td><select style="width:100%"><option></option><option>보통예금</option><option>정기예금</option><option>기업자유예금</option><option>신탁예금</option><option>정기예금</option><option>대출</option></select></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>');
+			  });
+			  
 			});
 		</script>
 	</th:block>
@@ -155,10 +171,7 @@
 				<button class="btn btn-default" type="button">저장</button>
 				<button class="btn btn-default" type="button">출력</button>
 			</div>
-		
 		</div>
-        
-
 		<!----------------------------------- 은행리스트----------------------------------------- -->
 		<div class="col-md-4 col-xs-12">
 			<div class="x_panel" style="height: 750px; color: black; width:100%;">
@@ -211,7 +224,7 @@
 					<div class="x_title">
 						<h2>계좌번호 관리</h2>
 						<div class="x_content" style="text-align: right">
-							<button class="btn" style="color:black">>계좌번호추가</button>
+							<button class="btn" style="color:black" id="account">>계좌번호추가</button>
 						</div>                 
 					<ul class="nav navbar-right panel_toolbox">
 					</ul>
@@ -219,7 +232,7 @@
 					</div>
 					<div class="x_content">
 						<div style="overflow:scroll;  width:100%; height:350px; padding:10px; background-color:;">
-							<table class="table table-striped jambo_table bulk_action">
+							<table class="table table-striped jambo_table bulk_action" id="tableaccount">
 								<thead>
 									<tr>
 										<th class="column-title"></th>

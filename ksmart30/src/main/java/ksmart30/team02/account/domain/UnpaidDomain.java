@@ -11,6 +11,8 @@ public class UnpaidDomain {
 	private String NOT_CONF_AMT;
 	private String ACC_AMT;
 	private String DESCR;
+	private String OCCRSUM;
+	private String NOTCONFIRM;
 	public String getSLIP_DATE() {
 		return SLIP_DATE;
 	}
@@ -71,10 +73,24 @@ public class UnpaidDomain {
 	public void setDESCR(String dESCR) {
 		DESCR = dESCR;
 	}
+	public String getOCCRSUM() {
+		return OCCRSUM;
+	}
+	public void setOCCRSUM(String oCCRSUM) {
+		OCCRSUM = oCCRSUM;
+	}
+	public String getNOTCONFIRM() {
+		return NOTCONFIRM;
+	}
+	public void setNOTCONFIRM(String nOTCONFIRM) {
+		NOTCONFIRM = nOTCONFIRM;
+	}
 	@Override
 	public String toString() {
-		return "Unpaid [SLIP_DATE=" + SLIP_DATE + ", JS_CODE=" + JS_CODE + ", SLIP_NO=" + SLIP_NO + ", SLIP_SEQ="
+		return "UnpaidDomain [SLIP_DATE=" + SLIP_DATE + ", JS_CODE=" + JS_CODE + ", SLIP_NO=" + SLIP_NO + ", SLIP_SEQ="
 				+ SLIP_SEQ + ", CUST_NM=" + CUST_NM + ", OCCR_AMT=" + OCCR_AMT + ", REMAIN_AMT=" + REMAIN_AMT
-				+ ", NOT_CONF_AMT=" + NOT_CONF_AMT + ", ACC_AMT=" + ACC_AMT + ", DESCR=" + DESCR + "]";
+				+ ", NOT_CONF_AMT=" + NOT_CONF_AMT + ", ACC_AMT=" + ACC_AMT + ", DESCR=" + DESCR + ", OCCRSUM="
+				+ OCCRSUM + ", NOTCONFIRM=" + NOTCONFIRM + "]";
 	}
+	
 }

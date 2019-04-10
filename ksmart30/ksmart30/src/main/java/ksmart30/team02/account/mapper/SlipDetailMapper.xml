@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ksmart30.team02.account.mapper.SlipDetailMapper">
+	<!-- 트리메뉴 -->
+	<select id="getAccountCodeList" parameterType="String" resultType="ksmart30.team00.baseinfo.domain.AccountCode">
+		SELECT ACC_CD AS accCd, 
+			   ACC_DTL_CD AS accDtlCd, 
+			   ACC_LONG_NM AS accShrtNm
+		FROM T_AC0100
+		WHERE ACC_LEVEL='5' AND ACC_LONG_NM LIKE '%' + #{account} + '%' OR ACC_LEVEL='5' AND ACC_CD LIKE '%' + #{account} + '%'
+	</select>
+</mapper>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+	<th:block layout:fragment="customHead">
+		<meta charset="UTF-8">
+		<title>갑근세세액</title>
+		<th:block th:include="layout/customHead"></th:block>
+	</th:block>
+	<th:block layout:fragment="customBody">
+		<!----------------------------------페이지 타이틀--------------------------------------------->
+		<div class="col-md-9 col-xs-12" style="color:black;">
+			<div class="page-title">
+				<div class="title_left">
+					<h2><b>갑근세세액</b></h2>
+					<h5><font color="gray"><b>10 기준정보관리&nbsp;>&nbsp;&nbsp;10.3 회계관리&nbsp;>&nbsp;&nbsp;10.3.10 감가상각률</b></font></h5>
+					<br>
+				</div>
+			</div>
+        </div>
+        <!----------------------------------페이지 타이틀 end--------------------------------------------->
+		<!----------------------------------고정 버튼 -------------------------------------------------->
+        <div class="col-md-3 col-xs-12" style="color:black;">
+			<div class="page-title">
+				<div class="btn-group">
+					<br>
+					<button class="btn btn-default" type="reset">입력</button>
+					<button class="btn btn-default" type="button">수정</button>
+					<button class="btn btn-default" type="button">삭제</button>
+					<button class="btn btn-default" type="button">저장</button>
+					<button class="btn btn-default" type="button">출력</button>
+				</div>
+			</div>
+        </div>
+        <!-----------------------------------고정 버튼 end----------------------------------------------->
+		
+		<!-----------------------------------등록리스트 ----------------------------------------- -->
+		<div class="col-md-6 col-xs-12">
+			<div class="x_panel" style="height: 900px; color: black;">
+				<div class="x_title">
+					<h3>등록리스트</h3>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content"><br>
+					<form class="form-horizontal form-label-left">
+						<div class="form-group table-responsive">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th> 
+										</th>
+										<th>
+											<b>금액</b>
+										</th>
+										<th>
+											<b>공제대상 가족수</b>
+										</th>
+										<th>
+											<b>세액율</b>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<th:block th:each="num: ${#numbers.sequence(1,40)}">
+										<tr>
+											<td>
+											</td>
+											<td>
+											</td>
+											<td>
+											</td>
+											<td>
+											</td>										
+										</tr>
+									</th:block>
+								</tbody>
+							</table>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-----------------------------------등록리스트 end ----------------------------------------- -->
+		
+		<!----------------------------------- 갑근세등록----------------------------------------- -->
+    	<div class="col-md-6 col-xs-12">
+			<div class="x_panel" style=" color: black;">
+				<div class="x_title">
+				<h3>갑근세세액률등록</h3>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content"><br>
+					<form class="form-horizontal">
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<tbody>
+									<tr>
+										<td>
+											<label class="control-label">금액</label>
+										</td>
+										<td>
+											<input type="text" style="width:50%;">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="control-label">공제대상 가족수</label>
+										</td>
+										<td>
+											<input type="text" style="width:50%;">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="control-label">세액율</label>
+										</td>
+										<td>
+											<input type="text" style="width:50%;">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</form>
+				</div>    	
+			</div>
+		</div>
+	</th:block>
+	<th:block layout:fragment="customJquery">
+		<th:block th:include="layout/customJquery"></th:block>
+    </th:block>
+</html>

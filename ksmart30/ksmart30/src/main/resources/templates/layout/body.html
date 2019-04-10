@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <th:block layout:fragment="customHead">
+  	<meta charset="UTF-8">
+  </th:block>
+  <body class="nav-md" th:fragment="mainBody">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="/errorView" class="site_title"><i class="fa fa-bar-chart-o"></i> <span>ERP</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>사번</h2>
+                <h2>이름</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <ul class="nav side-menu">
+                	<li><a><i class="fa fa-briefcase"></i> 1. 사업성검토 관리 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                    	<label style="font-size:14px; padding-left:10px">사업수행 결정서 관리</label>
+		                      <li><a href="/business/businessManageView">사업수행결정서</a></li>
+		                      <li><a href="/business/businessManageSeunginView">사업수행결정서 승인</a></li>
+		                      <li><a href="/business/businessManageListView">사업수행결정 승인현황</a></li>
+                  		<label style="font-size:14px; padding-left:10px">사업성검토예산관리</label>
+		                      <li><a href="#">#사업성검토 예산 입력</a></li>
+		                      <li><a href="#">#사업성검토 예산 승인</a></li>
+		                      <li><a href="#">#사업성검토 예산 출력</a></li>
+		                      <li><a href="#">#사업성검토 검색1</a></li>
+		                      <li><a href="#">#사업성검토 검색2</a></li>
+                  		<label style="font-size:14px; padding-left:10px">사업성검토분석 현황</label>
+		                      <li><a href="/business/businessStateHyunhawngView">진행/종료 현황</a></li>
+		                      <li><a href="/business/businessOrderHyunhwangView">발주처별 진행현황</a></li>
+		                      <li><a href="/business/businessSuccessRateView">사업성검토 성공율</a></li>
+                  		</li>
+                  	</ul>
+                  <li><a><i class="fa fa-check-square-o"></i> 2. 계약프로젝트 관리 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                    	<label style="font-size:14px; padding-left:10px"> 용역계약서 관리 </label>
+		                      <li><a href="/project/projectManageView"> 용역계약서 입력 </a></li>
+		                      <li><a href="/project/projectManageChangeView"> 용역계약서 변경 입력 </a></li>
+		                      <li><a href="/project/projectManageChangeListView"> 용역계약서 변경 조회 </a></li>
+		                      <li><a href="/project/projectManageDepartSearchView"> 용역계약서 검색(부서) </a></li>
+		                      <li><a href="/project/projectManageClientSearchView"> 용역계약서 검색(발주처) </a></li>
+		                      <li><a href="/project/manage/hyunhwang"> 용역계약 현황 </a></li>
+                  		<label style="font-size:14px; padding-left:10px"> 프로젝트예산 관리 </label>
+		                      <li><a href="/project/projectYesanView"> 프로젝트예산 입력 </a></li>
+		                      <li><a href="/project/projectYesanSeunginView"> 프로젝트예산 승인 </a></li>
+		                      <li><a href="/project/projectYesanOutputView"> 프로젝트예산 출력 </a></li>
+		                      <li><a href="/project/projectYesanSearchView"> 프로젝트예산 검색 </a></li>
+		                      <li><a href="/project/projectYesanListView"> 계약프로젝트 List </a></li>
+		                <label style="font-size:14px; padding-left:10px"> 프로젝트 손익관리 </label>
+                  			  <li><a href="#"> #프로젝트 비용 입력 </a><li>
+                  			  <li><a href="#"> #프로젝트 인건비 입력 </a><li>
+                  			  <li><a href="#"> #인건비 실적 </a></li>
+                  			  <li><a href="/project/projectSonikContrastView"> 프로젝트 예산/실적 대비 </a></li>
+                  		<label style="font-size:14px; padding-left:10px"> 매출채권 진행관리 </label>
+                  			  <li><a href="#"> #프로젝트별 계약 B/S </a><li>
+                  	</ul>
+                  <li><a><i class="fa fa-money"></i> 3. 외주 관리 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                  		<label style="font-size:14px; padding-left:10px"> 외주계약서 관 리</label>
+		                      <li><a href="/cooperation/cooperationView"> 외주계약서 입력 </a></li>
+		                      <li><a href="/cooperation/cooperationSearchView"> 외주계약서 검색 </a></li>
+                  		<label style="font-size:14px; padding-left:10px"> 외주비 분석 현황 </label>
+		                      <li><a href="/cooperation/cooperationDragonHyunhwangView"> 외주비분석현황(용도별) </a></li>
+		                      <li><a href="/cooperation/cooperationPjtHyunhwangView"> 외주비분석현황(프로젝트) </a></li>
+                       	</ul>
+                    <li><a><i class="fa fa-calendar"></i> 4. 근태 관리 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                    	<li><a href="/kuntae/daySearchView"> 일일근무 현황 </a></li>
+                    	<li><a href="/kuntae/recordTotalView"> 출퇴근 기록부  </a></li>
+                    	<li><a href="/kuntae/recordSingleView"> 출퇴근기록부(개인별) </a></li>
+                    	<li><a href="/kuntae/workTimeInView"> 출퇴근 정정신청 </a></li>
+                    	<li><a href="/kuntae/breakApplyView"> 휴가신청 </a></li>
+                    	<li><a href="/kuntae/okView"> 근태승인처리 </a></li>
+                    	<li><a href="/kuntae/searchView"> 근태현황 </a></li>
+                  	</ul>
+                  	<li><a><i class="fa fa-group"></i> 5. M/H 관리 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                    	<label style="font-size:14px; padding-left:10px"> M/H 실적관리 </label>
+			                <li><a href="/manHour/resultView"> M/H 실적입력 </a></li>
+	                  		<li><a href="/manHour/approvalView"> M/H 실적승인 </a></li>
+	                  		<li><a href="/manHour/resultListView"> M/H 실적(월/개인/PJ sort)</a></li>
+	                  		<li><a href="#"> M/H 실적(프로젝트별 누계) </a></li>
+	                  		<li><a href="#"> M/H 실적(수행유형별-전사그래프) </a></li>
+	                  		<li><a href="#"> M/H 실적(수행유형별-본부그래프) </a></li>
+	                  		<li><a href="#"> M/H 실적(프로젝트 인건비 누계) </a></li>
+	                  	<label style="font-size:14px; padding-left:10px"> 프로젝트 진행관리 </label>
+			                <li><a href="/manHour/manHourPlanGraphView"> M/H 계획/실적(그래프) </a></li>
+	                  		<li><a href="/manHour/manHourPlanNugaeView"> M/H 계획/실적(프로젝트 누계) </a></li>
+	                  		<li><a href="#"> M/H 실적(당해) </a></li>
+	                  		<li><a href="#"> 프로젝트 단계완료 미입력 List </a></li>
+	                  		<li><a href="#"> 프로젝트 일정관리 </a></li>
+                  	</ul>
+                  	<li><a><i class="fa fa-user"></i> 6. 인사 / 급여 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                    	<label style="font-size:14px; padding-left:10px"> 인력관리 </label>
+		                      <li><a href="/person/personInsaPersonnelRecordView"> 인사기록카드 등록 </a></li>
+		                      <li><a href="/person/personInsaEmployeeSearchView"> 직원 검색 </a></li>
+                  		<label style="font-size:14px; padding-left:10px">이동관리</label>
+                  			  <li><a href="/person/personYidongListView"> 발령등록 </a></li>
+		                      <li><a href="/person/personYidongRegisterView"> 인사발령대장 </a></li>
+		                <label style="font-size:14px; padding-left:10px"> 인사평가관리 </label>    
+                  			  <li><a href="#">인사평가항목</a></li>
+		                      <li><a href="#">인사평가표</a></li>
+		                      <li><a href="#">인사평가 입력</a></li>
+		                      <li><a href="#">인사평가 결과</a></li>
+                  		<label style="font-size:14px; padding-left:10px">급여관리</label>
+                  			  <li><a href="/person/personPayCalView">급여 계산 및 등록</a></li>
+		                      <li><a href="/person/personPayRegisterView">급여 대장</a></li>
+                  	</ul>
+                  	<li><a><i class="fa fa-university"></i> 7. 경영정보 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                    	<li><a href="#"> 경영실적현황 </a>
+                    	<li><a href="#"> 계약 B/S </a>
+                    	<li><a href="#"> 계약실적 현황표 </a>
+                    	<li><a href="#"> 월별계약상세 </a>
+                    	<li><a href="#"> 월별매출상세 </a>
+                  		</li>
+                  	</ul>
+                  	<li><a><i class="fa fa-krw"></i> 8. 회계 관리 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                    	<li><a href="/acc/slipView"> 전표입력 </a>
+                    	<li><a href="/acc/slipSearchView"> 전표상세검색 </a>
+                    	<li><a href="/acc/slipAdmitView"> 전표승인 </a>
+                    	<li><a href="/acc/conditionalSlipSearchView"> 조건별 전표검색 </a>
+                    	<li><a href="/acc/payCardView"> 카드결재내역입력 </a>
+                    	<li><a href="/acc/purchaseDebtView"> 매입채무입력 </a>
+                    	<li><a href="/acc/unpaidView"> 미지급금입력 </a>
+                    	<li><a href="/acc/excostTransferView"> 외주비지금전표이관 </a>
+                    	<li><a href="/acc/slipEndDayView"> 전표마감(일) </a>
+                    	<li><a href="/acc/slipEndMonthView"> 전표마감(월) </a>
+                    	<li><a href="/acc/slipEndYearView"> 전표마감(년) </a>
+                  		</li>
+                  	</ul>
+                  	<li><a><i class="fa fa-search"></i> 9. 통합 검색 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                    	<label style="font-size:14px; padding-left:10px"> 사업수행결정서 </label>    
+                  			  <li><a href="/business/businessStateHyunhawngView"> 진행/종료 현황 </a></li>
+		                      <li><a href="/business/businessOrderHyunhwangView"> 발주처별 진행현황 </a></li>
+		                      <li><a href="/business/businessSuccessRateView"> 사업성검토 성공율 </a></li>
+                  		<label style="font-size:14px; padding-left:10px"> 외주비 분석현황 </label>
+		                      <li><a href="/cooperation/cooperationDragonHyunhwangView"> 외주비분석현황(용도별) </a></li>
+		                      <li><a href="/cooperation/cooperationPjtHyunhwangView"> 외주비분석현황(프로젝트) </a></li>
+                   	 	<li><a href="/person/personInsaEmployeeSearchView"> 직원 검색 </a>
+                    	<li><a href="/acc/slipSearchView"> 전표 상세 검색 </a>
+                  		</li>
+                  	</ul>
+                  	<li><a><i class="fa fa-edit"></i> 10. 기준정보 관리 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/baseinfo/totalCodeView">종합코드 입력</a></li>
+                      <label style="font-size:14px; padding-left:10px"> 프로젝트 관리2(수익/배분) </label>
+                      <li><a href="/baseInfo/divisionView"> 프로젝트예산서 배부액 등록 </a></li>
+                      <li><a href="/baseInfo/divisionListView"> 예산서 인건비 및 배부액 단가표 </a></li>
+                      <li><a href="#"> 프로젝트 인건비 입력 I/F </a></li>
+                      <label style="font-size:14px; padding-left:10px"> 회계관리 </label>
+                      <li><a href="/baseInfo/clientView"> 거래처코드 등록 </a></li>
+                      <li><a href="/baseInfo/clientListView"> 거래처코드 리스트 출력 </a></li>
+                      <li><a href="/baseInfo/bankAccountView">통장계좌</a></li>
+                      <li><a href="/baseInfo/businessCardView">기업카드</a></li>
+                      <li><a href="/baseInfo/accountCodeView">계정과목코드</a></li>
+                      <li><a href="/baseInfo/controlItemView">관리항목코드</a></li>
+                      <li><a href="/baseInfo/assetClassifyView">자산분류코드</a></li>
+                      <li><a href="/baseInfo/depreciationView">감가상각율</a></li>
+                      <li><a href="/baseInfo/nationalPensionView">국민연금조견표</a></li>
+                      <li><a href="/baseInfo/gapguenseView">갑근세세액조견표</a></li>
+                      <label style="font-size:14px; padding-left:10px"> 인력관리 </label>
+                      <li><a href="/baseInfo/companyView"> 회사정보(시스템운영사) </a></li>
+                      <li><a href="/baseInfo/departmentView"> 부서코드등록 </a></li>
+                      <li><a href="/baseInfo/schoolView"> 학교코드등록 </a></li>
+                      <li><a href="/baseInfo/majorView"> 전공코드등록 </a></li>
+                      <li><a href="/baseInfo/kuntaeView"> 근태월력표 </a></li>
+                    </ul>
+                  	</li>
+                  	<li><a><i class="fa fa-cog"></i> 11. 시스템 관리 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                    	<label style="font-size:14px; padding-left:10px"> User-ID관리 </label>
+		                  	<li><a href="/system/userIdView"> User-ID등록 </a></li>
+		               	<label style="font-size:14px; padding-left:10px"> Program관리 </label>
+		                  	<li><a href="/system/programIdView"> Program-ID등록 </a></li>
+                    	<label style="font-size:14px; padding-left:10px"> AccessGroup관리 </label>
+		                  	<li><a href="/system/menuView"> MenuGroup등록 </a></li>
+		                  	<li><a href="/system/accessDepView"> 사용자 권한검색(부서별) </a></li>
+		                	<li><a href="/system/accessWorkView"> 사용자 권한검색(업무별)</a></li>
+                  	</ul>
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="/errorView">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    사번
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;"> Profile</a></li>
+                    <li>
+                      <a href="javascript:;">
+                        <span class="badge bg-red pull-right">50%</span>
+                        <span>Settings</span>
+                      </a>
+                    </li>
+                    <li><a href="javascript:;">Help</a></li>
+                    <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  </ul>
+                </li>
+
+                <li role="presentation" class="dropdown">
+                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-envelope-o"></i>
+                    <span class="badge bg-green">6</span>
+                  </a>
+                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="text-center">
+                        <a>
+                          <strong>See All Alerts</strong>
+                          <i class="fa fa-angle-right"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+        	<th:block layout:fragment="customBody">
+        	</th:block>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+    <th:block layout:fragment="customJquery">
+    </th:block>
+  </body>
+</html>

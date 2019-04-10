@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+	<th:block layout:fragment="customHead">
+		<meta charset="UTF-8">
+		<title>test</title>
+
+	    <!-- Bootstrap -->
+	    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	    <!-- Font Awesome -->
+	    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	    <!-- NProgress -->
+	    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+	    <!-- iCheck -->
+		<link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	    <!-- Datatables -->
+		<link href="/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+		<link href="/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+		<link href="/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+		<link href="/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+		<link href="/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+	   
+	    <!-- Custom Theme Style -->
+	    <link href="/build/css/custom.min.css" rel="stylesheet">
+	    
+	    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	    <script>
+	    	$(document).ready(()=>{
+	    		
+	    		/* =============================계정코드조회================================= */
+	    		$('#btnAccountSearch').click(()=>{
+	    			let accountColumn = $('#selectedAccount option:selected').val();
+	    			let accountColumnValue = $('#AccountValue').val();
+	    			if(accountColumn == 'accCd' && !($.isNumeric(accountColumnValue))){
+	    				alert('숫자로 입력하세요');
+	    			}else{
+		    			console.log(accountColumnValue + '<--계정코드 값');
+		    			$.ajax({
+				            url:'/accountSearch',
+				            type:'GET',
+				            data:{account : accountColumnValue},
+				            success:(list)=>{
+				            	console.log(list);
+				            	let tr='';
+				            	$(list).each((index,item)=>{
+				            		$('#accountList').empty();
+				            		tr += '<tr>';
+									tr += '<td>'+item.accCd+'</td>';
+									tr += '<td>'+item.accDtlCd+'</td>';
+									tr += '<td>'+item.accShrtNm+'</td>';
+									tr += '</tr>';
+				            	});
+				            	$('#accountList').append(tr);
+				            }
+				        });
+	    			}
+	    		});
+	    		$('#accountList').delegate('tr', 'click', function(){
+					let tr = $(this);
+					let td = tr.children();
+					$('#test1').val(td.eq(0).text());
+					$('#test2').val(td.eq(1).text());
+					$('#accountModal').click();
+	    		});
+	    		/* =============================계정코드조회 end================================= */
+	    	});
+	    </script>
+	</th:block>
+	
+	<th:block layout:fragment="customBody">
+		<!----------------------------------페이지 타이틀--------------------------------------------->
+		<div class="col-md-9 col-xs-12" style="color:black;">
+			<div class="page-title">
+				<div class="title_left">
+					<h2><b>전표상세검색</b></h2>
+					<h5><font color="gray"><b>8 회계관리&nbsp;>&nbsp;&nbsp;8.2 전표상세검색</b></font></h5>
+					<br>
+				</div>
+			</div>
+        </div>
+        <!----------------------------------페이지 타이틀 end--------------------------------------------->
+        <!----------------------------------고정 버튼 -------------------------------------------------->
+        <div class="col-md-3 col-xs-12" style="color:black;">
+			<div class="page-title">
+				<div class="btn-group">
+					<br>
+					<button class="btn btn-default" type="reset">입력</button>
+					<button class="btn btn-default" type="button">수정</button>
+					<button class="btn btn-default" type="button">삭제</button>
+					<button class="btn btn-default" type="button">저장</button>
+					<button class="btn btn-default" type="button">출력</button>
+				</div>
+			</div>
+        </div>
+        <!-----------------------------------고정 버튼 end----------------------------------------------->
+        
+        <!----------------------------------- 상단 검색조건화면-------------------------------------------->
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="x_panel">
+				<div class="x_content" style="color:black;">
+					<!-- <div class="table-responsive"> -->
+						<table class="table table-bordered">
+							<tbody>
+								<tr>
+									<td><b>회계단위</b></td>
+									<td>
+										<select>
+											<option selected="selected">ANU디자인그룹</option>
+										</select>
+									</td>
+									<td><b>전표유형</b></td>
+									<td>
+										<select>
+											<option selected="selected">일반전표</option>
+											<option>대금지불전표</option>
+											<option>결산전표</option>
+										</select>
+									</td>
+									<td colspan="2">
+									</td>
+								</tr>
+								<tr>
+									<td><b>전표일자</b></td>
+									<td>
+										<input type="date"> <b>-</b> 
+										<input type="date">
+									</td>
+									<td><b>승인여부</b></td>
+									<td>
+										<input type="radio" name="admit">ALL
+										<input type="radio" name="admit">승인
+										<input type="radio" name="admit">미승인	
+									</td>
+									<td><b>전표구분</b></td>
+									<td>
+										<input type="radio" name="slipgb">ALL
+										<input type="radio" name="slipgb">현금
+										<input type="radio" name="slipgb">대체
+									</td>
+								</tr>
+								<tr>
+									<td><b>계정코드</b></td>
+									<td>
+										<input type="text" id="test1"> <b>-</b>
+										<input type="text" id="test2">
+										<button type="button" data-toggle="modal" data-target=".bs-example-modal-lg1"><i class="fa fa-search"></i></button>
+										
+										<!------------------------------------------ 계정코드 조회 modal--------------------------------------------------- -->
+										
+										<div class="modal fade bs-example-modal-lg1" tabindex="-1" role="dialog" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+												<div class="modal-content">
+													<form class="form-horizontal">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" id="accountModal"><span aria-hidden="true">×</span>
+															</button>
+															<h4 class="modal-title" id="myModalLabel"><b>실계정조회</b></h4><br>
+															<!-- <div class="table-responsive"> -->
+																<table class="table table-bordered">
+																	<tbody>
+																		<tr>
+																			<td><label class="control-label">검색항목</label></td>
+																			<td>
+																				<select class="form-control" style="width: 40%" id="selectedAccount">
+																					<option value="accCd">계정코드</option>
+																					<option selected="selected" value="accShrtNm">계정과목명</option>
+																				</select>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td><label class="control-label">검색조건</label></td>
+																			<td>
+																				<input type="text" id="AccountValue">
+																				<button id="btnAccountSearch" type="button"><i class="fa fa-search"></i></button>																	
+																			</td>
+																		</tr>
+																	</tbody>																	
+																</table>
+															<!-- </div> -->
+														</div>
+														<div class="modal-body">
+															<div class="table-responsive" style="overflow: auto; height: 400px;">
+															<table class="table table-striped table-bordered table-hover jambo_table">
+																<thead>
+																	<tr>
+																		<th>계정코드</th>
+																		<th>세목</th>
+																		<th>계정과목명</th>
+																	</tr>
+																</thead>
+																<tbody id="accountList">
+																	<tr>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																	</tr>
+																	<tr>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																	</tr>
+																	<tr>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																	</tr>
+																	<tr>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																	</tr>
+																</tbody>																	
+															</table>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+										
+									<!------------------------------------------ 계정코드 조회 modal end--------------------------------------------------- -->
+									</td>
+									<td><b>귀속부서</b></td>
+									<td>
+										<input type="text">
+										<button type="button" data-toggle="modal" data-target=".bs-example-modal-lg2"><i class="fa fa-search"></i></button>
+										
+										<!------------------------------------------ 부서코드 조회 modal--------------------------------------------------- -->
+										<div class="modal fade bs-example-modal-lg2" tabindex="-1" role="dialog" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+												<div class="modal-content">
+													<form class="form-horizontal ">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+															</button>
+															<h4 class="modal-title" id="myModalLabel"><b>부서코드조회</b></h4><br>
+															<div class="table-responsive">
+																<table class="table table-bordered">
+																	<tbody>
+																		<tr>
+																			<td><label class="control-label">검색항목</label></td>
+																			<td>
+																				<select class="form-control" style="width: 40%">
+																					<option>부서코드</option>
+																					<option selected="selected">부서명칭</option>
+																				</select>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td><label class="control-label">검색조건</label></td>
+																			<td>
+																				<input type="text" >
+																				<button><i class="fa fa-search"></i></button>																	
+																			</td>
+																		</tr>
+																	</tbody>																	
+																</table>
+															</div>
+														</div>
+														<div class="modal-body">
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered table-hover">
+																	<thead>
+																		<tr>
+																			<th>부서코드</th>
+																			<th>부서명칭</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																	</tbody>																	
+																</table>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+															<button type="button" class="btn btn-primary">Save changes</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									<!------------------------------------------ 부서코드 조회 modal end--------------------------------------------------- -->	
+									</td>
+									<td colspan="2">
+									</td>
+								</tr>
+								<tr>
+									<td><b>거래처</b></td>
+									<td>
+										<input type="text">
+										<button type="button" data-toggle="modal" data-target=".bs-example-modal-lg3"><i class="fa fa-search"></i></button> 
+										
+										<!------------------------------------------ 거래처코드 조회 modal--------------------------------------------------- -->
+										<div class="modal fade bs-example-modal-lg3" tabindex="-1" role="dialog" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+												<div class="modal-content">
+													<form class="form-horizontal ">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+															</button>
+															<h4 class="modal-title" id="myModalLabel"><b>거래처코드조회</b></h4><br>
+															<div class="table-responsive">
+																<table class="table table-bordered">
+																	<tbody>
+																		<tr>
+																			<td><label class="control-label">검색항목</label></td>
+																			<td>
+																				<select class="form-control" style="width: 40%">
+																					<option>거래처코드</option>
+																					<option selected="selected">거래처명</option>
+																				</select>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td><label class="control-label">검색조건</label></td>
+																			<td>
+																				<input type="text" >
+																				<button><i class="fa fa-search"></i></button>																	
+																			</td>
+																		</tr>
+																	</tbody>																	
+																</table>
+															</div>
+														</div>
+														<div class="modal-body">
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered table-hover">
+																	<thead>
+																		<tr>
+																			<th>거래처코드</th>
+																			<th>거래처명</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																	</tbody>																	
+																</table>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+															<button type="button" class="btn btn-primary">Save changes</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									<!------------------------------------------ 거래처코드 조회 modal end--------------------------------------------------- -->
+									</td>
+									<td><b>프로젝트</b></td>
+									<td>
+										<input type="text">
+										<button><i class="fa fa-search" data-toggle="modal" data-target=".bs-example-modal-lg4"></i></button>
+										
+										<!------------------------------------------ 프로젝트코드 조회 modal--------------------------------------------------- -->
+										<div class="modal fade bs-example-modal-lg4" tabindex="-1" role="dialog" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+												<div class="modal-content">
+													<form class="form-horizontal ">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+															</button>
+															<h4 class="modal-title" id="myModalLabel"><b>프로젝트코드조회</b></h4><br>
+															<div class="table-responsive">
+																<table class="table table-bordered">
+																	<tbody>
+																		<tr>
+																			<td><label class="control-label">검색항목</label></td>
+																			<td>
+																				<select class="form-control" style="width: 40%">
+																					<option>프로젝트코드</option>
+																					<option selected="selected">프로젝트명</option>
+																				</select>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td><label class="control-label">검색조건</label></td>
+																			<td>
+																				<input type="text" >
+																				<button><i class="fa fa-search"></i></button>																	
+																			</td>
+																		</tr>
+																	</tbody>																	
+																</table>
+															</div>
+														</div>
+														<div class="modal-body">
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered table-hover">
+																	<thead>
+																		<tr>
+																			<th>프로젝트코드</th>
+																			<th>프로젝트명</th>
+																			<th>수행부서</th>
+																			<th>수행구분</th>
+																			<th>상태</th>
+																			<th>종료일자</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																			<td></td>
+																		</tr>
+																	</tbody>																	
+																</table>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+															<button type="button" class="btn btn-primary">Save changes</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									<!------------------------------------------ 프로젝트코드 조회 modal end--------------------------------------------------- -->
+									</td>
+									<td colspan="2">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					<!-- </div> -->
+				</div>
+			</div>
+		</div>
+
+		<!----------------------------------------- 상단 검색조건화면 end---------------------------------------------- -->
+		
+		<!----------------------------------------------------- 검색리스트 -------------------------------------------------------------- -->
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="x_panel">
+				<div class="x_content" style="color:black; height: 550px;">
+					<div class="table-responsive">
+						<table id="datatable-responsive" class="table table-striped table-bordered jambo_table dt-responsive nowrap">
+							<thead>
+								<tr>
+									<th>승인</th>
+									<th>구분</th>
+									<th>전표일자</th>
+									<th>번호</th>
+									<th>순번</th>
+									<th>계정코드</th>
+									<th>계정명</th>
+									<th>차대</th>
+									<th>금액</th>
+									<th>귀속부서</th>
+									<th>거래처</th>
+									<th>프로젝트</th>
+									<th>적요</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>승인</td>
+									<td>구분</td>
+									<td>전표일자</td>
+									<td>번호</td>
+									<td>순번</td>
+									<td>계정코드</td>
+									<td>계정명</td>
+									<td>차대</td>
+									<td>금액</td>
+									<td>귀속부서</td>
+									<td>거래처</td>
+									<td>프로젝트</td>
+									<td>적요</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!----------------------------------------------------- 검색리스트  end-------------------------------------------------------------- -->
+	</th:block>
+	<th:block layout:fragment="customJquery">
+		<!-- jQuery -->
+	    <script src="/vendors/jquery/dist/jquery.min.js"></script>
+	    <!-- Bootstrap -->
+	    <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	    <!-- FastClick -->
+	    <script src="/vendors/fastclick/lib/fastclick.js"></script>
+	    <!-- NProgress -->
+	    <script src="/vendors/nprogress/nprogress.js"></script>
+	    <!-- iCheck -->
+	    <script src="/vendors/iCheck/icheck.min.js"></script>
+	    <!-- Datatables -->
+		<script src="/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script src="/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script src="/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script src="/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="/vendors/jszip/dist/jszip.min.js"></script>
+		<script src="/vendors/pdfmake/build/pdfmake.min.js"></script>
+		<script src="/vendors/pdfmake/build/vfs_fonts.js"></script>
+	
+	    <!-- Custom Theme Scripts -->
+	    <script src="/build/js/custom.min.js"></script>
+    </th:block>
+</html>

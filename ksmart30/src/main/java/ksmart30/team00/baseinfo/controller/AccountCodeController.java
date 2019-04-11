@@ -39,7 +39,7 @@ public class AccountCodeController {
 		  System.out.println("controlItemCodeList" + controlItemCodeList);
 		  model.addAttribute("list", list);
 		  model.addAttribute("controlItemCodeList", controlItemCodeList);
-		  return "/baseinfo/accountcode/accountcode_in";
+		  return "/baseinfo/accountCodeView";
 	}
 	
 	

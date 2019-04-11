@@ -21,6 +21,6 @@ public class ExcostTransferController {
 	@GetMapping("/acc/excostTransferView")
 	public String excostTransferView() {
 		System.out.println("외주비 지급전표 이관 excostTransfer ExcostTransferController.java");
-		return "/account/excostTransfer/excostTransfer_in";
+		return "/account/excostTransferView";
 	}
 }

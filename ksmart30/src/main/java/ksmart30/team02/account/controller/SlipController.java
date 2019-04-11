@@ -34,7 +34,7 @@ SlipService slipService;
 	@GetMapping("/acc/slipView")
 	public String slipView() {
 		System.out.println("01 전표입력폼 단위테스트");
-		return "/account/slip/slip_in";
+		return "/account/slipView";
 	}
 	// 8.1.전표입력
 	/* @param  SlipDetailDomain slipDetailDomain

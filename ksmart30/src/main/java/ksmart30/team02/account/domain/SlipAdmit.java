@@ -5,6 +5,7 @@ public class SlipAdmit {
 	private String SLIP_DATE;
 	private String SLIP_DATE2;
 	private String SLIP_NO;
+	private String SLIP_NO2;
 	private String CONFIRM_YN;
 	private String CONFIRM_CHECK;
 	private String CANCEL_REASON;
@@ -13,8 +14,10 @@ public class SlipAdmit {
 	private String INIT_DEPT_CD;
 	private String INIT_EMP_NO;
 	private String SLIP_SEQ;
-	private String ACC_CD,ACC_DTL_CD;
+	private String ACC_CD;
+	private String ACC_DTL_CD;
 	private String ACC_NM;
+	private String ACC_LONG_NM;
 	private String BELONG_DEPT_CD;
 	private String DRCR_GB;
 	private String ACC_AMT;
@@ -47,6 +50,12 @@ public class SlipAdmit {
 	}
 	public void setSLIP_NO(String sLIP_NO) {
 		SLIP_NO = sLIP_NO;
+	}
+	public String getSLIP_NO2() {
+		return SLIP_NO2;
+	}
+	public void setSLIP_NO2(String sLIP_NO2) {
+		SLIP_NO2 = sLIP_NO2;
 	}
 	public String getCONFIRM_YN() {
 		return CONFIRM_YN;
@@ -114,6 +123,12 @@ public class SlipAdmit {
 	public void setACC_NM(String aCC_NM) {
 		ACC_NM = aCC_NM;
 	}
+	public String getACC_LONG_NM() {
+		return ACC_LONG_NM;
+	}
+	public void setACC_LONG_NM(String aCC_LONG_NM) {
+		ACC_LONG_NM = aCC_LONG_NM;
+	}
 	public String getBELONG_DEPT_CD() {
 		return BELONG_DEPT_CD;
 	}
@@ -171,14 +186,13 @@ public class SlipAdmit {
 	@Override
 	public String toString() {
 		return "SlipAdmit [SLIP_CASH_GB=" + SLIP_CASH_GB + ", SLIP_DATE=" + SLIP_DATE + ", SLIP_DATE2=" + SLIP_DATE2
-				+ ", SLIP_NO=" + SLIP_NO + ", CONFIRM_YN=" + CONFIRM_YN + ", CONFIRM_CHECK=" + CONFIRM_CHECK
-				+ ", CANCEL_REASON=" + CANCEL_REASON + ", DR_AMT=" + DR_AMT + ", CR_AMT=" + CR_AMT + ", INIT_DEPT_CD="
-				+ INIT_DEPT_CD + ", INIT_EMP_NO=" + INIT_EMP_NO + ", SLIP_SEQ=" + SLIP_SEQ + ", ACC_CD=" + ACC_CD
-				+ ", ACC_DTL_CD=" + ACC_DTL_CD + ", ACC_NM=" + ACC_NM + ", BELONG_DEPT_CD=" + BELONG_DEPT_CD
-				+ ", DRCR_GB=" + DRCR_GB + ", ACC_AMT=" + ACC_AMT + ", DESCR=" + DESCR + ", CUST_CD=" + CUST_CD
-				+ ", PROJ_CD=" + PROJ_CD + ", TAX_CD=" + TAX_CD + ", PROV_AMT=" + PROV_AMT + ", VAT_AMT=" + VAT_AMT
-				+ "]";
+				+ ", SLIP_NO=" + SLIP_NO + ", SLIP_NO2=" + SLIP_NO2 + ", CONFIRM_YN=" + CONFIRM_YN + ", CONFIRM_CHECK="
+				+ CONFIRM_CHECK + ", CANCEL_REASON=" + CANCEL_REASON + ", DR_AMT=" + DR_AMT + ", CR_AMT=" + CR_AMT
+				+ ", INIT_DEPT_CD=" + INIT_DEPT_CD + ", INIT_EMP_NO=" + INIT_EMP_NO + ", SLIP_SEQ=" + SLIP_SEQ
+				+ ", ACC_CD=" + ACC_CD + ", ACC_DTL_CD=" + ACC_DTL_CD + ", ACC_NM=" + ACC_NM + ", ACC_LONG_NM="
+				+ ACC_LONG_NM + ", BELONG_DEPT_CD=" + BELONG_DEPT_CD + ", DRCR_GB=" + DRCR_GB + ", ACC_AMT=" + ACC_AMT
+				+ ", DESCR=" + DESCR + ", CUST_CD=" + CUST_CD + ", PROJ_CD=" + PROJ_CD + ", TAX_CD=" + TAX_CD
+				+ ", PROV_AMT=" + PROV_AMT + ", VAT_AMT=" + VAT_AMT + "]";
 	}
-
 	
 }

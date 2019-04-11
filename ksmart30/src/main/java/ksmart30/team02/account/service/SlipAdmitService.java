@@ -1,6 +1,7 @@
 package ksmart30.team02.account.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +56,7 @@ public class SlipAdmitService {
 	 	slipAdmit.setSLIP_DATE2(slip_dateB);
 	 	System.out.println(slip_dateB+"slip_dateB 전표상세!! Service");
 	 	List<SlipAdmit> slipList = slipAdmitMapper.slipAdmitList2(slipAdmit);
+	 	//계정과목코드 + 세목  합처주는과정
 	 	for(int i=0; i<slipList.size(); i++) {
 	 		SlipAdmit slipAdmit2 = slipList.get(i);
 	 		String acc_cd1 =  slipAdmit2.getACC_CD();
@@ -66,4 +68,12 @@ public class SlipAdmitService {
 	 	System.out.println(slipList+"slipList 전표상세!! Service");
 		return slipList;
 	}
+	//계정과목리스트
+	public List<Map<String , String>> getAccountCode(String account){
+		System.out.println("getAccountCode SlipAdmitService.java");
+		List<Map<String,String>> list = slipAdmitMapper.getAccountCodeList(account);
+		
+		return list;
+	}
+	
 }

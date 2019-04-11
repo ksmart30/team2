@@ -18,12 +18,10 @@
 					const date2 = $('#date2').val();
 					const slipNo = $('#slipNo').val();
 					const slipNo2 = $('#slipNo2').val();
-					const accCd = $('#ACC_CD').val();
-					const accDtlCd = $('#ACC_DTL_CD').val();
 					$.ajax({
 						url : '/slipAdmitList',
 						type : 'GET',
-						data : {SLIP_DATE:date,SLIP_DATE2:date2,SLIP_NO:slipNo,SLIP_NO2:slipNo2,ACC_CD:accCd},
+						data : {SLIP_DATE:date,SLIP_DATE2:date2,SLIP_NO:slipNo,SLIP_NO2:slipNo2},
 						success : (data)=>{
 							$('#slipList').empty();
 							$(data).each((index,item)=>{
@@ -84,47 +82,9 @@
 					});
 				});
 				//계정코드 조회~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-				$('#btnAccountSearch').click(()=>{
-					console.log('나와라요~~~');
-					let Column = $('#selectedAccount option:selected').val();
-	    			let ColumnValue = $('#accountValue').val();
-	    			let subvalue = ColumnValue.substr(0,1);
-	    			console.log(subvalue+'<--줄인 값');
-	    			console.log(Column+'<--현재 값');
-	    			if(Column == 'ACC_CD' && !($.isNumeric(ColumnValue))){
-	    				alert('숫자로 입력하세요');
-	    			}else if(Column == 'ACC_LONG_NM' && ($.isNumeric(subvalue))){
-	    				alert('한글로 입력하세요');
-	    			}else{
-		    			console.log(ColumnValue + '<--계정코드 값');
-		    			$.ajax({
-				            url:'/accountSearchView',
-				            type:'GET',
-				            data:{account : ColumnValue},
-				            success:(list)=>{
-				            	console.log(list);
-				            	let tr='';
-				            	$(list).each((index,item)=>{
-				            		$('#accountList').empty();
-				            		tr += '<tr>';
-									tr += '<td>'+item.accCd+'</td>';
-									tr += '<td>'+item.accDtlCd+'</td>';
-									tr += '<td>'+item.accShrtNm+'</td>';
-									tr += '</tr>';
-				            	});
-				            	$('#accountList').append(tr);
-				            }
-				        });
-	    			}
-	    		});
-	    		$('#accountList').delegate('tr', 'dblclick', function(){
-					let tr = $(this);
-					let td = tr.children();
-					$('#ACC_CD').val(td.eq(0).text());
-					$('#ACC_DTL_CD').val(td.eq(1).text());
-					$('#accountValue').val('');
-					$('#accountModal').click();
-	    		});
+				$('').click(()=>{
+					
+				});
 			});
 		</script>
 	</th:block>
@@ -186,81 +146,10 @@
 			                  		<div class="col-md-2 col-sm-12 col-xs-12 form-group">
 										발 의 자 <input type="text" size="5">
 										<button><i class="fa fa-search"></i></button>
-			                  		</div>	
-			                  		<!-- 계정코드 조회 -->			
+			                  		</div>				
 			                  		<div class="col-md-4 col-sm-12 col-xs-12 form-group">
-									계정코드<input type="text" size="5" id="ACC_CD"> 
-										<input type="text" size="3" id="ACC_DTL_CD">
-			                  	 	 	<button type="button" data-toggle="modal" data-target=".bs-example-modal-lg1"><i class="fa fa-search"></i></button>
-			                  	 	 	<div class="modal fade bs-example-modal-lg1" tabindex="-1" role="dialog" aria-hidden="true">
-											<div class="modal-dialog modal-lg">
-												<div class="modal-content">
-													<form class="form-horizontal">
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal" id="accountModal"><span aria-hidden="true">×</span>
-															</button>
-															<h4 class="modal-title" id="myModalLabel"><b>실계정조회</b></h4><br>
-															<!-- <div class="table-responsive"> -->
-																<table class="table table-bordered">
-																	<tbody>
-																		<tr>
-																			<td><label class="control-label">검색항목</label></td>
-																			<td>
-																				<select class="form-control" style="width: 40%" id="selectedAccount">
-																					<option value="ACC_CD">계정코드</option>
-																					<option selected="selected" value="ACC_LONG_NM">계정과목명</option>
-																				</select>
-																			</td>
-																		</tr>
-																		<tr>
-																			<td><label class="control-label">검색조건</label></td>
-																			<td>
-																				<input type="text" id="accountValue">
-																				<button id="btnAccountSearch" type="button"><i class="fa fa-search"></i></button>																	
-																			</td>
-																		</tr>
-																	</tbody>																	
-																</table>
-														</div>
-														<div class="modal-body">
-															<div class="table-responsive" style="overflow: auto; height: 400px;">
-															<table class="table table-striped table-bordered table-hover jambo_table">
-																<thead>
-																	<tr>
-																		<th>계정코드</th>
-																		<th>세목</th>
-																		<th>계정과목명</th>
-																	</tr>
-																</thead>
-																<tbody id="accountList">
-																	<tr>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																	</tr>
-																	<tr>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																	</tr>
-																	<tr>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																	</tr>
-																	<tr>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																	</tr>
-																</tbody>																	
-															</table>
-															</div>
-														</div>
-													</form>
-												</div>
-											</div>
-										</div>
+			                  	 	 	계정코드 <input type="text" size="5"> <input type="text" size="3">
+			                  	 	 	<button><i class="fa fa-search"></i></button>
 			                  		</div>		
 			                  		<div class="col-md-3 col-sm-12 col-xs-12 form-group">
 			                    		발의부서 <input type="text" size="5">

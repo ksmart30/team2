@@ -15,10 +15,10 @@ import ksmart30.team02.account.mapper.UnpaidMapper;
 public class UnpaidService {
 	@Autowired
 	UnpaidMapper unpaidMapper;
-	public List<UnpaidDomain> getUnpaidContentsList(){
-		List<UnpaidDomain> unpaid = unpaidMapper.getUnpaidContentsList();
-		System.out.println(unpaid.toString());
-		return unpaid;
+	public List<UnpaidDomain> getUnpaidContentsList(String SLIP_DATE){
+		List<UnpaidDomain> unpaidlist = unpaidMapper.getUnpaidContentsList(SLIP_DATE);
+		System.out.println(unpaidlist.toString());
+		return unpaidlist;
 	}
 	public List<Map<String,String>> getAccountCode(String account){
 		List<Map<String,String>> list = unpaidMapper.getAccountCodeList(account);

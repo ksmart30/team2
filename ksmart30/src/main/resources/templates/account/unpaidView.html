@@ -29,9 +29,16 @@
 		
 			$(document).ready(()=>{
 				$('#btn_select').click(()=>{
+				 	let unpaid= $('#crt').val().split('-');
+					let slp= $('#slp').val().split('-');
+					let convertUnpaid = unpaid[0]+unpaid[1]+unpaid[2];
+					let convertslp = slp[0]+slp[1]+slp[2];
+					console.log(convertUnpaid+'<--값 나와라');
+					console.log(slp+'<--너는 들어왔니?');
 			        $.ajax({
 			            url:'/unpaidView',
 			            type:'GET',
+			            data:{SLIP_DATE:convertUnpaid},
 			            success:function(data){
 			                $('#unpaidlist').empty();
 			                let tr = '';
@@ -135,8 +142,8 @@
 		                  			검색조건                
 		                  		</div>		                  
 			                  	<div class="col-md-3 col-sm-12 col-xs-12 form-group">
-			                  		 <input type="radio" name="1"> 생성일자 <input type="date"> <br>
-			                  		 <input type="radio" name="1"> 전표일자 <input type="date">
+			                  		 <input type="radio" name="1"> 생성일자 <input type="date" id="crt"> <br>
+			                  		 <input type="radio" name="1"> 전표일자 <input type="date" id="slp">
 			                  	</div>			
 			                  	<td><b>계정과목</b></td>
 									<td>

@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import ksmart30.team02.account.domain.UnpaidDomain;
 @Mapper
 public interface UnpaidMapper {
-	public List<UnpaidDomain> getUnpaidContentsList();
+	public List<UnpaidDomain> getUnpaidContentsList(String SLIP_DATE);
 	
 	List<Map<String, String>> getAccountCodeList(String account);
 }

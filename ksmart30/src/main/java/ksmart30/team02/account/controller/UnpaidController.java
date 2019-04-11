@@ -19,14 +19,24 @@ import ksmart30.team02.account.service.UnpaidService;
 public class UnpaidController {
 	@Autowired
 	private UnpaidService unpaidService;
+	
 	@GetMapping("/acc/unpaidView")
 	public String unpaidView() {
 		return "account/unpaidView";
 	}
+	
+	/* @param  @RequestParam(value="SLIP_DATE") String SLIP_DATE
+	 * @brief  AJax slip_date로 리스트 출력
+	 * @return  List<UnpaidDomain>
+	 */
 	@GetMapping("/unpaidView")
-	public @ResponseBody List<UnpaidDomain> searchView(){
-		return unpaidService.getUnpaidContentsList();
+	public @ResponseBody List<UnpaidDomain> searchView(@RequestParam(value="SLIP_DATE") String SLIP_DATE){
+		return unpaidService.getUnpaidContentsList(SLIP_DATE);
 	}
+	/* @param  @RequestParam(value="account") String account
+	 * @brief  AJax 계정과목코드 및 리스트 출력
+	 * @return  List<UnpaidDomain>
+	 */
 	@GetMapping("/unpaidaccountSearchView")
 	public @ResponseBody List<Map<String,String>> accountSearchView(@RequestParam(value="account") String account) throws JsonProcessingException{
 		System.out.println("unpaidaccountSearch호출");

@@ -82,14 +82,13 @@
 								$('#initDept').val(map.slipHeader.init_DEPT_CD);
 								$('#initEmp').val(map.slipHeader.init_EMP_NO);
 							}
-				            
-						});						
+						});	
 			        }
 				});				
 				$('#list').delegate('tr', 'click', function(){
 					console.log('눌렀다요');
 					let tr = $(this);
-					let td = tr.children();
+					let td = tr.children();					
 					console.log('td : ' + td);
 					$('#slipSeq').val(td.eq(1).text());
 					$('#accCd').val(td.eq(2).text());
@@ -105,14 +104,99 @@
 					$('#jeokyo').val(td.eq(7).text());
 					const accCd = td.eq(2).text();
 					const accDtlCd = td.eq(3).text();
+					const date = $('#slipDate').val();
+					const no = $('#slipNo').val();
+					let tr2='';	
 					$.ajax({
-						url : "/controlItemList",
-						type : "GET",
-						data : {ACC_CD : accCd, ACC_DTL_CD : accDtlCd},
+						url : "/acc/controlItemSearchProcess",
+						type : "POST",
+						data : {SLIP_DATE:date, SLIP_NO:no, ACC_CD : accCd, ACC_DTL_CD : accDtlCd},
 						success:(list)=>{
-							$('#controlList').empty();
+							$('#controlbody').empty();												
+							if(list.cont_NM1 != null){
+								tr2 += '<tr>';
+								tr2 += '<td>'+list.cont_NM1+'</td>';	//0
+								tr2 += '<td><input type="text" value="'+list.cont_CD1+'"></td>';
+								tr2 += '</tr>';
+							} else {
+								
+							}
+							if(list.cont_NM2 != null){
+								tr2 += '<tr>';
+								tr2 += '<td>'+list.cont_NM2+'</td>';	//0
+								tr2 += '<td><input type="text" value="'+list.cont_CD2+'"></td>';
+								tr2 += '</tr>';
+							} else {
+								
+							}
+							if(list.cont_NM3 != null){
+								tr2 += '<tr>';
+								tr2 += '<td>'+list.cont_NM3+'</td>';	//0
+								tr2 += '<td><input type="text" value="'+list.cont_CD3+'"></td>';
+								tr2 += '</tr>';
+							} else {
+								
+							}
+							if(list.cont_NM4 != null){
+								tr2 += '<tr>';
+								tr2 += '<td>'+list.cont_NM4+'</td>';	//0
+								tr2 += '<td><input type="text" value="'+list.cont_CD4+'"></td>';
+								tr2 += '</tr>';
+							} else {
+								
+							}
+							if(list.cont_NM5 != null){
+								tr2 += '<tr>';
+								tr2 += '<td>'+list.cont_NM5+'</td>';	//0
+								tr2 += '<td><input type="text" value="'+list.cont_CD5+'"></td>';
+								tr2 += '</tr>';
+							} else {
+								
+							}	
+							if(list.cont_NM6 != null){
+								tr2 += '<tr>';
+								tr2 += '<td>'+list.cont_NM6+'</td>';	//0
+								tr2 += '<td><input type="text" value="'+list.cont_CD6+'"></td>';
+								tr2 += '</tr>';
+							} else {
+								
+							}
+							if(list.cont_NM7 != null){
+								tr2 += '<tr>';
+								tr2 += '<td>'+list.cont_NM7+'</td>';	//0
+								tr2 += '<td><input type="text" value="'+list.cont_CD7+'"></td>';
+								tr2 += '</tr>';
+							} else {
+								
+							}
+							if(list.cont_NM8 != null){
+								tr2 += '<tr>';
+								tr2 += '<td>'+list.cont_NM8+'</td>';	//0
+								tr2 += '<td><input type="text" value="'+list.cont_CD8+'"></td>';
+								tr2 += '</tr>';
+							} else {
+								
+							}
+							if(list.cont_NM9 != null){
+								tr2 += '<tr>';
+								tr2 += '<td>'+list.cont_NM9+'</td>';	//0
+								tr2 += '<td><input type="text" value="'+list.cont_CD9+'"></td>';
+								tr2 += '</tr>';
+							} else {
+								
+							}
+							if(list.cont_NM10 != null){
+								tr2 += '<tr>';
+								tr2 += '<td>'+list.cont_NM10+'</td>';	//0
+								tr2 += '<td><input type="text" value="'+list.cont_CD10+'"></td>';
+								tr2 += '</tr>';
+							} else {
+								
+							}	
+													
+							$('#controlList').append(tr2);
+							
 						}
-						
 					});							
 	    		});
 			});
@@ -294,7 +378,7 @@
                    <table class="table table-bordered">
                      <thead>
 				<tr>
-					<td colspan="8">기본내역</td>
+					<th colspan="8">기본내역</th>
 				</tr>
 					</thead>
 					<tbody>
@@ -344,15 +428,20 @@
 						<input type="text"name="" id="jeokyo" style="width:100%;">
 					</td>
 				</tr>
-				</tbody>
-<!-- --------------------------------------------------------------------관리항목------------------------------------------------------------------------------ -->				
-				<tbody id="controlList">
-				<tr>
-					<th  colspan="8">
-						관리항목
-					</th>
-				</tr>
 				
+<!-- --------------------------------------------------------------------관리항목------------------------------------------------------------------------------ -->				
+				
+				
+				</tbody>
+			</table>
+			<table class="table table-bordered" id="controlList">
+				<thead>
+					<tr>
+						<th>관리항목</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="controlbody">
 				</tbody>
 			</table>
 

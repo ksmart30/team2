@@ -17,14 +17,10 @@ import ksmart30.team02.account.domain.SlipHeaderDomain;
 public interface SlipMapper {
 	//8.1.전표입력.getSlipInfo메서드
 	/* @param  String slip_DATE, String slip_NO 
-	 * @brief   전표리스트를 조회하는 추상메서드 선언	   		 	  
+	 * @brief   getSlipInfo추상메서드 선언	   		 	  
 	 * @return  List<Slip>
 	 */
 	List<SlipDetailDomain> getSlipInfo(SlipDetailDomain slipDetailDomain);
-	//8.1.전표입력.getSlipHeaderInfo메서드
-	/* @param  String slip_DATE, String slip_NO 
-	 * @brief   전표기본내용을 조회하는 추상메서드 선언	   		 	  
-	 * @return  List<Slip>
-	 */
 	SlipHeaderDomain getSlipHeaderInfo(SlipDetailDomain slipDetailDomain);
+	SlipDetailDomain getControlItemInfo(SlipDetailDomain slipDetailDomain);
 }

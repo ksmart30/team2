@@ -76,4 +76,21 @@ SlipMapper slipMapper;
 		System.out.println("slip : " + slip);
 		return map;
 	}
+	public SlipDetailDomain controlItemSearchProcess(SlipDetailDomain slipDetailDomain){	
+		String slip_DATE = slipDetailDomain.getSLIP_DATE();		
+		System.out.println("slip_DATE : " + slip_DATE);		
+		String slip_DATE1 = slip_DATE.substring(0, 4);
+		String slip_DATE2 = slip_DATE.substring(5, 7);
+		String slip_DATE3 = slip_DATE.substring(8, 10);
+		System.out.println("slip_DATE1 : " + slip_DATE1);
+		System.out.println("slip_DATE2 : " + slip_DATE2);
+		System.out.println("slip_DATE3 : " + slip_DATE3);
+		slip_DATE = slip_DATE1 + slip_DATE2 + slip_DATE3;
+		System.out.println("slip_DATE : " + slip_DATE);
+		slipDetailDomain.setSLIP_DATE(slip_DATE);
+		SlipDetailDomain list = slipMapper.getControlItemInfo(slipDetailDomain);
+		System.out.println("list : " + list);
+		return list;
+	}
+	
 }

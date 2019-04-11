@@ -22,6 +22,7 @@ public class AccountCodeService {
 	/* @brief  AccountCodeMapper내 selectAccountCodeList메서드 호출, 숫자값 문자값으로 전환중 	                
 	 * @return  List<AccountCode> list
 	 */
+	//AccountCodeMapper내 selectAccountCodeList메서드 호출, 숫자값 문자값으려 변환 후 리턴.
 	public List<AccountCodeDomain> getAccountCodeList(){
 		System.out.println("02 getAccountCodeList 단위테스트");
 		List<AccountCodeDomain> list = accountcodemapper.selectAccountCodeList();
@@ -33,10 +34,6 @@ public class AccountCodeService {
 		 */
 		return list;
 	}
-	// 10.2.5.계정과목코드
-	/* @brief  AccountCodeMapper내 selectControlItemCodeList메서드 호출, 숫자값 문자값으로 전환중 	                
-	 * @return  List<ControlItemCodeDomain> controlItemCodelist
-	 */
 	public List<ControlItemCodeDomain> getControlItemCodeList(){
 		System.out.println("02 getControlItemCodeList 단위테스트");
 		List<ControlItemCodeDomain> controlItemCodelist =  accountcodemapper.selectControlItemCodeList();

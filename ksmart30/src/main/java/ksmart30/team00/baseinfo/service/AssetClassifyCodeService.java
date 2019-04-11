@@ -19,7 +19,7 @@ public class AssetClassifyCodeService {
 AssetClassifyCodeMapper assetClassifyCodeMapper;
 	//10.2.7.자산분류코드
 	/*@brief     AssetClassifyCodeMapper내 assetClassifyCodeList메서드 호출
-	* @return  List<AssetClassifyCodeDomain> assetClassifyCode
+	* @return  List<AssetClassifyCode> assetClassifyCode
 	*/
 	public List<AssetClassifyCodeDomain> assetClassifyCodeList(){
 		System.out.println("02 단위테스트");

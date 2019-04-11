@@ -1,6 +1,11 @@
+/* 10.2.7.자산분류코드
+ * @file    AssetClassifyCodeDomain.java
+ * @brief   자산분류코드 Domain
+ * @author  ksmart30 박찬업
+ */
 package ksmart30.team00.baseinfo.domain;
 
-public class AssetClassifyCode {
+public class AssetClassifyCodeDomain {
 	private String ASSET_CD;
 	private String CODE_NM;
 	private String LAW_YY;

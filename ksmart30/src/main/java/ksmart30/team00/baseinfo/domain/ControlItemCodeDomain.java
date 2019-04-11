@@ -1,6 +1,11 @@
+/* 10.2.6.관리항목코드
+ * @file    ControlItemCodeDomain.java
+ * @brief   관리항목코드 Domain
+ * @author  ksmart30 박찬업
+ */
 package ksmart30.team00.baseinfo.domain;
 
-public class ControlItemCode {
+public class ControlItemCodeDomain {
 	private String CONT_CD;
 	private String CONT_NM;
 	private String CODE_FORMAT;

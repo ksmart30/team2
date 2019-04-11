@@ -3,18 +3,51 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ksmart30.team02.account.mapper.SlipMapper">
-	<!-- 전표리스트 SELECT 쿼리문 -->
-	<select id="SlipList"
-			resultType="ksmart30.team02.account.domain.Slip">
+	<!-- 8.1.전표입력
+	   @file     SlipMapper.xml
+	   @brief    전표입력 XML
+	   @author  ksmart30 박찬업
+	-->
+	<!-- 8.1.전표입력
+	  @param  String slip_DATE, String slip_NO 
+	  @brief    전표리스트 SELECT 쿼리문
+	  @return  ksmart30.team02.account.domain.SlipDetailDomain
+	-->
+	<select id="getSlipInfo"
+			resultType="ksmart30.team02.account.domain.SlipDetailDomain">
 		SELECT 
 			SLIP_SEQ,
 			ACC_CD,
 			ACC_DTL_CD,
-			BELONG_DEPT_CD,
+			(SELECT DEPT_NM FROM T_SC1010 WHERE DEPT_CD = BELONG_DEPT_CD) AS BELONG_DEPT_CD,
 			DRCR_GB,
 			ACC_AMT			
 		FROM
 			T_AC1120
-		
+		WHERE 									
+			SLIP_DATE=#{SLIP_DATE}
+		AND
+			SLIP_NO=#{SLIP_NO}		
+	</select>
+	<!-- 8.1.전표입력
+	  @param  String slip_DATE, String slip_NO 
+	  @brief    전표 기본 내용 SELECT 쿼리문
+	  @return  ksmart30.team02.account.domain.SlipDetailDomain
+	-->
+	<select id="getSlipHeaderInfo"
+			parameterType="ksmart30.team02.account.domain.SlipDetailDomain"
+			resultType="ksmart30.team02.account.domain.SlipHeaderDomain">
+		SELECT 
+			SLIP_CASH_GB,
+			SLIP_DATE,
+			SLIP_NO,
+			INIT_DATE,
+			INIT_DEPT_CD,
+			INIT_EMP_NO
+		FROM T_AC1110
+		WHERE 
+			SLIP_DATE =#{SLIP_DATE}
+		AND
+			SLIP_NO=#{SLIP_NO}		
 	</select>
 </mapper>

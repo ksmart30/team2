@@ -20,7 +20,7 @@ public class BusinessCardController {
 	@GetMapping("/baseInfo/businessCardView")
 	public String businessCardView() {
 		System.out.println("기업카드 businessCardController ControlItemCodeController.java");
-		return "baseInfo/businessCard/businessCard";
+		return "baseInfo/businessCardView";
 	}
 	//기업카드리스트
 	@GetMapping("/businessCardList")

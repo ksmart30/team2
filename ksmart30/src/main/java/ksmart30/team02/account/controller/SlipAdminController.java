@@ -22,7 +22,7 @@ public class SlipAdminController {
 	@GetMapping("/acc/slipAdmitView")
 	public String slipAdmitView() {
 		System.out.println("slipAdmitView SlipAdminController.java");
-		return "/account/slip/admit/slipadmit_in";
+		return "/account/slipadmitView";
 	}
 	//전표헤더
 	@GetMapping("/slipAdmitList")

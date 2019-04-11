@@ -36,7 +36,7 @@ public class BankAccountController {
 	public String bankAccountView() {
 		System.out.println("addBankAccount BankAccountController.java");
 		
-		return "baseInfo/bankaccount";
+		return "baseInfo/bankaccountView";
 	}
 	//트리메뉴
 	@GetMapping("/jsttreemenu")

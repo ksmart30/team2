@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ksmart30.team01.business.domain.BusinessOutput;
+import ksmart30.team01.business.domain.Business;
 import ksmart30.team01.business.service.BusinessYesanOutputService;
 
 @Controller
@@ -26,26 +26,26 @@ public class BusinessYesanOutputControlle {
 	}
 	//프로젝트코드 조회
 	@GetMapping("/businessYesanOutputView")
-	public @ResponseBody List<BusinessOutput> businessSearchList(BusinessOutput businessOutput){
+	public @ResponseBody List<Business> businessSearchList(Business business){
 		System.out.println("계약프로젝트조회 businessSearchView BusinessYesanOutputControlle.java");
-		List<BusinessOutput> businessList = businessYesanOutputService.businessSearchList(businessOutput);
+		List<Business> businessList = businessYesanOutputService.businessSearchList(business);
 		System.out.println(businessList+"<--businessList 컨트롤러 리턴가즈아!!");
 		return businessList;
 	}
 	//사업성검토 리스트출력
 	@GetMapping("/businessYesanList")
-	public @ResponseBody List<BusinessOutput> businessList(BusinessOutput businessOutput){
-		System.out.println(businessOutput+"<---받아온다니까 깐뜨롤라!!");
+	public @ResponseBody List<Business> businessList(Business business){
+		System.out.println(business+"<---받아온다니까 깐뜨롤라!!");
 		System.out.println("사업성코드 리스트 출력 깐뜨롤라 businessList BusinessYesanOutputControlle.java");
-		List<BusinessOutput> list =  businessYesanOutputService.businessList(businessOutput);
+		List<Business> list =  businessYesanOutputService.businessList(business);
 		System.out.println(list+"<--사업성코드 리스트 리퇀! 깐뜨롤라~");
 		return list;
 	}
 	//사업성검토 리스트(라디오)
 	@GetMapping("/businessYesanList2")
-	public @ResponseBody List<BusinessOutput> businessList2(BusinessOutput businessOutput){
+	public @ResponseBody List<Business> businessList2(Business business){
 		System.out.println("사업성코드 리스트 출력 깐뜨롤라 businessList BusinessYesanOutputControlle.java");
-		List<BusinessOutput> list =  businessYesanOutputService.businessList2(businessOutput);
+		List<Business> list =  businessYesanOutputService.businessList2(business);
 		System.out.println(list+"<--사업성코드 리스트 리퇀! 깐뜨롤라~");
 		return list;
 	}

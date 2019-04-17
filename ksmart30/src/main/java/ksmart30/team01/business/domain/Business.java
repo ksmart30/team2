@@ -1,6 +1,6 @@
 package ksmart30.team01.business.domain;
 
-public class BusinessOutput {
+public class Business {
 	private String PRE_PJT_CD;
 	private String PJT_CD;
 	private String PJT_NM;
@@ -444,7 +444,7 @@ public class BusinessOutput {
 	}
 	@Override
 	public String toString() {
-		return "BusinessOutput [PRE_PJT_CD=" + PRE_PJT_CD + ", PJT_CD=" + PJT_CD + ", PJT_NM=" + PJT_NM + ", PJT_TYPE="
+		return "Business [PRE_PJT_CD=" + PRE_PJT_CD + ", PJT_CD=" + PJT_CD + ", PJT_NM=" + PJT_NM + ", PJT_TYPE="
 				+ PJT_TYPE + ", SVC=" + SVC + ", CUST_GBN=" + CUST_GBN + ", CUST_CD=" + CUST_CD + ", CUST_NM=" + CUST_NM
 				+ ", AREA_P=" + AREA_P + ", AREA_M=" + AREA_M + ", YAREA_P=" + YAREA_P + ", YAREA_M=" + YAREA_M
 				+ ", BIZ_GBN=" + BIZ_GBN + ", BIZ_GBN_NM=" + BIZ_GBN_NM + ", REGION=" + REGION + ", REGION_NM="

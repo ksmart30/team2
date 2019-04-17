@@ -3,7 +3,7 @@
 
 <mapper	namespace="ksmart30.team01.business.mapper.BusinessYesanSearchMapper">
 <select id="businessOutputSearch2"
-		resultType="ksmart30.team01.business.domain.BusinessOutput"
+		resultType="ksmart30.team01.business.domain.Business"
 >
 	SELECT A.PRE_PJT_CD   ,
       A.PJT_CD       ,

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import ksmart30.team01.business.domain.BusinessOutput;
+import ksmart30.team01.business.domain.Business;
 
 @Mapper
 public interface BusinessYesanOutputMapper {
@@ -14,14 +14,14 @@ public interface BusinessYesanOutputMapper {
 	List<Map<String,String>> businessOutputList();
 	
 	//프로젝트코드 코드로만조회
-	List<BusinessOutput> businessSearchList(BusinessOutput businessOutput);
+	List<Business> businessSearchList(Business business);
 	//프로젝트코드 전체조회
-	List<BusinessOutput> businessSearchList2();
+	List<Business> businessSearchList2();
 	//프로젝트코드명 조회
-	List<BusinessOutput> businessSearchList3(BusinessOutput businessOutput);
+	List<Business> businessSearchList3(Business business);
 	//사업성검토 리스트출력
-	List<BusinessOutput> businessList(BusinessOutput businessOutput);
+	List<Business> businessList(Business business);
 	//사업성검토 리스트출력(radio버튼)
-	List<BusinessOutput> businessList2(BusinessOutput businessOutput);
+	List<Business> businessList2(Business business);
 	
 }

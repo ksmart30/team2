@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ksmart30.team01.business.domain.BusinessOutput;
+import ksmart30.team01.business.domain.Business;
 import ksmart30.team01.business.mapper.BusinessYesanOutputMapper;
 
 @Service
@@ -21,22 +21,22 @@ public class BusinessYesanOutputService {
 		return outputList;
 	}
 	//프로젝트코드 조회
-	public List<BusinessOutput> businessSearchList(BusinessOutput businessOutput){
+	public List<Business> businessSearchList(Business business){
 		System.out.println("businessSearchList BusinessYesanOutputService.java");
-		List<BusinessOutput> businessList = null;
-		if(businessOutput.getPJT_CD() == null) {
-			if(businessOutput.getPJT_NM() != "") {
-				businessList = businessYesanOutputMapper.businessSearchList3(businessOutput);
+		List<Business> businessList = null;
+		if(business.getPJT_CD() == null) {
+			if(business.getPJT_NM() != "") {
+				businessList = businessYesanOutputMapper.businessSearchList3(business);
 				System.out.println(businessList+"<--businessList 서비스 리턴가즈아!!");
-			} else if(businessOutput.getPJT_NM() == "") {
+			} else if(business.getPJT_NM() == "") {
 				businessList = businessYesanOutputMapper.businessSearchList2();
 				System.out.println(businessList+"<--businessList 서비스 리턴가즈아!!");
 			}
-		} else if(businessOutput.getPJT_NM() == null) {
-			if(businessOutput.getPJT_CD() != "") {
-				businessList = businessYesanOutputMapper.businessSearchList(businessOutput);
+		} else if(business.getPJT_NM() == null) {
+			if(business.getPJT_CD() != "") {
+				businessList = businessYesanOutputMapper.businessSearchList(business);
 				System.out.println(businessList+"<--businessList 서비스 리턴가즈아!!");
-			} else if(businessOutput.getPJT_CD() == "") {
+			} else if(business.getPJT_CD() == "") {
 				businessList = businessYesanOutputMapper.businessSearchList2();
 				System.out.println(businessList+"<--businessList 서비스 리턴가즈아!!");
 			}
@@ -44,48 +44,48 @@ public class BusinessYesanOutputService {
 		return businessList;
 	}
 	//사업성코드 리스트 출력
-	public List<BusinessOutput> businessList(BusinessOutput businessOutput){
+	public List<Business> businessList(Business business){
 		System.out.println("사업성코드 리스트 출력 서비스 businessList BusinessYesanOutputService.java");
-		List<BusinessOutput> list = null;
-		if(businessOutput.getPJT_CD() == "") {
-			list = businessYesanOutputMapper.businessList(businessOutput);
+		List<Business> list = null;
+		if(business.getPJT_CD() == "") {
+			list = businessYesanOutputMapper.businessList(business);
 		}else {
-			String pjtCode = businessOutput.getPJT_CD().substring(0,5);
-			businessOutput.setPJT_CD(pjtCode);
-			System.out.println(businessOutput.getPJT_CD());
-			list = businessYesanOutputMapper.businessList(businessOutput);
+			String pjtCode = business.getPJT_CD().substring(0,5);
+			business.setPJT_CD(pjtCode);
+			System.out.println(business.getPJT_CD());
+			list = businessYesanOutputMapper.businessList(business);
 		}
 
 		System.out.println(list+"<--사업성코드리스트 서비스리퇀!!");
 		for(int i=0; i<list.size(); i++) {
-			businessOutput = list.get(i);
-			String pjtCd =  businessOutput.getPJT_CD();
-			String pjtType =  businessOutput.getPJT_TYPE();
+			business = list.get(i);
+			String pjtCd =  business.getPJT_CD();
+			String pjtType =  business.getPJT_TYPE();
 			String pjtCdType = pjtCd+pjtType;
-			businessOutput.setPJT_CD(pjtCdType);
+			business.setPJT_CD(pjtCdType);
 		}
 		return list;
 	}
 	//사업성코드 리스트(라디오)
-	public List<BusinessOutput> businessList2(BusinessOutput businessOutput){
+	public List<Business> businessList2(Business business){
 		System.out.println("사업성코드 리스트 출력(라디오) 서비스 businessList BusinessYesanOutputService.java");
-		List<BusinessOutput> list = null;
-		list = businessYesanOutputMapper.businessList2(businessOutput);
+		List<Business> list = null;
+		list = businessYesanOutputMapper.businessList2(business);
 		for(int i=0; i<list.size(); i++) {
-			businessOutput = list.get(i);
-			String pjtCd =  businessOutput.getPJT_CD();
-			String pjtType =  businessOutput.getPJT_TYPE();
+			business = list.get(i);
+			String pjtCd =  business.getPJT_CD();
+			String pjtType =  business.getPJT_TYPE();
 			String pjtCdType = pjtCd+pjtType;
-			businessOutput.setPJT_CD(pjtCdType);
+			business.setPJT_CD(pjtCdType);
 		}
-		if(businessOutput.getACT_STAT() == "") {
-			list = businessYesanOutputMapper.businessList(businessOutput);
+		if(business.getACT_STAT() == "") {
+			list = businessYesanOutputMapper.businessList(business);
 			for(int i=0; i<list.size(); i++) {
-				businessOutput = list.get(i);
-				String pjtCd =  businessOutput.getPJT_CD();
-				String pjtType =  businessOutput.getPJT_TYPE();
+				business = list.get(i);
+				String pjtCd =  business.getPJT_CD();
+				String pjtType =  business.getPJT_TYPE();
 				String pjtCdType = pjtCd+pjtType;
-				businessOutput.setPJT_CD(pjtCdType);
+				business.setPJT_CD(pjtCdType);
 			}
 			
 		}

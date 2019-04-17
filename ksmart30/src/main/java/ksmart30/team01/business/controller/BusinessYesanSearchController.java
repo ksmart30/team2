@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ksmart30.team01.business.domain.BusinessOutput;
+import ksmart30.team01.business.domain.Business;
 import ksmart30.team01.business.service.BusinessYesanSearchService;
 
 @Controller
@@ -25,9 +25,9 @@ public class BusinessYesanSearchController {
 	}
 	//사업성검토 검색2
 	@GetMapping("/businessYesanSearch2View")
-	public @ResponseBody List<BusinessOutput> businessOutputSearch2(){
+	public @ResponseBody List<Business> businessOutputSearch2(){
 		System.out.println("사업성코드 검색2 깐뜨롤라 businessOutputSearch2 BusinessYesanOutputControlle.java");
-		List<BusinessOutput> searchList = businessYesanSearchService.businessOutputSearch2();
+		List<Business> searchList = businessYesanSearchService.businessOutputSearch2();
 		return searchList;
 	}
 }

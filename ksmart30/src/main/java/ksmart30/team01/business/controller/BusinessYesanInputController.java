@@ -9,11 +9,11 @@ import ksmart30.team01.business.service.BusinessYesanInputService;
 
 @Controller
 public class BusinessYesanInputController {
-	@Autowired BusinessYesanInputService businessYesanInputServic;
+	@Autowired BusinessYesanInputService businessYesanInputService;
 	
 	@GetMapping("/business/businessYesanView")
 	public String businessYesanView(Model model) {
-		model.addAttribute("list", businessYesanInputServic.getDeptList());
+		model.addAttribute("list", businessYesanInputService.getDeptList());
 		return "/business/businessYesanView";
 	}
 }

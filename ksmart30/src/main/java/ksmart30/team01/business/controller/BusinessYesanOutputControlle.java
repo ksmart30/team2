@@ -24,7 +24,7 @@ public class BusinessYesanOutputControlle {
 		System.out.println(list.toString()+"<--부서리스트가져오나연?");
 		return "/business/businessYesanOutputView";
 	}
-	//프로젝트코드 조회
+	//프로젝트코드 (팝업창 코드,코드명)조회
 	@GetMapping("/businessYesanOutputView")
 	public @ResponseBody List<Business> businessSearchList(Business business){
 		System.out.println("계약프로젝트조회 businessSearchView BusinessYesanOutputControlle.java");

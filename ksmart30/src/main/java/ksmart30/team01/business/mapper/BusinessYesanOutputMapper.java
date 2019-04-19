@@ -12,13 +12,8 @@ public interface BusinessYesanOutputMapper {
 	
 	//부서리스트
 	List<Map<String,String>> businessOutputList();
-	
-	//프로젝트코드 코드로만조회
+	//프로젝트코드 (코드,코드명)
 	List<Business> businessSearchList(Business business);
-	//프로젝트코드 전체조회
-	List<Business> businessSearchList2();
-	//프로젝트코드명 조회
-	List<Business> businessSearchList3(Business business);
 	//사업성검토 리스트출력
 	List<Business> businessList(Business business);
 	//사업성검토 리스트출력(radio버튼)

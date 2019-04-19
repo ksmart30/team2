@@ -10,6 +10,7 @@ public class Business {
 	private String CUST_CD;
 	private String CUST_NM;
 	private String AREA_P;
+	private String AREA_P2;
 	private String AREA_M;
 	private String YAREA_P;
 	private String YAREA_M;
@@ -55,6 +56,7 @@ public class Business {
 	private String APPROVAL;
 	private String COLOR;
 	private String UP_SU;
+	private String UP_SU2;
 	private String DOWN_SU;
 	private String H_CNT;
 	private String CAPACITY;
@@ -117,6 +119,12 @@ public class Business {
 	}
 	public void setAREA_P(String aREA_P) {
 		AREA_P = aREA_P;
+	}
+	public String getAREA_P2() {
+		return AREA_P2;
+	}
+	public void setAREA_P2(String aREA_P2) {
+		AREA_P2 = aREA_P2;
 	}
 	public String getAREA_M() {
 		return AREA_M;
@@ -388,6 +396,12 @@ public class Business {
 	public void setUP_SU(String uP_SU) {
 		UP_SU = uP_SU;
 	}
+	public String getUP_SU2() {
+		return UP_SU2;
+	}
+	public void setUP_SU2(String uP_SU2) {
+		UP_SU2 = uP_SU2;
+	}
 	public String getDOWN_SU() {
 		return DOWN_SU;
 	}
@@ -446,21 +460,23 @@ public class Business {
 	public String toString() {
 		return "Business [PRE_PJT_CD=" + PRE_PJT_CD + ", PJT_CD=" + PJT_CD + ", PJT_NM=" + PJT_NM + ", PJT_TYPE="
 				+ PJT_TYPE + ", SVC=" + SVC + ", CUST_GBN=" + CUST_GBN + ", CUST_CD=" + CUST_CD + ", CUST_NM=" + CUST_NM
-				+ ", AREA_P=" + AREA_P + ", AREA_M=" + AREA_M + ", YAREA_P=" + YAREA_P + ", YAREA_M=" + YAREA_M
-				+ ", BIZ_GBN=" + BIZ_GBN + ", BIZ_GBN_NM=" + BIZ_GBN_NM + ", REGION=" + REGION + ", REGION_NM="
-				+ REGION_NM + ", REGION2=" + REGION2 + ", REGION2_NM=" + REGION2_NM + ", REGION3=" + REGION3
-				+ ", REGION3_NM=" + REGION3_NM + ", ZONE1=" + ZONE1 + ", ZONE1_NM=" + ZONE1_NM + ", ZONE2=" + ZONE2
-				+ ", ZONE2_NM=" + ZONE2_NM + ", ZONE3=" + ZONE3 + ", ZONE3_NM=" + ZONE3_NM + ", SCOPE1=" + SCOPE1
-				+ ", SCOPE1_NM=" + SCOPE1_NM + ", SCOPE2=" + SCOPE2 + ", SCOPE2_NM=" + SCOPE2_NM + ", SCOPE3=" + SCOPE3
-				+ ", SCOPE3_NM=" + SCOPE3_NM + ", ZIP_CD=" + ZIP_CD + ", ADDR=" + ADDR + ", BUILD_TYPE=" + BUILD_TYPE
-				+ ", BUILD_TYPE_NM=" + BUILD_TYPE_NM + ", DEPT_CD=" + DEPT_CD + ", DEPT_NM=" + DEPT_NM + ", ACT_STAT="
-				+ ACT_STAT + ", END_DATE=" + END_DATE + ", CD_REG_DATE=" + CD_REG_DATE + ", CRT_REG_DATE="
-				+ CRT_REG_DATE + ", CRT_MAN=" + CRT_MAN + ", CRT_DATE=" + CRT_DATE + ", UPD_MAN=" + UPD_MAN
-				+ ", UPD_DATE=" + UPD_DATE + ", EST_AMT=" + EST_AMT + ", END_BIGO1=" + END_BIGO1 + ", END_BIGO2="
-				+ END_BIGO2 + ", RMK=" + RMK + ", FORECAST_AMT=" + FORECAST_AMT + ", APPROVAL=" + APPROVAL + ", COLOR="
-				+ COLOR + ", UP_SU=" + UP_SU + ", DOWN_SU=" + DOWN_SU + ", H_CNT=" + H_CNT + ", CAPACITY=" + CAPACITY
-				+ ", COVERAGE=" + COVERAGE + ", CLASS_GBN=" + CLASS_GBN + ", BUILD_GB=" + BUILD_GB + ", PRINT_YN="
-				+ PRINT_YN + ", PRINT_CNT=" + PRINT_CNT + ", CLASS_DESCR=" + CLASS_DESCR + "]";
+				+ ", AREA_P=" + AREA_P + ", AREA_P2=" + AREA_P2 + ", AREA_M=" + AREA_M + ", YAREA_P=" + YAREA_P
+				+ ", YAREA_M=" + YAREA_M + ", BIZ_GBN=" + BIZ_GBN + ", BIZ_GBN_NM=" + BIZ_GBN_NM + ", REGION=" + REGION
+				+ ", REGION_NM=" + REGION_NM + ", REGION2=" + REGION2 + ", REGION2_NM=" + REGION2_NM + ", REGION3="
+				+ REGION3 + ", REGION3_NM=" + REGION3_NM + ", ZONE1=" + ZONE1 + ", ZONE1_NM=" + ZONE1_NM + ", ZONE2="
+				+ ZONE2 + ", ZONE2_NM=" + ZONE2_NM + ", ZONE3=" + ZONE3 + ", ZONE3_NM=" + ZONE3_NM + ", SCOPE1="
+				+ SCOPE1 + ", SCOPE1_NM=" + SCOPE1_NM + ", SCOPE2=" + SCOPE2 + ", SCOPE2_NM=" + SCOPE2_NM + ", SCOPE3="
+				+ SCOPE3 + ", SCOPE3_NM=" + SCOPE3_NM + ", ZIP_CD=" + ZIP_CD + ", ADDR=" + ADDR + ", BUILD_TYPE="
+				+ BUILD_TYPE + ", BUILD_TYPE_NM=" + BUILD_TYPE_NM + ", DEPT_CD=" + DEPT_CD + ", DEPT_NM=" + DEPT_NM
+				+ ", ACT_STAT=" + ACT_STAT + ", END_DATE=" + END_DATE + ", CD_REG_DATE=" + CD_REG_DATE
+				+ ", CRT_REG_DATE=" + CRT_REG_DATE + ", CRT_MAN=" + CRT_MAN + ", CRT_DATE=" + CRT_DATE + ", UPD_MAN="
+				+ UPD_MAN + ", UPD_DATE=" + UPD_DATE + ", EST_AMT=" + EST_AMT + ", END_BIGO1=" + END_BIGO1
+				+ ", END_BIGO2=" + END_BIGO2 + ", RMK=" + RMK + ", FORECAST_AMT=" + FORECAST_AMT + ", APPROVAL="
+				+ APPROVAL + ", COLOR=" + COLOR + ", UP_SU=" + UP_SU + ", UP_SU2=" + UP_SU2 + ", DOWN_SU=" + DOWN_SU
+				+ ", H_CNT=" + H_CNT + ", CAPACITY=" + CAPACITY + ", COVERAGE=" + COVERAGE + ", CLASS_GBN=" + CLASS_GBN
+				+ ", BUILD_GB=" + BUILD_GB + ", PRINT_YN=" + PRINT_YN + ", PRINT_CNT=" + PRINT_CNT + ", CLASS_DESCR="
+				+ CLASS_DESCR + "]";
 	}
+	
 	
 }

@@ -20,27 +20,10 @@ public class BusinessYesanOutputService {
 		List<Map<String,String>> outputList = businessYesanOutputMapper.businessOutputList();
 		return outputList;
 	}
-	//프로젝트코드 조회
+	//프로젝트코드 팝업창(코드,코드명)
 	public List<Business> businessSearchList(Business business){
 		System.out.println("businessSearchList BusinessYesanOutputService.java");
-		List<Business> businessList = null;
-		if(business.getPJT_CD() == null) {
-			if(business.getPJT_NM() != "") {
-				businessList = businessYesanOutputMapper.businessSearchList3(business);
-				System.out.println(businessList+"<--businessList 서비스 리턴가즈아!!");
-			} else if(business.getPJT_NM() == "") {
-				businessList = businessYesanOutputMapper.businessSearchList2();
-				System.out.println(businessList+"<--businessList 서비스 리턴가즈아!!");
-			}
-		} else if(business.getPJT_NM() == null) {
-			if(business.getPJT_CD() != "") {
-				businessList = businessYesanOutputMapper.businessSearchList(business);
-				System.out.println(businessList+"<--businessList 서비스 리턴가즈아!!");
-			} else if(business.getPJT_CD() == "") {
-				businessList = businessYesanOutputMapper.businessSearchList2();
-				System.out.println(businessList+"<--businessList 서비스 리턴가즈아!!");
-			}
-		}
+		List<Business> businessList = businessYesanOutputMapper.businessSearchList(business);
 		return businessList;
 	}
 	//사업성코드 리스트 출력

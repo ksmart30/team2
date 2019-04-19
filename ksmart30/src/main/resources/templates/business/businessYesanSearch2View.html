@@ -12,9 +12,15 @@
 		$(document).ready(()=>{
 			$('#searchList').click(()=>{
 				console.log('검색리스트출발!');
+				const PRE_PJT_CD = $('#PRE_PJT_CD').val();
+				const AREA_P = $('#AREA_P').val();
+				const AREA_P2 = $('#AREA_P2').val();
+				const UP_SU = $('#UP_SU').val();
+				const UP_SU2 = $('#UP_SU2').val();
 				$.ajax({
 					url : '/businessYesanSearch2View',
 					type : 'GET',
+					data : {PRE_PJT_CD:PRE_PJT_CD,AREA_P:AREA_P,AREA_P2:AREA_P2,UP_SU:UP_SU,UP_SU2:UP_SU2},
 					success : (list)=>{
 						console.log(list+'<--list');
 						let tr = '';
@@ -39,8 +45,6 @@
 	</script>
 </th:block>
 <th:block layout:fragment="customBody">
-
-	
 	<!-- 검색 폼 -->
 	<div class="col-md-9 col-xs-12" style="color:black;">
 		<div class="page-title">
@@ -66,15 +70,15 @@
 				<div class="table-responsive">
 					⊙ 검색조건　　
 					⊙년도
-					<input type=text name=amount value=2019 id="year"> 
+					<input type=text name=amount value=2019 id="PRE_PJT_CD"> 
 					<input type=button value="↑" onClick="javascript:this.form.amount.value++;"> 
 					<input type=button value="↓" onClick="javascript:this.form.amount.value--;"> 
 					⊙ 연면적(평) :
-					<input type="text" name="" value="0">~
-					<input type="text" name="" value="0">
+					<input type="text" name="" value="0" id="AREA_P">~
+					<input type="text" name="" value="0" id="AREA_P2">
 					⊙ 지상층 :
-					<input type="text" name="test"style="width:50px;">
-					<input type="text" name="test" style="width:50px;">
+					<input type="text" name="test"style="width:50px;" value="0" id="UP_SU">
+					<input type="text" name="test" style="width:50px;" value="0" id="UP_SU2">
 				</div>
 			</div>
 		</form>
@@ -86,9 +90,9 @@
 		<div class="x_title">
 			<div class="clearfix"></div>
 		</div>
-
 		<div class="x_content">
 			<div class="table-responsive">
+				<div style="overflow:scroll; width:100%; height:600px; padding:10px; background-color:;">
 				<table class="table table-striped jambo_table bulk_action">
 					<thead>
 						<tr class="headings">
@@ -105,6 +109,7 @@
 					
 					</tbody>
 				</table>
+				</div>
 			</div>
 		</div>
 	</div>

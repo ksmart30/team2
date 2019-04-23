@@ -20,7 +20,7 @@
 				const ACT_STAT = $(':radio[name=radioSelect]:checked').val();
 				const PRE_PJT_CD = $('#year').val();
 				const DEPT_NM = $('#DEPT_NM').val();
-				console.log('ACT_STAT~' + ACT_STAT);
+				console.log(ACT_STAT+' <--ACT_STAT~');
 				$.ajax({
 					url : '/businessYesanList2',
 					type : 'GET',
@@ -161,9 +161,7 @@
 				<div class="table-responsive">
 					⊙ 검색조건　　
 					⊙년도
-					<input type=text name=amount value=2019 id="year"> 
-					<input type=button value="↑" onClick="javascript:this.form.amount.value++;"> 
-					<input type=button value="↓" onClick="javascript:this.form.amount.value--;"> 
+					<input type="number" value="2019" id="year">
 					⊙ 부서 :
 					<select id="DEPT_NM">
 						<option value="">All</option>
@@ -240,13 +238,11 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div id="radioSelect" class="select">　 -->　　
 					<input type="radio" name="radioSelect" value="1">미승인　
 					<input type="radio" name="radioSelect" value="2">진행　
 					<input type="radio" name="radioSelect" value="4">무산　
 					<input type="radio" name="radioSelect" value="5">계약　
 					<input type="radio" name="radioSelect" value="">ALL　
-					<!-- </div> -->
 				</div>
 			</div>
 		</form>

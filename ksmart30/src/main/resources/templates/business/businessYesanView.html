@@ -58,6 +58,20 @@
 		
 		
 		/* =============================페이지 초기화 end================================= */
+		
+		/* =============================금액 쉼표 ==================================== */
+		function amtCommas(x) {
+    		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+		/* =============================금액 쉼표 end================================= */
+		
+		/* =============================금액 쉼표================================= */
+		function numberCommas(n) {
+		    let parts=n.toString().split(".");
+		    return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
+		}
+		/* =============================금액 쉼표 end================================= */
+		
 		$(document).ready(()=>{
 			
 			/* $('#ResultCount').text('0'); */
@@ -67,6 +81,12 @@
 			
 			$("input:radio[name=ACT_STAT]").click(()=>{
 				/* console.log($(':radio[name="ACT_STAT"]:checked').val()); */
+				if($(':radio[name="ACT_STAT"]:checked').val() == '1'){
+					$('#btnBizInput').removeAttr('disabled');
+				}else{
+					$('#btnBizInput').attr('disabled','disabled');
+				}
+				
 				$('#btnBizSearch').click();
 			});
 			
@@ -138,7 +158,7 @@
 			$('#btnBizSearch').click(()=>{
 				let subStringYear = $('#FIRSTDATE').val().substring(2,4);
 				let subStringDept = $('#deptSelect option:selected').val().substring(0,1);
-				 
+				
 				let searchArr = {
 						DateYear: $('#FIRSTDATE').val(),
 						DEPT_CD:subStringDept,
@@ -185,9 +205,8 @@
 		            type:'POST',
 		            data:PJT_CD,
 		            success:(result)=>{
-		            	console.log(JSON.stringify(result));
-		            	let convertDate = new Date(result.CD_REG_DATE);
-		            	let date = convertDate;
+		            	/* console.log(JSON.stringify(result)); */
+		            	let date =result.CD_REG_DATE.substring(0,4)+'-'+result.CD_REG_DATE.substring(4,6)+'-'+result.CD_REG_DATE.substring(6,8)
 		            	$('#LPJT_CD').text(result.PJT_CD);
 		            	$('#LPJT_NM').text(result.PJT_NM);
 		            	$('#LCRT_DATE').text(date);
@@ -204,13 +223,13 @@
 		            	$('#LBIZ_GBN').text(result.BIZ_GBN);
 		            	$('#LBUILD_GB').text(result.BUILD_GB);
 		            	$('#LBUILD_TYPE_NM').text(result.BUILD_TYPE);
-		            	$('#LAREA_M').text(result.AREA_M);
-		            	$('#LAREA_P').text(result.AREA_P);
+		            	$('#LAREA_M').text(numberCommas(result.AREA_M));
+		            	$('#LAREA_P').text(numberCommas(result.AREA_P));
 		            	$('#LDOWN_SU').text(result.DOWN_SU);
 		            	$('#LUP_SU').text(result.UP_SU);
 		            	$('#LH_CNT').text(result.H_CNT);
-		            	$('#LYAREA_M').text(result.YAREA_M);
-		            	$('#LYAREA_P').text(result.YAREA_P);
+		            	$('#LYAREA_M').text(numberCommas(result.YAREA_M));
+		            	$('#LYAREA_P').text(numberCommas(result.YAREA_P));
 		            	$('#LCOVERAGE').text(result.COVERAGE);
 		            	$('#LCAPACITY').text(result.CAPACITY);
 		            	$('#LDEPT_NM').text(result.DEPT_NM);
@@ -218,9 +237,10 @@
 		            	$('#LCLASS_GBN').text(result.CLASS_GBN);
 		            	$('#PmName').val(result.PM_EMP_NO);
 		            	$('#PdName').val(result.DESIGN_MAN);
-		            	$('#LPRODUCT').val(result.PRODUCT);
-		            	$('#LFORECAST_AMT').text(result.FORECAST_AMT);
-		            	$('#LTOTAL_AMT').text(result.TOTAL_AMT);
+		            	$('#TPRODUCT').val(result.PRODUCT);
+		            	
+		            	$('#LFORECAST_AMT').text(amtCommas(result.FORECAST_AMT)+' 원');
+		            	$('#LTOTAL_AMT').text(amtCommas(result.TOTAL_AMT)+' 원');
 		            }
 				})
 				
@@ -333,7 +353,7 @@
 				<div class="btn-group">
 					<br>
 					<button class="btn btn-default" type="button" id="btnBizSearch">조회</button>
-					<button class="btn btn-default" type="reset" disabled="disabled">입력</button>
+					<button class="btn btn-default" type="reset" disabled="disabled" id="btnBizInput">입력</button>
 					<button class="btn btn-default" type="button" disabled="disabled">수정</button>
 					<button class="btn btn-default" type="button" disabled="disabled">삭제</button>
 					<button class="btn btn-default" type="button" disabled="disabled">저장</button>
@@ -477,11 +497,11 @@
 						<table class="table table-bordered">
 							<tbody>
 								<tr>
-									<td style="background-color: #E8F0FA">프로젝트</td>
+									<td style="background-color: #E8F0FA;">프로젝트</td>
 									<td><label id="LPJT_CD"></label></td>
 									<td colspan="2"><label id="LPJT_NM"></label></td>
 									<td>(코트발행일: <label id="LCRT_DATE"></label>)</td>
-									<td style="background-color: #E8F0FA" id="LACT_STAT_COLOR"><label id="LACT_STAT"></label></td>
+									<td style="background-color: #E8F0FA; text-align: center"><label id="LACT_STAT"></label></td>
 								</tr>
 								<tr>
 									<td style="background-color: #E8F0FA">발주처</td>
@@ -516,12 +536,12 @@
 									
 								</tr>
 								<tr>
-									<td style="background-color: #E8F0FA">연면적</td>
-									<td><label id="LYAREA_M"></label> ㎡</td>
-									<td><label id="LYAREA_P"></label> 평</td>
-									<td style="background-color: #E8F0FA">비율</td>
-									<td>건폐율&emsp;&emsp;<label id="LCOVERAGE"></label>&emsp;%</td>
-									<td>용적율&emsp;&emsp;<label id="LCAPACITY"></label>&emsp;%</td>
+									<td style="background-color: #E8F0FA; width: 13%">연면적</td>
+									<td style="width: 14%"><label id="LYAREA_M"></label> ㎡</td>
+									<td style="width: 21%"><label id="LYAREA_P"></label> 평</td>
+									<td style="background-color: #E8F0FA; width: 15%">비율</td>
+									<td style="width: 20%">건폐율&emsp;&emsp;<label id="LCOVERAGE"></label>&emsp;%</td>
+									<td style="width: 17%">용적율&emsp;&emsp;<label id="LCAPACITY"></label>&emsp;%</td>
 								</tr>
 							</tbody>
 						</table>

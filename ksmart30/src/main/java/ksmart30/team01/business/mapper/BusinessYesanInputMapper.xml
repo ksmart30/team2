@@ -13,11 +13,11 @@
 	</select>
 	<select id="getProjectList" parameterType="map" resultType="map">
 		SELECT CASE WHEN (D.PJT_CD IS NOT NULL) THEN D.PJT_CD
-				WHEN (D.PJT_CD IS NULL) THEN (C.PJT_CD + C.PJT_TYPE) END PJT_CD,
-				C.PJT_NM
+					WHEN (D.PJT_CD IS NULL) THEN (C.PJT_CD + C.PJT_TYPE) END PJT_CD,
+					C.PJT_NM
 		FROM  (SELECT A.PJT_CD, A.PJT_TYPE, A.SVC AS PJT_NM FROM T_PS1000 A
-				 UNION
-				 SELECT B.PJT_CD, B.PJT_TYPE, B.PJT_NM FROM T_PS3000 B WHERE B.PJT_CD <![CDATA[<>]]> '' ) C
+			   UNION
+			   SELECT B.PJT_CD, B.PJT_TYPE, B.PJT_NM FROM T_PS3000 B WHERE B.PJT_CD <![CDATA[<>]]> '' ) C
 		       LEFT JOIN T_P11000 D ON C.PJT_CD = D.PJT_CD
 		<choose>
 			<when test="columnValue != null">
@@ -39,7 +39,7 @@
 		</choose>
 	</select>
 	<select id="getResultProjectList" parameterType="map" resultType="map">
-		<![CDATA[
+		
 		SELECT (A.PJT_CD+A.PJT_TYPE) AS PJT_CD,
 				A.SVC AS PJT_NM,
 				CASE A.ACT_STAT WHEN '1' THEN 'black'
@@ -59,8 +59,8 @@
 				AND A.SVC LIKE '%' + #{PJT_NM} + '%'
 				AND ISNULL(A.END_BIGO1,'') IN ('', ' ')
 				AND ISNULL(G.END_GBN, '') != '22'
-				AND G.CRT_DATE BETWEEN #{FIRSTDATE} AND #{ENDDATE}
-		ORDER BY (CASE WHEN SUBSTRING(A.PJT_CD,1,2) <]]> '70' THEN '20' + A.PJT_CD  ELSE '19' + A.PJT_CD END ) 
+				AND G.CRT_DATE BETWEEN #{FIRSTDATE} AND DATEADD(DAY,1,#{ENDDATE})
+		ORDER BY (CASE WHEN SUBSTRING(A.PJT_CD,1,2)<![CDATA[ <]]> '70' THEN '20' + A.PJT_CD  ELSE '19' + A.PJT_CD END ) 
 	</select>
 	<select id="getResultEmpList" parameterType="map" resultType="map">
 		

@@ -17,6 +17,7 @@ import ksmart30.team01.business.service.BusinessYesanSearchService;
 public class BusinessYesanSearchController {
 	@Autowired
 	BusinessYesanSearchService businessYesanSearchService;
+	
 	//사업성검도 검색1 화면(부서,수주구분 셀렉트박스)
 	@GetMapping("/business/businessYesanSearch1View")
 	public String businessYesanSearch1View(Model model) {
@@ -30,11 +31,13 @@ public class BusinessYesanSearchController {
 		model.addAttribute("selectGubun", selectGubun);
 		return "/business/businessYesanSearch1View";
 	}
+	
 	//사업성검토 검색2 화면
 	@GetMapping("/business/businessYesanSearch2View")
 	public String businessYesanSearch2View() {
 		return "/business/businessYesanSearch2View";
 	}
+	
 	//사업성검토 검색1
 	@GetMapping("/businessYesanSearchView")
 	public @ResponseBody List<BusinessSearch1> businessOutputSearch1(BusinessSearch1 businessSearch1){
@@ -43,6 +46,7 @@ public class BusinessYesanSearchController {
 		List<BusinessSearch1> searchList1 = businessYesanSearchService.businessOutputSearch1(businessSearch1);
 		return searchList1;
 	}
+	
 	//사업성검토 검색1 (프로젝트코드 팝업전체리스트)
 	@GetMapping("/businessPjtCd")
 	public @ResponseBody List<BusinessSearch1> businessPjtCd(BusinessSearch1 businessSearch1){
@@ -52,6 +56,7 @@ public class BusinessYesanSearchController {
 		
 		return pjtCd;
 	}
+	
 	//사업성검토 검색1 (발주처코드 팝업전체리스트)
 	@GetMapping("/businessCustCdList")
 	public @ResponseBody List<BusinessSearch1> businessCustList(BusinessSearch1 businessSearch1){
@@ -60,6 +65,7 @@ public class BusinessYesanSearchController {
 		List<BusinessSearch1> custCdList = businessYesanSearchService.businessCustList(businessSearch1);
 		return custCdList;
 	}
+	
 	//사업성검토 검색2
 	@GetMapping("/businessYesanSearch2View")
 	public @ResponseBody List<Business> businessOutputSearch2(Business business){

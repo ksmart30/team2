@@ -1,20 +1,20 @@
 package ksmart30.team01.business.domain;
 
 public class Business {
-	private String PRE_PJT_CD;
-	private String PJT_CD;
-	private String PJT_NM;
-	private String PJT_TYPE;
-	private String SVC;
-	private String CUST_GBN;
-	private String CUST_CD;
-	private String CUST_NM;
-	private String AREA_P;
-	private String AREA_P2;
-	private String AREA_M;
-	private String YAREA_P;
+	private String PRE_PJT_CD;//프로젝트등록일
+	private String PJT_CD;	//프로젝트코드
+	private String PJT_NM;	//프로젝트명
+	private String PJT_TYPE;//프로젝트타입
+	private String SVC;		//프로젝트명
+	private String CUST_GBN;//거래처
+	private String CUST_CD;	//거래처코드
+	private String CUST_NM;	//거래처명
+	private String AREA_P;	//대지(평)
+	private String AREA_P2;	
+	private String AREA_M;	
+	private String YAREA_P;	//연면적(평)
 	private String YAREA_M;
-	private	String BIZ_GBN;
+	private	String BIZ_GBN; 
 	private	String BIZ_GBN_NM;
 	private String REGION;
 	private String REGION_NM;
@@ -38,9 +38,9 @@ public class Business {
 	private String ADDR;
 	private String BUILD_TYPE;
 	private String BUILD_TYPE_NM;
-	private String DEPT_CD;
-	private String DEPT_NM;
-	private String ACT_STAT;
+	private String DEPT_CD;//부서코드
+	private String DEPT_NM;//부서명
+	private String ACT_STAT;//승인,미승인
 	private String END_DATE;
 	private String CD_REG_DATE;
 	private String CRT_REG_DATE;
@@ -52,20 +52,20 @@ public class Business {
 	private String END_BIGO1;
 	private String END_BIGO2;
 	private String RMK;
-	private String FORECAST_AMT;
+	private String FORECAST_AMT;//추정계약금액
 	private String APPROVAL;
 	private String COLOR;
-	private String UP_SU;
+	private String UP_SU;//지상층
 	private String UP_SU2;
-	private String DOWN_SU;
+	private String DOWN_SU;//지하층
 	private String H_CNT;
 	private String CAPACITY;
 	private String COVERAGE;
-	private String CLASS_GBN;
-	private String BUILD_GB;
-	private String PRINT_YN;
-	private String PRINT_CNT;
-	private String CLASS_DESCR;
+	private String CLASS_GBN;//업무범위
+	private String BUILD_GB;//납품성과물 코드
+	private String PRINT_YN;//체크 프린트
+	private String PRINT_CNT;//프린트한횟수
+	private String CLASS_DESCR;//업무범위
 	public String getPRE_PJT_CD() {
 		return PRE_PJT_CD;
 	}

@@ -8,11 +8,14 @@
 	<th:block th:include="layout/customHead"></th:block>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script>
-		$(document).ready(()=>{
+		//엔터키방지!!
+		$(document).keypress((e)=>{
 			if(e.keyCode == 13){
 				r.preventDefault();
 			}
 		});
+		//엔터키방지끝
+		
 		//라디오버튼 클릭시 결과에맞는 값으로 리스트보기
 		$(document).ready(()=>{
 				$(':radio[name=radioSelect]').click(()=>{
@@ -134,14 +137,12 @@
 	</script>
 </th:block>
 <th:block layout:fragment="customBody">
-
-	
 	<!-- 검색 폼 -->
 	<div class="col-md-9 col-xs-12" style="color:black;">
 		<div class="page-title">
 			<div class="title_left">
 				<h2><b>사업성검토 예산출력</b></h2>
-				<h5><fontcolor="gray"><b>1.사업성검토 관리&nbsp;>&nbsp;&nbsp;1.2사업성검토예산 관리&nbsp;>&nbsp;&nbsp;1.2.3사업성검토 예산출력</b></font></h5>	
+				<h5><b>1.사업성검토 관리&nbsp;>&nbsp;&nbsp;1.2사업성검토예산 관리&nbsp;>&nbsp;&nbsp;1.2.3사업성검토 예산출력</b></h5>	
 			</div>
 		</div>
 	</div>
@@ -152,7 +153,7 @@
 			<button class="btn btn-default" type="button">수정</button>
 			<button class="btn btn-default" type="button">삭제</button>
 			<button class="btn btn-default" type="button">저장</button>
-			<button class="btn btn-default" type="button">출력</button>
+			<button class="btn btn-default" type="button" id="outPut">출력</button>
 		</div>
 	</div>
 	<div class="col-md-12 col-xs-12" style="color:black;">
@@ -214,22 +215,6 @@
 												</tr>
 											</thead>
 											<tbody id="businessList">
-												<tr>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td></td>
-													<td></td>
-												</tr>
 											</tbody>																	
 										</table>
 										</div>

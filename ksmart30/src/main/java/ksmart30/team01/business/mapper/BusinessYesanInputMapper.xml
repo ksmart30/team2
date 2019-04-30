@@ -191,6 +191,26 @@
 				AND ISNULL(A.END_BIGO1,'') IN ('', ' ')
 				AND ISNULL(G.END_GBN, '') != '22'
 		<![CDATA[ORDER BY (CASE WHEN SUBSTRING(A.PJT_CD,1,2) < '70' THEN '20' + A.PJT_CD  ELSE '19' + A.PJT_CD END )]]>
-		
 	</select>
+	<select id="getProjectSchedule" parameterType="String" resultType="hashmap">
+		SELECT 	A.SEQ,
+				A.JOB_STEP,
+				(	SELECT CASE WHEN COUNT(*) = 0 THEN COUNT(*) ELSE COUNT(*)-1 END
+					FROM T_PS1050_H
+					WHERE PRE_PJT_CD = A.PRE_PJT_CD AND SEQ = A.SEQ) UPD_COUNT,
+				A.END_EXP_DATE,
+				RTRIM(A.END_DATE) END_DATE,
+				A.BIGO
+		FROM T_PS1050 A
+		WHERE A.PRE_PJT_CD LIKE '%' + #{PJT_CD} + '%'
+	</select>
+	<select id="getProjectMhPlan" parameterType="String" resultType="hashmap">
+	</select>
+	<select id="getProjectJejo1" parameterType="String" resultType="hashmap">
+	</select>
+	<select id="getProjectJejo2" parameterType="String" resultType="hashmap">
+	</select>
+	<select id="getProjectReport" parameterType="String" resultType="hashmap">
+	</select>
+	
 </mapper>

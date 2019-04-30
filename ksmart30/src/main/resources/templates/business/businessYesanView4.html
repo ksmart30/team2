@@ -116,23 +116,9 @@
 			            url:'/businessYesanGetResultDetail',
 			            type:'POST',
 			            data:SPJT_CD}
-		           )).done((data)=>{
-		        	  
-		        	   $('#schedulePlanList').DataTable({
-		        		   	searching:false,
-							lengthChange:false,
-							responsive: true,
-		    				destroy: true,
-		    				data:[data.schedule],
-		    				columns: [
-		    			        {data: 'SEQ'},
-		    			        {data: 'JOB_STEP'},
-		    			        {data: 'UPD_COUNT'},
-		    			        {data: 'END_EXP_DATE'},
-		    			        {data: 'END_DATE'},
-		    			        {data: 'BIGO'}
-		    			    ]
-		        	   });
+		           )).done((result)=>{
+		        	   
+		        	 console.log(JSON.stringify(result.schedule)+'<--성공');
 		        	   
 		           });
 			
@@ -746,7 +732,7 @@
 						</div>
 						<div id="myTabContent" class="tab-content">
 							<div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-								<table id="schedulePlanList" class="table table-striped table-bordered table-hover jambo_table" style="width: 100%">
+								<table id="schedulePlanList" class="table table-striped table-bordered table-hover jambo_table">
 									<thead>
 										<tr>
 											<th>순번</th>

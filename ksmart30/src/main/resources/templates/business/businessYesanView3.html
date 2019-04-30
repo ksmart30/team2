@@ -45,6 +45,20 @@
 		MonthInit = yyyy+'-' + mm + '-01';
 		/* =============================날짜 초기화 end================================= */
 		
+		/* =============================페이지 초기화================================= */
+		let pjtList = ()=>{
+			console.log($(':radio[name="ACT_STAT"]:checked').val());
+			console.log($('#year').val());
+			console.log($('#deptSelect option:selected').val());
+			console.log($('#PJT_CD').val());
+			console.log($('#PJT_NM').val());
+			$("input:radio[name=ACT_STAT]").click();
+			
+		}
+		
+		
+		/* =============================페이지 초기화 end================================= */
+		
 		/* =============================금액 쉼표 ==================================== */
 		function amtCommas(x) {
     		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -57,99 +71,22 @@
 		    return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
 		}
 		/* =============================금액 쉼표 end================================= */
-		function runAjax(PJT_CD){
-			console.log(PJT_CD+'<- ajax 받았다.');
-			$.ajax({
-				contentType:'application/json',
-				dataType:'json',
-	            url:'/businessYesanGetResultProject',
-	            type:'POST',
-	            data:PJT_CD,
-	            success:(result)=>{
-	            	/* console.log(JSON.stringify(result)); */
-	            	let date =result.CD_REG_DATE.substring(0,4)+'-'+result.CD_REG_DATE.substring(4,6)+'-'+result.CD_REG_DATE.substring(6,8)
-	            	PJT_CD = result.PJT_CD;
-	            	$('#LPJT_CD').text(result.PJT_CD);
-	            	$('#LPJT_NM').text(result.PJT_NM);
-	            	$('#LCRT_DATE').text(date);
-	            	$('#LACT_STAT').text(result.APPROVAL);
-	            	$('#LACT_STAT').css('color',result.COLOR);/* COLOR  */
-	            	$('#LCUST_NM').text(result.CUST_NM);
-	            	$('#LCUST_GBN').text(result.CUST_GBN);
-	            	$('#LZIP_CD').text(result.ZIP_CD);
-	            	$('#LADDR').text(result.ADDR);
-	            	$('#LREGION_NM').text(result.REGION1_NM +' / '+ result.REGION2_NM +' / '+ result.REGION3_NM);
-	            	$('#LZONE_NM').text(result.ZONE1_NM +' / '+ result.ZONE2_NM +' / '+ result.ZONE3_NM);
-	            	$('#LSCOPE_NM').text(result.SCOPE1_NM +' / '+ result.SCOPE2_NM +' / '+ result.SCOPE3_NM);
-	            	$('#LBIZ_TYPE').text(result.BIZ_TYPE);
-	            	$('#LBIZ_GBN').text(result.BIZ_GBN);
-	            	$('#LBUILD_GB').text(result.BUILD_GB);
-	            	$('#LBUILD_TYPE_NM').text(result.BUILD_TYPE);
-	            	$('#LAREA_M').text(numberCommas(result.AREA_M));
-	            	$('#LAREA_P').text(numberCommas(result.AREA_P));
-	            	$('#LDOWN_SU').text(result.DOWN_SU);
-	            	$('#LUP_SU').text(result.UP_SU);
-	            	$('#LH_CNT').text(result.H_CNT);
-	            	$('#LYAREA_M').text(numberCommas(result.YAREA_M));
-	            	$('#LYAREA_P').text(numberCommas(result.YAREA_P));
-	            	$('#LCOVERAGE').text(result.COVERAGE);
-	            	$('#LCAPACITY').text(result.CAPACITY);
-	            	$('#LDEPT_NM').text(result.DEPT_NM);
-	            	$('#LINFO_EMP_NO').text(result.INFO_EMP_NO);
-	            	$('#LCLASS_GBN').text(result.CLASS_GBN);
-	            	$('#PmName').val(result.PM_EMP_NO);
-	            	$('#PdName').val(result.DESIGN_MAN);
-	            	$('#TPRODUCT').val(result.PRODUCT);
-	            	
-	            	$('#LFORECAST_AMT').text(amtCommas(result.FORECAST_AMT)+' 원');
-	            	$('#LTOTAL_AMT').text(amtCommas(result.TOTAL_AMT)+' 원');
-	            }
-			});
-			/* =============================일정계획 tab================================= */
-			SPJT_CD = PJT_CD.replace(/[a-z]/gi,"");
-			console.log(PJT_CD+'<--입력값');
-			console.log(SPJT_CD+'<--입력값');
-			$.when(
-					$.ajax({
-						contentType:'application/json',
-	    				dataType:'json',
-			            url:'/businessYesanGetResultDetail',
-			            type:'POST',
-			            data:SPJT_CD}
-		           )).done((data)=>{
-		        	  
-		        	   $('#schedulePlanList').DataTable({
-		        		   	searching:false,
-							lengthChange:false,
-							responsive: true,
-		    				destroy: true,
-		    				data:[data.schedule],
-		    				columns: [
-		    			        {data: 'SEQ'},
-		    			        {data: 'JOB_STEP'},
-		    			        {data: 'UPD_COUNT'},
-		    			        {data: 'END_EXP_DATE'},
-		    			        {data: 'END_DATE'},
-		    			        {data: 'BIGO'}
-		    			    ]
-		        	   });
-		        	   
-		           });
-			
-			/* =============================일정계획 tab end================================= */
-		}
 		
 		$(document).ready(()=>{
 			
+			/* $('#ResultCount').text('0'); */
 			$('#FIRSTDATE').val(MonthInit);
 			$('#ENDDATE').val(today);
 			
+			
 			$("input:radio[name=ACT_STAT]").click(()=>{
+				/* console.log($(':radio[name="ACT_STAT"]:checked').val()); */
 				if($(':radio[name="ACT_STAT"]:checked').val() == '1'){
 					$('#btnBizInput').removeAttr('disabled');
 				}else{
 					$('#btnBizInput').attr('disabled','disabled');
 				}
+				
 				$('#btnBizSearch').click();
 			});
 			
@@ -191,11 +128,35 @@
 				$('#projectModal').click();
 			});
 			/* =============================프로젝트 코드조회 모달 테이블 end================================= */
-						
+			
+			
+			
+			/* =============================프로젝트 모달 테이블 초기화================================= */
+			/* $('#ProjectList').DataTable({
+				searching:false,
+				lengthChange:false,
+				responsive: true,
+				contentType:'application/json',
+				dataType:'json',
+				ajax: {
+					'url' : '/businessYesanGetProjectList',
+				},columns: [
+			        {"data": "PJT_CD"},
+			        {"data": "PJT_NM"}
+			    ]
+			});
+			$('#ProjectList').delegate('tr','dblclick',function(){
+				let tr = $(this);
+				let td = tr.children();
+				$('#PJT_CD').val(td.eq(0).text());
+				$('#PJT_NM').val(td.eq(1).text());
+				$('#PJT_Value').val('');
+				$('#projectModal').click();
+			}); */
+			/* =============================프로젝트 모달 테이블 초기화 end================================= */
+			
 			/* =============================조회버튼 클릭시 검색 결과 프로젝트 리스트 ================================= */
 			$('#btnBizSearch').click(()=>{
-				$('#ResultProjectListBody').empty();
-				
 				let subStringYear = $('#FIRSTDATE').val().substring(2,4);
 				let subStringDept = $('#deptSelect option:selected').val().substring(0,1);
 				
@@ -208,10 +169,7 @@
 						FIRSTDATE:$('#FIRSTDATE').val().replace(/-/gi, ''),
 						ENDDATE:$('#ENDDATE').val().replace(/-/gi, '')
 					};
-				
 				console.log(JSON.stringify(searchArr));
-				
-				let init_PJT = '';
 				$.ajax({
     				contentType:'application/json',
     				dataType:'json',
@@ -220,26 +178,18 @@
 		            data:JSON.stringify(searchArr),
 		            success:(list)=>{
 		            	console.log(JSON.stringify(list));
-		            	if(list.length == 0){
-		            		let result = $(list).length;
-			            	$('#ResultCount').text(result);
-		            	}else{
-			            	let tr = '';
-			            	let result = $(list).length;
-			            	$('#ResultCount').text(result);
-			            	init_PJT = list[0].PJT_CD;
-			            	console.log(init_PJT + '<--이게 들어와야한다.')
-			            	$(list).each((index,item)=>{
-			            		
-			            		tr += '<tr>';
-			            		tr += '<td style="width:5%;"></td>';
-								tr += '<td style="width:30%;">'+item.PJT_CD+'</td>';
-								tr += '<td style="width:65%; overflow:hidden; text-overflow:ellipsis; color:'+item.COLOR+'" title="'+item.PJT_NM+'"><nobr>'+item.PJT_NM+'</nobr></td>';
-								tr += '</tr>';
-			            	});
-			            	$('#ResultProjectListBody').append(tr);
-			            	runAjax(init_PJT);
-		            	}
+		            	let tr = '';
+		            	let result = $(list).length;
+		            	$('#ResultCount').text(result);
+		            	$(list).each((index,item)=>{
+		            		$('#ResultProjectListBody').empty();
+		            		tr += '<tr>';
+		            		tr += '<td style="width:5%;"></td>';
+							tr += '<td style="width:30%;">'+item.PJT_CD+'</td>';
+							tr += '<td style="width:65%; overflow:hidden; text-overflow:ellipsis; color:'+item.COLOR+'" title="'+item.PJT_NM+'"><nobr>'+item.PJT_NM+'</nobr></td>';
+							tr += '</tr>';
+		            	});
+		            	$('#ResultProjectListBody').append(tr);
 	            	}
 				});
 			});
@@ -248,10 +198,113 @@
 				let tr = $(this);
 				let td = tr.children();
 				let PJT_CD = td.eq(1).text();
-				console.log(JSON.stringify(PJT_CD)+'<-- 클릭시 반응');
-				runAjax(PJT_CD);
+				console.log(JSON.stringify(PJT_CD));
+				
+				/* =============================오른쪽 레이아웃 세부사항================================= */
+				$.ajax({
+					contentType:'application/json',
+    				dataType:'json',
+		            url:'/businessYesanGetResultProject',
+		            type:'POST',
+		            data:PJT_CD,
+		            success:(result)=>{
+		            	/* console.log(JSON.stringify(result)); */
+		            	let date =result.CD_REG_DATE.substring(0,4)+'-'+result.CD_REG_DATE.substring(4,6)+'-'+result.CD_REG_DATE.substring(6,8)
+		            	PJT_CD = result.PJT_CD;
+		            	$('#LPJT_CD').text(result.PJT_CD);
+		            	$('#LPJT_NM').text(result.PJT_NM);
+		            	$('#LCRT_DATE').text(date);
+		            	$('#LACT_STAT').text(result.APPROVAL);
+		            	$('#LACT_STAT').css('color',result.COLOR);/* COLOR  */
+		            	$('#LCUST_NM').text(result.CUST_NM);
+		            	$('#LCUST_GBN').text(result.CUST_GBN);
+		            	$('#LZIP_CD').text(result.ZIP_CD);
+		            	$('#LADDR').text(result.ADDR);
+		            	$('#LREGION_NM').text(result.REGION1_NM +' / '+ result.REGION2_NM +' / '+ result.REGION3_NM);
+		            	$('#LZONE_NM').text(result.ZONE1_NM +' / '+ result.ZONE2_NM +' / '+ result.ZONE3_NM);
+		            	$('#LSCOPE_NM').text(result.SCOPE1_NM +' / '+ result.SCOPE2_NM +' / '+ result.SCOPE3_NM);
+		            	$('#LBIZ_TYPE').text(result.BIZ_TYPE);
+		            	$('#LBIZ_GBN').text(result.BIZ_GBN);
+		            	$('#LBUILD_GB').text(result.BUILD_GB);
+		            	$('#LBUILD_TYPE_NM').text(result.BUILD_TYPE);
+		            	$('#LAREA_M').text(numberCommas(result.AREA_M));
+		            	$('#LAREA_P').text(numberCommas(result.AREA_P));
+		            	$('#LDOWN_SU').text(result.DOWN_SU);
+		            	$('#LUP_SU').text(result.UP_SU);
+		            	$('#LH_CNT').text(result.H_CNT);
+		            	$('#LYAREA_M').text(numberCommas(result.YAREA_M));
+		            	$('#LYAREA_P').text(numberCommas(result.YAREA_P));
+		            	$('#LCOVERAGE').text(result.COVERAGE);
+		            	$('#LCAPACITY').text(result.CAPACITY);
+		            	$('#LDEPT_NM').text(result.DEPT_NM);
+		            	$('#LINFO_EMP_NO').text(result.INFO_EMP_NO);
+		            	$('#LCLASS_GBN').text(result.CLASS_GBN);
+		            	$('#PmName').val(result.PM_EMP_NO);
+		            	$('#PdName').val(result.DESIGN_MAN);
+		            	$('#TPRODUCT').val(result.PRODUCT);
+		            	
+		            	$('#LFORECAST_AMT').text(amtCommas(result.FORECAST_AMT)+' 원');
+		            	$('#LTOTAL_AMT').text(amtCommas(result.TOTAL_AMT)+' 원');
+		            }
+				});
+				/* =============================오른쪽 레이아웃 세부사항 end================================= */
+				
+				
+				/* =============================일정계획 tab================================= */
+				SPJT_CD = PJT_CD.replace(/[a-z]/gi,"");
+				console.log(PJT_CD+'<--입력값');
+				console.log(SPJT_CD+'<--입력값');
+				$.when(
+						$.ajax({
+							contentType:'application/json',
+		    				dataType:'json',
+				            url:'/businessYesanGetResultSchedule',
+				            type:'POST',
+				            data:{PJT_CD:SPJT_CD}}
+			           ),
+			            $.ajax({
+							contentType:'application/json',
+		    				dataType:'json',
+				            url:'/businessYesanGetResultMhPlan',
+				            type:'POST',
+				            data:{PJT_CD:SPJT_CD}}
+			           ),
+			           	$.ajax({
+							contentType:'application/json',
+		    				dataType:'json',
+				            url:'/businessYesanGetResultManufacture1',
+				            type:'POST',
+				            data:{PJT_CD:SPJT_CD}}
+			           ),
+			           	$.ajax({
+							contentType:'application/json',
+		    				dataType:'json',
+				            url:'/businessYesanGetResultManufacture2',
+				            type:'POST',
+				            data:{PJT_CD:SPJT_CD}}
+			           ),
+			           	$.ajax({
+							contentType:'application/json',
+		    				dataType:'json',
+				            url:'/businessYesanGetResultTotalReport',
+				            type:'POST',
+				            data:{PJT_CD:SPJT_CD}}
+			           )).done((resultSchedule,resultMhPlan,resultManufacture1,resultManufacture2,resultTotalReport)=>{
+			        	   console.log(resultSchedule[0].PJT_CD +'성공1');
+			        	   console.log(resultMhPlan[0].PJT_CD +'성공2');
+			        	   console.log(resultManufacture1[0].PJT_CD +'성공3');
+			        	   console.log(resultManufacture2[0].PJT_CD +'성공4');
+			        	   console.log(resultTotalReport[0].PJT_CD +'성공5');
+			        	   
+			           });
+				
+				/* =============================일정계획 tab end================================= */
+				
+				
+				
 			});
 			
+			/* pjtList(); */
 			/* =============================PM 모달 테이블================================= */
 			$('#btnPMSearch').click(()=>{
 				let searchArr = {
@@ -268,7 +321,9 @@
 		            data:JSON.stringify(searchArr),
 		            success:(data)=>{
 		            	console.log(JSON.stringify(data));
-		            	
+		            	data +=
+		            	/* $('#accSearchList').destroy(); */
+		            	/* console.log(JSON.stringify(data)); */
 		    			$('#EmpPMList').DataTable({
 		    				searching:false,
 							lengthChange:false,
@@ -333,18 +388,10 @@
 				$('#PdModal').click();
 			});
 			/* =============================PM 모달 테이블 end================================= */
-			init_pjtList();
-		});
-
-		/* =============================페이지 초기화================================= */
-		let init_pjtList = ()=>{
-			$(':radio[name="ACT_STAT"]:checked').trigger('click');
-			$('#btnProjectSearch').trigger('click');
-			$('#btnPMSearch').trigger('click');
-			$('#btnPDSearch').trigger('click');
 			
-		}
-		/* =============================페이지 초기화 end================================= */
+			
+			
+		});
 	</script>
 </th:block>
 
@@ -623,7 +670,7 @@
 													</div>
 													<div class="modal-body">
 														<div class="table-responsive" style="overflow: auto; height: 450px;">
-															<table id="EmpPMList" class="table table-striped table-bordered table-hover jambo_table" style="width:100%">
+															<table id="EmpPMList" class="table table-striped table-bordered table-hover jambo_table">
 																<thead>
 																	<tr>
 																		<th>사원번호</th>
@@ -692,8 +739,8 @@
 														</table>
 													</div>
 													<div class="modal-body">
-														<div class="table-responsive" style="overflow: auto; height: 450px;">
-															<table id="EmpPDList" class="table table-striped table-bordered table-hover jambo_table" style="width:100%">
+														<div class="table-responsive" style="overflow: auto; height: 400px;">
+															<table id="EmpPDList" class="table table-striped table-bordered table-hover jambo_table">
 																<thead>
 																	<tr>
 																		<th>사원번호</th>
@@ -746,7 +793,7 @@
 						</div>
 						<div id="myTabContent" class="tab-content">
 							<div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-								<table id="schedulePlanList" class="table table-striped table-bordered table-hover jambo_table" style="width: 100%">
+								<table id="schedulePlanList" class="table table-striped table-bordered table-hover jambo_table">
 									<thead>
 										<tr>
 											<th>순번</th>
@@ -781,18 +828,18 @@
 										</tr>
 									</thead>
 									<tbody>
-										<!-- <tr>
-											<td>1</td>
-											<td>전무</td>
-											<td><label id="INWON_1"></label></td>
-											<td><label id="MD_PLAN_1"></label></td>
-											<td><label id="INWON_2"></label></td>
-											<td><label id="MD_PLAN_2"></label></td>
-											<td><label id="INWON"></label></td>
-											<td><label id="MD_PLAN"></label></td>
-											<td><label id="MD_AMT"></label></td>
-											<td><label id="BIGO"></label></td>
-										</tr> -->
+										<tr>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
 									</tbody>																	
 								</table>
 							</div>

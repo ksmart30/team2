@@ -39,4 +39,18 @@ public class BusinessYesanInputService {
 		
 		return businessYesanInputMapper.getResultProject(PJT_CD);
 	}
+	public Map<String,Object> getProjectDetail (String PJT_CD){
+		/*
+		 * System.out.println(PJT_CD1+"<-service");
+		 * System.out.println(businessYesanInputMapper.getProjectSchedule(PJT_CD1));
+		 */
+		
+		  Map<String,Object> map = new HashMap<String,Object>(); map.put("schedule",
+		  businessYesanInputMapper.getProjectSchedule(PJT_CD));
+		  
+		  System.out.println(map.get("schedule"));
+		 
+		
+		return map;
+	}
 }

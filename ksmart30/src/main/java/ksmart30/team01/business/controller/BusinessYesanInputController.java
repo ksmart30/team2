@@ -1,5 +1,6 @@
 package ksmart30.team01.business.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,10 +23,15 @@ public class BusinessYesanInputController {
 		model.addAttribute("list", businessYesanInputService.getDeptList());
 		return "/business/businessYesanView";
 	}
+	@GetMapping("/btest")
+	public String btest(Model model) {
+		model.addAttribute("list", businessYesanInputService.getDeptList());
+		return "/business/businessYesanView4";
+	}
 	
 	@PostMapping("/businessYesanGetProjectList")
 	public @ResponseBody List<Map<String, String>> businessYesanGetProjectList(@RequestBody Map<String,Object> searchMap){
-		
+		System.out.println("/businessYesanGetProjectList,  businessYesanGetProjectList()실행");
 		return businessYesanInputService.getProjectList(searchMap);
 	}
 	
@@ -47,4 +53,12 @@ public class BusinessYesanInputController {
 		System.out.println(PJT_CD);
 		return businessYesanInputService.getResultProject(PJT_CD);
 	}
+	
+	@PostMapping("/businessYesanGetResultDetail")
+	public @ResponseBody Map<String,Object> businessYesanGetResultDetail(@RequestBody String PJT_CD){
+		System.out.println(PJT_CD+"<=받아오는거");
+		
+		return businessYesanInputService.getProjectDetail(PJT_CD);
+	}
+
 }

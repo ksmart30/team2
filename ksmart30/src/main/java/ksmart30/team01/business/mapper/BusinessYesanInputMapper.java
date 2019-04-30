@@ -1,5 +1,6 @@
 package ksmart30.team01.business.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,4 +18,6 @@ public interface BusinessYesanInputMapper {
 	List<Map<String,String>> getResultEmpList(Map<String,Object> searchMap);
 	
 	Map<String,Object> getResultProject (String PJT_CD);
+	
+	Map<String,Object> getProjectSchedule (String PJT_CD);
 }

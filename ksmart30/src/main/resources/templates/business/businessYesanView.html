@@ -169,47 +169,114 @@
 		        	   		columnDefs:[
 		        	   				{
 			        	   				targets: [2],
+			        	   				className: 'text-right',
 			        	   				render: function ( data, type, row ) {
 	                                        return amtCommas(row.INWON_1);
                                     	}
 		        	   				},
                                     {
     		        	   				targets: [3],
+    		        	   				className: 'text-right',
     		        	   				render: function ( data, type, row ) {
                                             return amtCommas(row.MD_PLAN_1);
                                     	}
                                     },
                                     {
     		        	   				targets: [4],
+    		        	   				className: 'text-right',
     		        	   				render: function ( data, type, row ) {
                                             return amtCommas(row.INWON_2);
                                     	}
                                     },
                                     {
     		        	   				targets: [5],
+    		        	   				className: 'text-right',
     		        	   				render: function ( data, type, row ) {
                                             return amtCommas(row.MD_PLAN_2);
                                     	}
                                     },
                                     {
     		        	   				targets: [6],
+    		        	   				className: 'text-right',
     		        	   				render: function ( data, type, row ) {
                                             return amtCommas(row.INWON);
                                     	}
                                     },
                                     {
     		        	   				targets: [7],
+    		        	   				className: 'text-right',
     		        	   				render: function ( data, type, row ) {
                                             return amtCommas(row.MD_PLAN);
                                     	}
                                     },
                                     {
     		        	   				targets: [8],
+    		        	   				className: 'text-right',
     		        	   				render: function ( data, type, row ) {
                                             return amtCommas(row.YEA_AMT);
                                     	}
 		        	   		}]
 		        	   });
+		        	   
+		        	   let Manufacture1Total = 0;
+		        	   
+		        	   $('#manufacture1Left').DataTable({
+		        		    searching:false,
+							lengthChange:false,
+							responsive: true,
+		    				destroy: true,
+		    				paging: false,
+		    				info:false,
+		    				data:data.manufacture1Left,
+		    				columns: [
+		    					{data: 'NUM'},
+		    			        {data: 'COST_NM'},
+		    			        {data: 'COST_AMT'}
+		    			    ],
+		    			    footerCallback: function(row, data, start, end, display) {
+		    			    	  let api = this.api();
+		    			    	  let sum = columnsApi(api, 2, '#Manufacture1LeftTotal');
+		    			    	  Manufacture1Total += sum;
+		    			    	 /*  let Manufacture1Total = ($('#Manufacture1LeftTotal').text()*1)+($('#Manufacture1RightTotal').text()*1);
+		    						$('#Manufacture1Total').text(Manufacture1Total); */
+		    			    },
+		        	   		columnDefs:[{
+		        	   				targets: [2],
+		        	   				className: 'text-right',
+		        	   				render: function ( data, type, row ) {
+                                       return amtCommas(row.COST_AMT);
+                                   }
+		        	   		}]
+		        	   });
+		        	   
+		        	   $('#manufacture1Right').DataTable({
+		        		    searching:false,
+							lengthChange:false,
+							responsive: true,
+		    				destroy: true,
+		    				paging: false,
+		    				info:false,
+		    				data:data.manufacture1Right,
+		    				columns: [
+		    					{data: 'NUM'},
+		    			        {data: 'COST_NM'},
+		    			        {data: 'COST_AMT'}
+		    			    ],
+		    			    footerCallback: function(row, data, start, end, display) {
+		    			    	  let api = this.api();
+		    			    	  let sum = columnsApi(api, 2, '#Manufacture1RightTotal');
+		    			    	  Manufacture1Total += sum;
+		    			    },
+		        	   		columnDefs:[{
+		        	   				targets: [2],
+		        	   				className: 'text-right',
+		        	   				render: function ( data, type, row ) {
+                                      return amtCommas(row.COST_AMT);
+                                  }
+		        	   		}]
+		        	   });
+		        	   
+		        	   $('#Manufacture1Total').text(amtCommas(Manufacture1Total)+' 원');
 		        	   
 		        	   $(data.manufacture2).each((index,item)=>{
 		        		   data.manufacture2[index].EM = '';
@@ -232,39 +299,50 @@
 		    			    ],
 		    			    footerCallback: function(row, data, start, end, display) {
 		    			    	  let api = this.api();
-		    			    	 
-		    			    	  api.columns(3, {
-		    			    	    page: 'current'
-		    			    	  }).every(function() {
-		    			    	    let sum = this
-		    			    	      .data()
-		    			    	      .reduce(function(a, b) {
-		    			    	        var x = parseFloat(a) || 0;
-		    			    	        var y = parseFloat(b) || 0;
-		    			    	        return x + y;
-		    			    	      }, 0);
-		    			    	    console.log(sum+'<--나와라요ㅕ'); //alert(sum);
-		    			    	    $('#jejo2Total').text(amtCommas(sum));
-		    			    	  });
+		    			    	  columnsApi(api, 3, '#jejo2Total');
 		    			    },
 		        	   		columnDefs:[{
 		        	   				targets: [3],
+		        	   				className: 'text-right',
 		        	   				render: function ( data, type, row ) {
                                         return amtCommas(row.YEA_AMT);
                                     }
 		        	   		}]
 		        	   });
+		        	   /* console.log(JSON.stringify(data.bizReport)); */
+		        	   $('#LABOR_COST').text(amtCommas(data.bizReport.LABOR_COST));
+		        	   $('#MANU_COST1').text(amtCommas(data.bizReport.MANU_COST1));
+		        	   $('#MANU_COST2').text(amtCommas(data.bizReport.MANU_COST2));
+		        	   $('#SELF_SUM').text(amtCommas(data.bizReport.SELF_SUM));
+		        	   $('#COMMON_COST1').text(amtCommas(data.bizReport.COMMON_COST1));
+		        	   $('#INDIREC_COST').text(amtCommas(data.bizReport.INDIREC_COST));
+		        	   $('#COMMON_COST2').text(amtCommas(data.bizReport.COMMON_COST2));
+		        	   $('#MANAGE_COST').text(amtCommas(data.bizReport.MANAGE_COST));
+		        	   $('#DIV_AMT').text(amtCommas(data.bizReport.DIV_AMT));
+		        	   $('#COST_AMT').text(amtCommas(data.bizReport.COST_AMT));
+		        	   $('#BUILDING_COST').text(amtCommas(data.bizReport.BUILDING_COST));
+		        	   $('#TELE_COST').text(amtCommas(data.bizReport.TELE_COST));
+		        	   $('#NET_COST').text(amtCommas(data.bizReport.NET_COST));
+		        	   $('#INDIREC_COST_SUM').text(amtCommas(data.bizReport.INDIREC_COST));
+		        	   $('#COMMON_COST_BU').text(amtCommas(data.bizReport.COMMON_COST_BU));
+		        	   $('#COMMON_COST_BON').text(amtCommas(data.bizReport.COMMON_COST_BON));
+		        	   $('#COMMON_COST_DEPT').text(amtCommas(data.bizReport.COMMON_COST_DEPT));
+		        	   $('#COMMON_COST1_SUM').text(amtCommas(data.bizReport.COMMON_COST1));
+		        	   
+		        	   
+		        	   
+		        	   
 		           });
 			
 			/* =============================일정계획 tab end================================= */
 		};
 		
 		function columnsApi(api,index, labelName){
-			
+			let sum;
 			api.columns(index, {
 	    	    page: 'current'
 	    	  }).every(function() {
-	    	    let sum = this
+	    	    sum = this
 	    	      .data()
 	    	      .reduce(function(a, b) {
 	    	        var x = parseFloat(a) || 0;
@@ -274,6 +352,7 @@
 	    	    console.log(sum); //alert(sum);
 	    	    $(labelName).text(amtCommas(sum));
 	    	  });
+			return sum;
 		};
 		
 		$(document).ready(()=>{
@@ -935,7 +1014,7 @@
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="home-tab">
 								<div class="col-md-6 col-sm-12 col-xs-12">
-									<table class="table table-striped table-bordered table-hover jambo_table">
+									<table id="manufacture1Left" class="table table-striped table-bordered table-hover jambo_table" style="width: 100%">
 										<thead>
 											<tr>
 												<th>순번</th>
@@ -944,24 +1023,17 @@
 												
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-										</tbody>
 										<tfoot style="background-color: #FFFFB6">
 											<tr>
 												<td></td>
 												<td>소계</td>
-												<td>0</td>
+												<td><label id="Manufacture1LeftTotal"></label></td>
 											</tr>
 										</tfoot>															
 									</table>
 								</div>
 								<div class="col-md-6 col-sm-12 col-xs-12">
-									<table class="table table-striped table-bordered table-hover jambo_table">
+									<table id="manufacture1Right" class="table table-striped table-bordered table-hover jambo_table" style="width: 100%">
 										<thead>
 											<tr>
 												<th>순번</th>
@@ -970,18 +1042,11 @@
 												
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-										</tbody>
 										<tfoot style="background-color: #FFFFB6">
 											<tr>
 												<td></td>
 												<td>소계</td>
-												<td>0</td>
+												<td><label id="Manufacture1RightTotal"></label></td>
 											</tr>
 										</tfoot>																	
 									</table>
@@ -993,7 +1058,7 @@
 											<td>0원</td>
 											<td>제조경비 1</td>
 											<td>합계:</td>
-											<td>0원</td>
+											<td><label id="Manufacture1Total"></label></td>
 										</tr>
 									</tbody>																
 								</table>
@@ -1009,15 +1074,6 @@
 											<th>비고</th>
 										</tr>
 									</thead>
-									<!-- <tbody>
-										<tr>
-											<td></td>
-											<td>1</td>
-											<td>건축</td>
-											<td>금액</td>
-											<td>비고</td>
-										</tr>
-									</tbody>-->
 									<tfoot style="background-color: #FFFFB6">
 										<tr>
 											<td></td>
@@ -1044,56 +1100,56 @@
 											<tr>
 												<td rowspan="4">자체비용</td>
 												<td>인건비</td>
-												<td></td>
-												<td></td>
+												<td style="text-align: right"><label id="LABOR_COST"></label></td>
+												<td style="text-align: right"><label id="LABOR_COST_PER"></label></td>
 											</tr>
 											<tr>
 												<td>제조경비I</td>
-												<td></td>
-												<td></td>
+												<td style="text-align: right"><label id="MANU_COST1"></label></td>
+												<td style="text-align: right"><label id="MANU_COST1_PER"></label></td>
 											</tr>
 											<tr>
 												<td>제조경비II</td>
-												<td></td>
-												<td></td>
+												<td style="text-align: right"><label id="MANU_COST2"></label></td>
+												<td style="text-align: right"><label id="MANU_COST2_PER"></label></td>
 											</tr>
 											<tr>
 												<td>소계</td>
-												<td></td>
-												<td></td>
+												<td style="text-align: right"><label id="SELF_SUM"></label></td>
+												<td style="text-align: right"><label id="SELF_SUM_PER"></label></td>
 											</tr>
 											<tr>
 												<td rowspan="5">배부비용</td>
 												<td>공통비I</td>
-												<td></td>
-												<td></td>
+												<td style="text-align: right"><label id="COMMON_COST1"></label></td>
+												<td style="text-align: right"><label id="COMMON_COST1_PER"></label></td>
 											</tr>
 											<tr>
 												<td>간접비</td>
-												<td></td>
-												<td></td>
+												<td style="text-align: right"><label id="INDIREC_COST"></label></td>
+												<td style="text-align: right"><label id="INDIREC_COST_PER"></label></td>
 											</tr>
 											<tr>
 												<td>공통비II</td>
-												<td></td>
-												<td></td>
+												<td style="text-align: right"><label id="COMMON_COST2"></label></td>
+												<td style="text-align: right"><label id="COMMON_COST2_PER"></label></td>
 											</tr>
 											<tr>
 												<td>관리부문비</td>
-												<td></td>
-												<td></td>
+												<td style="text-align: right"><label id="MANAGE_COST"></label></td>
+												<td style="text-align: right"><label id="MANAGE_COST_PER"></label></td>
 											</tr>
 											<tr>
 												<td>소계</td>
-												<td></td>
-												<td></td>
+												<td style="text-align: right"><label id="DIV_AMT"></label></td>
+												<td style="text-align: right"><label id="DIV_AMT_PER"></label></td>
 											</tr>
 										</tbody>
 										<tfoot>
 											<tr>
 												<td colspan="2">비용합계</td>
-												<td>7100000</td>
-												<td>10</td>
+												<td style="text-align: right"><label id="COST_AMT"></label></td>
+												<td style="text-align: right"><label id="COST_AMT_PER"></label></td>
 											</tr>
 										</tfoot>															
 									</table>
@@ -1111,25 +1167,25 @@
 										<tbody>
 											<tr>
 												<td>빌딩</td>
-												<td>0</td>
-												<td>0</td>
+												<td style="text-align: right"><label id="BUILDING_COST"></label></td>
+												<td style="text-align: right"><label id="BUILDING_COST_PER"></label></td>
 											</tr>
 											<tr>
 												<td>통신</td>
-												<td>0</td>
-												<td>0</td>
+												<td style="text-align: right"><label id="TELE_COST"></label></td>
+												<td style="text-align: right"><label id="TELE_COST_PER"></label></td>
 											</tr>
 											<tr>
 												<td>전산</td>
-												<td>0</td>
-												<td>0</td>
+												<td style="text-align: right"><label id="NET_COST"></label></td>
+												<td style="text-align: right"><label id="NET_COST_PER"></label></td>
 											</tr>
 										</tbody>
 										<tfoot style="background-color: #FFFFB6">
 											<tr>
 												<td>합계</td>
-												<td>0</td>
-												<td>0</td>
+												<td style="text-align: right"><label id="INDIREC_COST_SUM"></label></td>
+												<td style="text-align: right"><label id="INDIREC_COST_SUM_PER"></label></td>
 											</tr>
 										</tfoot>																	
 									</table>
@@ -1146,25 +1202,25 @@
 										<tbody>
 											<tr>
 												<td>부문장</td>
-												<td>0</td>
-												<td>0</td>
+												<td style="text-align: right"><label id="COMMON_COST_BU"></label></td>
+												<td style="text-align: right"><label id="COMMON_COST_BU_PER"></label></td>
 											</tr>
 											<tr>
 												<td>본부장</td>
-												<td>0</td>
-												<td>0</td>
+												<td style="text-align: right"><label id="COMMON_COST_BON"></label></td>
+												<td style="text-align: right"><label id="COMMON_COST_BON_PER"></label></td>
 											</tr>
 											<tr>
 												<td>지원부서</td>
-												<td>0</td>
-												<td>0</td>
+												<td style="text-align: right"><label id="COMMON_COST_DEPT"></label></td>
+												<td style="text-align: right"><label id="COMMON_COST_DEPT_PER"></label></td>
 											</tr>
 										</tbody>
 										<tfoot style="background-color: #FFFFB6">
 											<tr>
 												<td>합계</td>
-												<td>0</td>
-												<td>0</td>
+												<td style="text-align: right"><label id="COMMON_COST1_SUM"></label></td>
+												<td style="text-align: right"><label id="COMMON_COST1_SUM_PER"></label></td>
 											</tr>
 										</tfoot>																	
 									</table>

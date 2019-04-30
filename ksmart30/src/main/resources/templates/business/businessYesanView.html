@@ -51,12 +51,12 @@
 		}
 		/* =============================금액 쉼표 end================================= */
 		
-		/* =============================금액 쉼표================================= */
+		/* ============================= 숫자 쉼표================================= */
 		function numberCommas(n) {
 		    let parts=n.toString().split(".");
 		    return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
 		}
-		/* =============================금액 쉼표 end================================= */
+		/* =============================숫자 쉼표 end================================= */
 		function runAjax(PJT_CD){
 			console.log(PJT_CD+'<- ajax 받았다.');
 			$.ajax({
@@ -123,6 +123,8 @@
 							lengthChange:false,
 							responsive: true,
 		    				destroy: true,
+		    				paging: false,
+		    				info:false,
 		    				data:[data.schedule],
 		    				columns: [
 		    			        {data: 'SEQ'},
@@ -133,11 +135,146 @@
 		    			        {data: 'BIGO'}
 		    			    ]
 		        	   });
+		        	 	console.log(JSON.stringify(data.mhPlan));
+		        	   $('#MhPlanList').DataTable({
+		        		    searching:false,
+							lengthChange:false,
+							responsive: true,
+		    				destroy: true,
+		    				paging: false,
+		    				info:false,
+		    				data:data.mhPlan,
+		    				columns: [
+		    			        {data: 'NUM'},
+		    			        {data: 'LEVEL2_NM'},
+		    			        {data: 'INWON_1'},
+		    			        {data: 'MD_PLAN_1'},
+		    			        {data: 'INWON_2'},
+		    			        {data: 'MD_PLAN_2'},
+		    			        {data: 'INWON'},
+		    			        {data: 'MD_PLAN'},
+		    			        {data: 'YEA_AMT'},
+		    			        {data: 'BIGO'}
+		    			    ],
+		    			    footerCallback: function(row, data, start, end, display) {
+		    			    	  let api = this.api();
+		    			    	  columnsApi(api, 2, '#MhINWON_1Total');
+		    			    	  columnsApi(api, 3, '#MhMD_PLAN_1Total');
+		    			    	  columnsApi(api, 4, '#MhINWON_2Total');
+		    			    	  columnsApi(api, 5, '#MhMD_PLAN_2Total');
+		    			    	  columnsApi(api, 6, '#MhINWONTotal');
+		    			    	  columnsApi(api, 7, '#MhMD_PLANTotal');
+		    			    	  columnsApi(api, 8, '#MhYEA_AMTTotal');		    			    	  
+		    			    },
+		        	   		columnDefs:[
+		        	   				{
+			        	   				targets: [2],
+			        	   				render: function ( data, type, row ) {
+	                                        return amtCommas(row.INWON_1);
+                                    	}
+		        	   				},
+                                    {
+    		        	   				targets: [3],
+    		        	   				render: function ( data, type, row ) {
+                                            return amtCommas(row.MD_PLAN_1);
+                                    	}
+                                    },
+                                    {
+    		        	   				targets: [4],
+    		        	   				render: function ( data, type, row ) {
+                                            return amtCommas(row.INWON_2);
+                                    	}
+                                    },
+                                    {
+    		        	   				targets: [5],
+    		        	   				render: function ( data, type, row ) {
+                                            return amtCommas(row.MD_PLAN_2);
+                                    	}
+                                    },
+                                    {
+    		        	   				targets: [6],
+    		        	   				render: function ( data, type, row ) {
+                                            return amtCommas(row.INWON);
+                                    	}
+                                    },
+                                    {
+    		        	   				targets: [7],
+    		        	   				render: function ( data, type, row ) {
+                                            return amtCommas(row.MD_PLAN);
+                                    	}
+                                    },
+                                    {
+    		        	   				targets: [8],
+    		        	   				render: function ( data, type, row ) {
+                                            return amtCommas(row.YEA_AMT);
+                                    	}
+		        	   		}]
+		        	   });
 		        	   
+		        	   $(data.manufacture2).each((index,item)=>{
+		        		   data.manufacture2[index].EM = '';
+		        		});
+		        	  
+		        	   $('#manufacture2').DataTable({
+		        		    searching:false,
+							lengthChange:false,
+							responsive: true,
+		    				destroy: true,
+		    				paging: false,
+		    				info:false,
+		    				data:data.manufacture2,
+		    				columns: [
+		    					{data: 'EM'},
+		    			        {data: 'NUM'},
+		    			        {data: 'ACC_LONG_NM'},
+		    			        {data: 'YEA_AMT'},
+		    			        {data: 'BIGO'}
+		    			    ],
+		    			    footerCallback: function(row, data, start, end, display) {
+		    			    	  let api = this.api();
+		    			    	 
+		    			    	  api.columns(3, {
+		    			    	    page: 'current'
+		    			    	  }).every(function() {
+		    			    	    let sum = this
+		    			    	      .data()
+		    			    	      .reduce(function(a, b) {
+		    			    	        var x = parseFloat(a) || 0;
+		    			    	        var y = parseFloat(b) || 0;
+		    			    	        return x + y;
+		    			    	      }, 0);
+		    			    	    console.log(sum+'<--나와라요ㅕ'); //alert(sum);
+		    			    	    $('#jejo2Total').text(amtCommas(sum));
+		    			    	  });
+		    			    },
+		        	   		columnDefs:[{
+		        	   				targets: [3],
+		        	   				render: function ( data, type, row ) {
+                                        return amtCommas(row.YEA_AMT);
+                                    }
+		        	   		}]
+		        	   });
 		           });
 			
 			/* =============================일정계획 tab end================================= */
-		}
+		};
+		
+		function columnsApi(api,index, labelName){
+			
+			api.columns(index, {
+	    	    page: 'current'
+	    	  }).every(function() {
+	    	    let sum = this
+	    	      .data()
+	    	      .reduce(function(a, b) {
+	    	        var x = parseFloat(a) || 0;
+	    	        var y = parseFloat(b) || 0;
+	    	        return x + y;
+	    	      }, 0);
+	    	    console.log(sum); //alert(sum);
+	    	    $(labelName).text(amtCommas(sum));
+	    	  });
+		};
 		
 		$(document).ready(()=>{
 			
@@ -760,7 +897,7 @@
 								</table>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab1">
-								<table id="MhPlanList" class="table table-striped table-bordered table-hover jambo_table">
+								<table id="MhPlanList" class="table table-striped table-bordered table-hover jambo_table" style="width: 100%">
 									<thead>
 										<tr>
 											<th rowspan="2">순번</th>
@@ -780,20 +917,20 @@
 											<th>계획MH</th>
 										</tr>
 									</thead>
-									<tbody>
-										<!-- <tr>
-											<td>1</td>
-											<td>전무</td>
-											<td><label id="INWON_1"></label></td>
-											<td><label id="MD_PLAN_1"></label></td>
-											<td><label id="INWON_2"></label></td>
-											<td><label id="MD_PLAN_2"></label></td>
-											<td><label id="INWON"></label></td>
-											<td><label id="MD_PLAN"></label></td>
-											<td><label id="MD_AMT"></label></td>
-											<td><label id="BIGO"></label></td>
-										</tr> -->
-									</tbody>																	
+									<tfoot style="background-color: #FFFFB6">
+										<tr>
+											<td></td>
+											<td>소계</td>
+											<td><label id="MhINWON_1Total"></label></td>
+											<td><label id="MhMD_PLAN_1Total"></label></td>
+											<td><label id="MhINWON_2Total"></label></td>
+											<td><label id="MhMD_PLAN_2Total"></label></td>
+											<td><label id="MhINWONTotal"></label></td>
+											<td><label id="MhMD_PLANTotal"></label></td>
+											<td><label id="MhYEA_AMTTotal"></label></td>
+											<td></td>
+										</tr>
+									</tfoot>																
 								</table>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="home-tab">
@@ -862,7 +999,7 @@
 								</table>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="home-tab">
-								<table class="table table-striped table-bordered table-hover jambo_table">
+								<table id="manufacture2" class="table table-striped table-bordered table-hover jambo_table" style="width: 100%">
 									<thead>
 										<tr>
 											<th></th>
@@ -872,7 +1009,7 @@
 											<th>비고</th>
 										</tr>
 									</thead>
-									<tbody>
+									<!-- <tbody>
 										<tr>
 											<td></td>
 											<td>1</td>
@@ -880,13 +1017,13 @@
 											<td>금액</td>
 											<td>비고</td>
 										</tr>
-									</tbody>
+									</tbody>-->
 									<tfoot style="background-color: #FFFFB6">
 										<tr>
 											<td></td>
 											<td></td>
 											<td>합계</td>
-											<td>600000</td>
+											<td><label id="jejo2Total"></label></td>
 											<td></td>
 										</tr>
 									</tfoot>																	

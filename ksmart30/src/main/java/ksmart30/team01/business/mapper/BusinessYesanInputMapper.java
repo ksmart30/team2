@@ -20,4 +20,8 @@ public interface BusinessYesanInputMapper {
 	Map<String,Object> getResultProject (String PJT_CD);
 	
 	Map<String,Object> getProjectSchedule (String PJT_CD);
+	
+	List<Map<String,Object>> getProjectJejo2 (String PJT_CD);
+	
+	List<Map<String,Object>> getProjectMhPlan (String PJT_CD);
 }

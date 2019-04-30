@@ -205,10 +205,35 @@
 		WHERE A.PRE_PJT_CD LIKE '%' + #{PJT_CD} + '%'
 	</select>
 	<select id="getProjectMhPlan" parameterType="String" resultType="hashmap">
+		SELECT 	(ROW_NUMBER() OVER (ORDER BY B.LEVEL2_CD)) as NUM,
+				B.LEVEL2_CD,
+				B.LEVEL2_NM,
+				C.INWON_1,
+				C.MD_PLAN_1,
+				C.INWON_2,
+				C.MD_PLAN_2,
+				C.INWON,
+				ISNULL(A.MD_PLAN,'0') MD_PLAN,
+				ISNULL(A.YEA_AMT,'0') YEA_AMT,
+				C.BIGO
+		FROM SF_P01_1210M_SL4 (#{PJT_CD},'','S') A RIGHT OUTER JOIN T_SC9100 B ON B.LEVEL2_CD = A.JIKGUP_CD
+		LEFT OUTER JOIN T_PS1010 C ON B.LEVEL2_CD = C.JIKGUB 
+		WHERE B.LEVEL1_CD = '110' AND B.BUSI_GB = 'H' AND B.LEVEL2_CD > '130' AND B.LEVEL2_CD <![CDATA[< ]]> '800' AND C.PRE_PJT_CD LIKE '%' + #{PJT_CD} + '%'
+		ORDER BY  B.LEVEL2_CD
 	</select>
 	<select id="getProjectJejo1" parameterType="String" resultType="hashmap">
 	</select>
 	<select id="getProjectJejo2" parameterType="String" resultType="hashmap">
+		SELECT 	(ROW_NUMBER() OVER (ORDER BY ACC_CD)) as NUM,*
+		FROM	(SELECT DISTINCT A.ACC_CD,
+						A.ACC_DTL_CD,
+		       			A.ACC_LONG_NM,
+		       			A.YEA_AMT,
+				       	B.BIGO,
+				       	CASE WHEN A.CHA_AMT <![CDATA[< ]]>0 THEN 'red' ELSE 'black'
+				       	END COLOR
+				 FROM 	SF_P21_4100M_JEJO2 (#{PJT_CD},'','S') A LEFT OUTER JOIN T_PS1030 B ON B.PRE_PJT_CD LIKE '%' + #{PJT_CD} + '%') C
+		ORDER BY C.ACC_DTL_CD
 	</select>
 	<select id="getProjectReport" parameterType="String" resultType="hashmap">
 	</select>

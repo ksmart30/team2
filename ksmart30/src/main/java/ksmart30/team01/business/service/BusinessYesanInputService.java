@@ -45,10 +45,16 @@ public class BusinessYesanInputService {
 		 * System.out.println(businessYesanInputMapper.getProjectSchedule(PJT_CD1));
 		 */
 		
-		  Map<String,Object> map = new HashMap<String,Object>(); map.put("schedule",
-		  businessYesanInputMapper.getProjectSchedule(PJT_CD));
+		  Map<String,Object> map = new HashMap<String,Object>(); 
+		  map.put("schedule",businessYesanInputMapper.getProjectSchedule(PJT_CD));
+		  map.put("mhPlan", businessYesanInputMapper.getProjectMhPlan(PJT_CD));
+		  map.put("manufacture2", businessYesanInputMapper.getProjectJejo2(PJT_CD));
+		  
 		  
 		  System.out.println(map.get("schedule"));
+		  System.out.println(map.get("mhPlan"));
+		  System.out.println(map.get("manufacture2"));
+		  
 		 
 		
 		return map;

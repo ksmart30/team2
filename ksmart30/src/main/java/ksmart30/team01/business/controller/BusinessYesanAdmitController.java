@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ksmart30.team01.business.service.BusinessYesanAdmitService;
+import ksmart30.team01.business.service.BusinessYesanInputService;
 
 
 @Controller
 public class BusinessYesanAdmitController {
 	@Autowired
-	BusinessYesanAdmitService businessYesanAdmitService; 
+	BusinessYesanAdmitService businessYesanAdmitService;
+	@Autowired
+	BusinessYesanInputService businessYesanInputService;
 	
 	@GetMapping("/business/businessYesanAdmitView")
 	public String businessYesanAdmitView(Model model) {	
@@ -48,4 +51,21 @@ public class BusinessYesanAdmitController {
 		System.out.println(PJT_CD);
 		return businessYesanAdmitService.getResultProject(PJT_CD);
 	}
+	@PostMapping("/businessYesanAdmitGetResultDetail")
+	public @ResponseBody Map<String,Object> businessYesanGetResultDetail(@RequestBody String PJT_CD){
+		System.out.println(PJT_CD);
+		return businessYesanInputService.getProjectDetail(PJT_CD);
+	}
+	@PostMapping("/businessYesanAdmitGetManufacture2")
+	public Map<String,Object> businessYesanAdmitManufacture2(@RequestBody String PJT_CD){
+		System.out.println(PJT_CD);
+		return businessYesanAdmitService.getManufacture2(PJT_CD);
+	}	
+	/*
+	 * @PostMapping("/businessYesanAdmitProcess") public @ResponseBody String
+	 * businessYesanModify(@RequestBody String PJT_CD) { System.out.println(PJT_CD);
+	 * return businessYesanAdmitService.admitProcess(PJT_CD);
+	 * 
+	 * }
+	 */
 }

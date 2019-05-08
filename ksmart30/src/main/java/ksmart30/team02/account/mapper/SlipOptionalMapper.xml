@@ -1,29 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ksmart30.team02.account.mapper.SlipOptionalMapper">
-
-<select id="conditionalSlipSearchView" resultType="ksmart30.team02.account.domain.SlipOptionalDomain">
-<!-- SELECT B.SLIP_DATE, B.JS_CODE, B.SLIP_SEQ, D.ACC_LONG_NM, B.ACC_DTL_CD, D.ACC_LONG_NM, B.BELONG_DEPT_CD, C.PJT_CD, C.CUST_NM, B.DESCR, A.DR_AMT, A.CR_AMT, B.ACC_CD 
-FROM T_AC1110 A, T_AC1120 B, T_AC0930 C, T_AC0100 D
-WHERE A.ACC_UNIT=B.ACC_UNIT AND A.SLIP_DATE=B.SLIP_DATE AND A.SLIP_NO=B.SLIP_NO AND A.JS_CODE=B.JS_CODE AND B.PROJ_CD=C.PJT_CD AND B.CUST_CD=C.CUST_CD AND B.ACC_DTL_CD=D.ACC_DTL_CD AND B.ACC_CD=D.ACC_CD; -->
-SELECT * FROM (
-	SELECT row_number() over (order by B.SLIP_DATE) as rownum,
-	 B.SLIP_DATE,
-	 B.JS_CODE,
-	 B.SLIP_SEQ,
-	 B.ACC_DTL_CD,
-	 D.ACC_LONG_NM,
-	 B.BELONG_DEPT_CD,
-	 C.PJT_CD,
-	 C.CUST_NM,
-	 B.DESCR, 
-	 A.DR_AMT,
-	 A.CR_AMT,
-	 B.ACC_CD 
+	<!-- 계정과목 리스트 -->
+	<select id="getAccountCodeList" parameterType="String" resultType="java.util.Map">
+		SELECT ACC_CD AS accCd, 
+			   ACC_DTL_CD AS accDtlCd, 
+			   ACC_LONG_NM AS accShrtNm
+		FROM T_AC0100
+		WHERE ACC_LEVEL='5' AND ACC_LONG_NM LIKE '%' + #{account} + '%' OR ACC_LEVEL='5' AND ACC_CD LIKE '%' + #{account} + '%'
+	</select>
+	
+	<!-- 부서 리스트 -->
+	<select id="getDeptCodeList" parameterType="String" resultType="java.util.Map">
+		SELECT  DEPT_CD,
+		 		DEPT_NM
+		FROM T_SC1010
+		WHERE DEPT_CD LIKE '%' + #{dept} + '%' OR DEPT_NM LIKE '%' + #{dept} + '%'
+	</select>
+	
+	<!-- 거래처 리스트 -->
+	<select id="getCustCodeList" parameterType="String" resultType="java.util.Map">
+		SELECT  CUST_CD,
+		 		CUST_NM
+		FROM T_AC0300
+		WHERE CUST_CD LIKE '%' + #{cust} + '%' OR CUST_NM LIKE '%' + #{cust} + '%'
+	</select>
+	<select id="getSlipList" parameterType="hashmap" resultType="java.util.Map">
+	<!-- SELECT B.SLIP_DATE, B.JS_CODE, B.SLIP_SEQ, D.ACC_LONG_NM, B.ACC_DTL_CD, D.ACC_LONG_NM, B.BELONG_DEPT_CD, C.PJT_CD, C.CUST_NM, B.DESCR, A.DR_AMT, A.CR_AMT, B.ACC_CD 
 	FROM T_AC1110 A, T_AC1120 B, T_AC0930 C, T_AC0100 D
-	WHERE A.ACC_UNIT=B.ACC_UNIT AND A.SLIP_DATE=B.SLIP_DATE AND A.SLIP_NO=B.SLIP_NO AND A.JS_CODE=B.JS_CODE AND B.PROJ_CD=C.PJT_CD AND B.CUST_CD=C.CUST_CD AND B.ACC_DTL_CD=D.ACC_DTL_CD AND B.ACC_CD=D.ACC_CD
-) t1
-WHERE t1.rownum BETWEEN 1 and 300
-</select>
+	WHERE A.ACC_UNIT=B.ACC_UNIT AND A.SLIP_DATE=B.SLIP_DATE AND A.SLIP_NO=B.SLIP_NO AND A.JS_CODE=B.JS_CODE AND B.PROJ_CD=C.PJT_CD AND B.CUST_CD=C.CUST_CD AND B.ACC_DTL_CD=D.ACC_DTL_CD AND B.ACC_CD=D.ACC_CD; -->
+	SELECT * FROM (
+		SELECT row_number() over (order by B.SLIP_DATE) as rownum,
+		 B.SLIP_DATE,
+		 B.JS_CODE,
+		 B.SLIP_SEQ,
+		 B.ACC_DTL_CD,
+		 D.ACC_LONG_NM,
+		 B.BELONG_DEPT_CD,
+		 C.PJT_CD,
+		 C.CUST_NM,
+		 B.DESCR, 
+		 A.DR_AMT,
+		 A.CR_AMT,
+		 B.ACC_CD 
+		FROM T_AC1110 A, T_AC1120 B, T_AC0930 C, T_AC0100 D
+		WHERE A.ACC_UNIT=B.ACC_UNIT AND A.SLIP_DATE=B.SLIP_DATE AND A.SLIP_NO=B.SLIP_NO AND A.JS_CODE=B.JS_CODE AND B.PROJ_CD=C.PJT_CD AND B.CUST_CD=C.CUST_CD AND B.ACC_DTL_CD=D.ACC_DTL_CD AND B.ACC_CD=D.ACC_CD
+	) t1
+	WHERE t1.rownum BETWEEN 1 and 300
+	</select>
 
 </mapper>
